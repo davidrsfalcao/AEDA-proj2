@@ -37,9 +37,6 @@ int dia_do_sistema()
 {
 	int dia { };
 
-//	struct tm *DataAtual { }; //estrutura para armazenar data e hora.
-//	time_t Segundos { };
-
 	time_t rawtime { };
 	struct tm *timeinfo { };
 

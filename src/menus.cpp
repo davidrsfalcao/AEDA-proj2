@@ -7,7 +7,6 @@ using namespace std;
 
 int main()
 {
-
-	cout << dia_do_sistema() << endl;
+	cabecalho();
 	return 0;
 }
