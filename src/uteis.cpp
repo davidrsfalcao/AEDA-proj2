@@ -1,6 +1,7 @@
 #include "uteis.h"
 #include <stdlib.h>
 
+#pragma warning(disable: 4996)
 
 using namespace std;
 
