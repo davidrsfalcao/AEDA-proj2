@@ -469,3 +469,31 @@ bool dia_existe(int dia, int mes, int ano)
 
 
 }
+
+int opcao_valida(int &opcao, int min, int max)
+{
+	int tecla;
+	int make=0, breakc=0;
+	make = _getch();
+	
+	if (make == 224)
+		breakc = _getch();
+	else return make;
+
+	tecla = make * 100 + breakc;
+
+	if (tecla == 22472)
+		opcao--;
+
+	if (tecla == 22480)
+		opcao++;
+
+	if (opcao > max)
+		opcao = min;
+
+	if (opcao < min)
+		opcao = max;
+
+	return tecla;
+
+}

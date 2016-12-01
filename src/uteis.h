@@ -6,6 +6,8 @@
 #include <time.h>
 #include <sstream>
 #include <vector>
+#include <conio.h>
+#include <cstdlib>
 
 /**
  * @brief verifica se uma data existe
@@ -117,6 +119,8 @@ std::vector<std::string> ordena_dias_semana(std::vector<std::string> v1);
  * @param v Vetor que se vai ordenar
  *
  */
+
+int opcao_valida(int &opcao, int min, int max);
 
 
 #endif /* UTEIS_H_ */
