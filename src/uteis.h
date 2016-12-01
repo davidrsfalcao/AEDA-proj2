@@ -8,6 +8,7 @@
 #include <vector>
 #include <conio.h>
 #include <cstdlib>
+#include <windows.h>
 
 /**
  * @brief verifica se uma data existe
@@ -121,6 +122,15 @@ std::vector<std::string> ordena_dias_semana(std::vector<std::string> v1);
  */
 
 int opcao_valida(int &opcao, int min, int max);
+
+enum DOS_COLORS
+{
+	BLACK, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN,
+	LIGHT_GRAY, DARK_GRAY, LIGHT_BLUE, LIGHT_GREEN, LIGHT_CYAN,
+	LIGHT_RED, LIGHT_MAGENTA, YELLOW, WHITE
+};
+
+void textcolor(DOS_COLORS iColor);
 
 
 #endif /* UTEIS_H_ */

@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 
 #include "uteis.h"
 
@@ -16,8 +16,10 @@ void menu_inicial()
 			system("cls");
 			cabecalho();
 			cout << endl << endl;
-
-			cout << "\t=> Escolher piscina" << endl;
+			textcolor(LIGHT_RED);
+			cout << "\t=> ";
+			textcolor(WHITE);
+			cout << "Escolher piscina" << endl;
 			cout << "\tSobre" << endl;
 			cout << "\tSair" << endl;
 			tecla = opcao_valida(opcao, 1, 3);
@@ -29,7 +31,10 @@ void menu_inicial()
 			cout << endl << endl;
 
 			cout << "\tEscolher piscina" << endl;
-			cout << "\t=> Sobre" << endl;
+			textcolor(LIGHT_RED);
+			cout << "\t=> ";
+			textcolor(WHITE);
+			cout << "Sobre" << endl;
 			cout << "\tSair" << endl;
 			tecla = opcao_valida(opcao, 1, 3);
 			break;
@@ -41,7 +46,10 @@ void menu_inicial()
 
 			cout << "\tEscolher piscina" << endl;
 			cout << "\tSobre" << endl;
-			cout << "\t=>Sair" << endl;
+			textcolor(LIGHT_RED);
+			cout << "\t=> ";
+			textcolor(WHITE);
+			cout << "Sair" << endl;
 			tecla = opcao_valida(opcao, 1, 3);
 			break;
 
@@ -50,6 +58,8 @@ void menu_inicial()
 		}
 	
 	} while ((opcao != 3) || (tecla != 13));
+
+	cout << endl << endl;
 }
 
 int main()
