@@ -132,5 +132,7 @@ enum DOS_COLORS
 
 void textcolor(DOS_COLORS iColor);
 
+void titulo();
+
 
 #endif /* UTEIS_H_ */

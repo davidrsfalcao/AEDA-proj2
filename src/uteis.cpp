@@ -306,6 +306,7 @@ string calculo_dia_da_semana(int dia,int mes,int ano)
 
 void cabecalho()
 {
+	
 	cout << "\tHora: ";
 	if (horas_do_sistema() < 10)
 		cout << "0" << horas_do_sistema() << ":";
@@ -505,4 +506,20 @@ void textcolor(DOS_COLORS iColor)
 	BOOL b = GetConsoleScreenBufferInfo(hl, &bufferInfo);
 	bufferInfo.wAttributes &= 0x00F0;
 	SetConsoleTextAttribute(hl, bufferInfo.wAttributes |= iColor);
+}
+
+void titulo()
+{
+	textcolor(YELLOW);
+
+	cout << endl;
+	cout << "\t\t OOOOOOO  OOO   OOOOOO   OOOOOO  OOO  OOO   OOO     OOOO    " << endl;
+	cout << "\t\t OOO  OOO OOO  OOO      OOOO     OOO  OOOO  OOO    OOOOO    " << endl;
+	cout << "\t\t OOO  OOO OOO  OOOOO   OOO       OOO  OOOOO OOO   OOO OOO   " << endl;
+	cout << "\t\t OOOOOOO  OOO    OOOOO OOO       OOO  OO OOOOOO   OOO OOO   " << endl;
+	cout << "\t\t OOO      OOO      OOO OOOO      OOO  OO   OOOO  OOOOOOOOO  " << endl;
+	cout << "\t\t OOO      OOO  OOOOOOO   OOOOOO  OOO  OO    OOO  OOO   OOO  " << endl;
+	cout << "\t\t============================================================" << endl;
+	textcolor(WHITE);
+	cout << "   ";
 }

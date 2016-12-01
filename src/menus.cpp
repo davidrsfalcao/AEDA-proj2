@@ -14,6 +14,7 @@ void menu_inicial()
 		{
 		case 1:
 			system("cls");
+			titulo();
 			cabecalho();
 			cout << endl << endl;
 			textcolor(LIGHT_RED);
@@ -27,6 +28,7 @@ void menu_inicial()
 
 		case 2:
 			system("cls");
+			titulo();
 			cabecalho();
 			cout << endl << endl;
 
@@ -41,6 +43,7 @@ void menu_inicial()
 
 		case 3:
 			system("cls");
+			titulo();
 			cabecalho();
 			cout << endl << endl;
 
@@ -64,6 +67,7 @@ void menu_inicial()
 
 int main()
 {
+	system("TITLE PISCINA");
 	menu_inicial();
 
 	return 0;
