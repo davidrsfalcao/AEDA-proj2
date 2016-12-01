@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 void creditos()
 {
 	system("cls");
@@ -37,6 +38,8 @@ void creditos()
 	cin.ignore();
 }
 
+
+// MENU INICIAL
 void menu_inicial_ops(int opcao)
 {
 	int a = 254;
