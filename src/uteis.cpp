@@ -528,14 +528,17 @@ void titulo()
 	int f = 188;
 	char char6 = f; // obter -> ╝
 
+	int g = 219;
+	char i = g; // obter -> █
+
 	textcolor(YELLOW);
 	cout << "\t\t" << char2 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char4 << endl;
-	cout << "\t\t"<<char1 << " OOOOOOO  OOO   OOOOOO   OOOOOO  OOO  OOO   OOO     OOOO    " << char1 << endl;
-	cout << "\t\t"<<char1 << " OOO  OOO OOO  OOO      OOOO     OOO  OOOO  OOO    OOOOO    " << char1 << endl;
-	cout << "\t\t"<<char1 << " OOO  OOO OOO  OOOOO   OOO       OOO  OOOOO OOO   OOO OOO   " << char1 << endl;
-	cout << "\t\t"<<char1 << " OOOOOOO  OOO    OOOOO OOO       OOO  OO OOOOOO   OOO OOO   " << char1 << endl;
-	cout << "\t\t"<<char1 << " OOO      OOO      OOO OOOO      OOO  OO   OOOO  OOOOOOOOO  " << char1 << endl;
-	cout << "\t\t"<<char1 << " OOO      OOO  OOOOOOO   OOOOOO  OOO  OO    OOO  OOO   OOO  " << char1 << endl;
+	cout << "\t\t"<<char1 << " "<<i<<i<<i<<i<<i<<i<<i<<"  "<<i<<i<<i<<"   "<<i<<i<<i<<i<<i<<i<<"   "<<i<<i<<i<<i<<i<<i<<"  "<<i<<i<<i<<"  "<<i<<i<<i<<"   "<<i<<i<<i<<"     "<<i<<i<<i<<i<<"    " << char1 << endl;
+	cout << "\t\t"<<char1 << " "<<i<<i<<i<<"  "<<i<<i<<i<<" "<<i<<i<<i<<"  "<<i<<i<<i<<"      "<<i<<i<<i<<i<<"     "<<i<<i<<i<<"  "<<i<<i<<i<<i<<"  "<<i<<i<<i<<"    "<<i<<i<<i<<i<<i<<"    " << char1 << endl;
+	cout << "\t\t"<<char1 << " "<<i<<i<<i<<"  "<<i<<i<<i<<" "<<i<<i<<i<<"  "<<i<<i<<i<<i<<i<<"   "<<i<<i<<i<<"       "<<i<<i<<i<<"  "<<i<<i<<i<<i<<i<<" "<<i<<i<<i<<"   "<<i<<i<<i<<" "<<i<<i<<i<<"   " << char1 << endl;
+	cout << "\t\t"<<char1 << " "<<i<<i<<i<<i<<i<<i<<i<<"  "<<i<<i<<i<<"    "<<i<<i<<i<<i<<i<<" "<<i<<i<<i<<"       "<<i<<i<<i<<"  "<<i<<i<<" "<<i<<i<<i<<i<<i<<i<<"   "<<i<<i<<i<<" "<<i<<i<<i<<"   " << char1 << endl;
+	cout << "\t\t"<<char1 << " "<<i<<i<<i<<"      "<<i<<i<<i<<"      "<<i<<i<<i<<"  "<<i<<i<<i<<"      "<<i<<i<<i<<"  "<<i<<i<<"   "<<i<<i<<i<<i<<"  "<<i<<i<<i<<i<<i<<i<<i<<i<<i<<"  " << char1 << endl;
+	cout << "\t\t"<<char1 << " "<<i<<i<<i<<"      "<<i<<i<<i<<"  "<<i<<i<<i<<i<<i<<i<<"    "<<i<<i<<i<<i<<i<<i<<"  "<<i<<i<<i<<"  "<<i<<i<<"    "<<i<<i<<i<<"  "<<i<<i<<i<<"   "<<i<<i<<i<<"  " << char1 << endl;
 	cout << "\t\t" << char5 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char6 << endl;
 	textcolor(WHITE);
 }
