@@ -4,6 +4,39 @@
 
 using namespace std;
 
+void creditos()
+{
+	system("cls");
+	titulo();
+	cout << endl;
+	cout << endl << "\t    Projeto final da cadeira 'Algoritmos e Estruturas de Dados' - AEDA " << endl << endl;
+	cout << "\t    Desenvolvido por:" << endl << endl;
+
+	cout << "\t\t\t David Falcao    -  up201506571";
+	textcolor(YELLOW);
+	cout << " @ ";
+	textcolor(WHITE);
+	cout <<"fe.up.pt" << endl;
+
+	cout << "\t\t\t Pedro Miranda   -  up201506574";
+	textcolor(YELLOW);
+	cout << " @ ";
+	textcolor(WHITE);
+	cout << "fe.up.pt" << endl;
+
+	cout << "\t\t\t Jose Machado    -  up201504779";
+	textcolor(YELLOW);
+	cout << " @ ";
+	textcolor(WHITE);
+	cout << "fe.up.pt" << endl;
+
+	textcolor(RED);
+	cout << endl << endl << "\t    Prima ENTER para voltar" << endl;
+	textcolor(WHITE);
+	
+	cin.ignore();
+}
+
 void menu_inicial_ops(int opcao)
 {
 	if (opcao == 1)
@@ -53,11 +86,11 @@ void menu_inicial()
 	{
 		system("cls");
 		titulo();
-		cout << endl << endl;
+		cout << endl << endl << endl;
 		menu_inicial_ops(opcao);
 
-		cout << endl << endl;
-		cout << "\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
+		cout << endl << endl << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
 		cout << endl << endl;
 
 
@@ -79,8 +112,7 @@ void menu_inicial()
 			break;
 
 		case 3:
-			cout << "\n\n EM CONSTRUCAO" << endl;
-			Sleep(3000);
+			creditos();
 			break;
 
 		case 4:
@@ -95,7 +127,7 @@ void menu_inicial()
 
 int main()
 {
-	system("TITLE PISCINA");
+	system("TITLE PROJETO 2 - PISCINA");
 	menu_inicial();
 
 	return 0;
