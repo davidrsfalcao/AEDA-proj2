@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <windows.h>
 
+#define ENTER 13
+
 /**
  * @brief verifica se uma data existe
  *
