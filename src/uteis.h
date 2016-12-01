@@ -139,5 +139,7 @@ void textcolor(DOS_COLORS iColor);
 
 void titulo();
 
+void configurar_terminal();
+
 
 #endif /* UTEIS_H_ */

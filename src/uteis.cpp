@@ -510,16 +510,53 @@ void textcolor(DOS_COLORS iColor)
 
 void titulo()
 {
-	textcolor(YELLOW);
+	int a = 186;
+	char char1 = a;  // obter -> ║
 
-	cout << endl;
-	cout << "\t\t OOOOOOO  OOO   OOOOOO   OOOOOO  OOO  OOO   OOO     OOOO    " << endl;
-	cout << "\t\t OOO  OOO OOO  OOO      OOOO     OOO  OOOO  OOO    OOOOO    " << endl;
-	cout << "\t\t OOO  OOO OOO  OOOOO   OOO       OOO  OOOOO OOO   OOO OOO   " << endl;
-	cout << "\t\t OOOOOOO  OOO    OOOOO OOO       OOO  OO OOOOOO   OOO OOO   " << endl;
-	cout << "\t\t OOO      OOO      OOO OOOO      OOO  OO   OOOO  OOOOOOOOO  " << endl;
-	cout << "\t\t OOO      OOO  OOOOOOO   OOOOOO  OOO  OO    OOO  OOO   OOO  " << endl;
-	cout << "\t\t=========================================================== " << endl;
+	int b = 201;
+	char char2 = b; // obter -> ╔
+
+	int c = 205;
+	char char3 = c; // obter -> ═
+
+	int d = 187;
+	char char4 = d; // obter -> ╗
+
+	int e = 200;
+	char char5 = e; // obter -> ╚
+
+	int f = 188;
+	char char6 = f; // obter -> ╝
+
+	textcolor(YELLOW);
+	cout << "\t\t" << char2 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char4 << endl;
+	cout << "\t\t"<<char1 << " OOOOOOO  OOO   OOOOOO   OOOOOO  OOO  OOO   OOO     OOOO    " << char1 << endl;
+	cout << "\t\t"<<char1 << " OOO  OOO OOO  OOO      OOOO     OOO  OOOO  OOO    OOOOO    " << char1 << endl;
+	cout << "\t\t"<<char1 << " OOO  OOO OOO  OOOOO   OOO       OOO  OOOOO OOO   OOO OOO   " << char1 << endl;
+	cout << "\t\t"<<char1 << " OOOOOOO  OOO    OOOOO OOO       OOO  OO OOOOOO   OOO OOO   " << char1 << endl;
+	cout << "\t\t"<<char1 << " OOO      OOO      OOO OOOO      OOO  OO   OOOO  OOOOOOOOO  " << char1 << endl;
+	cout << "\t\t"<<char1 << " OOO      OOO  OOOOOOO   OOOOOO  OOO  OO    OOO  OOO   OOO  " << char1 << endl;
+	cout << "\t\t" << char5 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char6 << endl;
 	textcolor(WHITE);
-	cout << "   ";
+}
+
+void configurar_terminal()
+{
+	//Definir nome janela
+	system("TITLE PROJETO 2 - PISCINA");
+
+	//Ajustar tamanho janela 
+
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	SMALL_RECT sr;
+	COORD consoleSize;
+
+	consoleSize.X = 90; consoleSize.Y = 25;
+
+	sr.Top = sr.Left = 0;
+	sr.Right = 89; sr.Bottom = 24;
+
+	SetConsoleWindowInfo(console, TRUE, &sr);
+	SetConsoleScreenBufferSize(console, consoleSize);
+
 }

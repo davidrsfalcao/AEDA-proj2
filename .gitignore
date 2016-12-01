@@ -412,3 +412,4 @@ __pycache__/
 
 ### VisualStudio Patch ###
 build/
+Output-Build.txt
