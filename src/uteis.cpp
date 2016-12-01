@@ -307,7 +307,7 @@ string calculo_dia_da_semana(int dia,int mes,int ano)
 void cabecalho()
 {
 	
-	cout << "\tHora: ";
+	cout << "\t\t    Hora: ";
 	if (horas_do_sistema() < 10)
 		cout << "0" << horas_do_sistema() << ":";
 	else
@@ -519,7 +519,7 @@ void titulo()
 	cout << "\t\t OOOOOOO  OOO    OOOOO OOO       OOO  OO OOOOOO   OOO OOO   " << endl;
 	cout << "\t\t OOO      OOO      OOO OOOO      OOO  OO   OOOO  OOOOOOOOO  " << endl;
 	cout << "\t\t OOO      OOO  OOOOOOO   OOOOOO  OOO  OO    OOO  OOO   OOO  " << endl;
-	cout << "\t\t============================================================" << endl;
+	cout << "\t\t=========================================================== " << endl;
 	textcolor(WHITE);
 	cout << "   ";
 }

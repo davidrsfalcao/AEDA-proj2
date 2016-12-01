@@ -18,12 +18,14 @@ void menu_inicial()
 			cabecalho();
 			cout << endl << endl;
 			textcolor(LIGHT_RED);
-			cout << "\t=> ";
+			cout << "\t\t\t=> ";
 			textcolor(WHITE);
 			cout << "Escolher piscina" << endl;
-			cout << "\tSobre" << endl;
-			cout << "\tSair" << endl;
-			tecla = opcao_valida(opcao, 1, 3);
+			cout << "\t\t\tLista Piscinas" << endl;
+			cout << "\t\t\tSobre" << endl;
+			cout << "\t\t\tSair" << endl;
+			tecla = opcao_valida(opcao, 1, 4);
+			Sleep(100);
 			break;
 
 		case 2:
@@ -32,13 +34,15 @@ void menu_inicial()
 			cabecalho();
 			cout << endl << endl;
 
-			cout << "\tEscolher piscina" << endl;
+			cout << "\t\t\tEscolher piscina" << endl;
 			textcolor(LIGHT_RED);
-			cout << "\t=> ";
+			cout << "\t\t\t=> ";
 			textcolor(WHITE);
-			cout << "Sobre" << endl;
-			cout << "\tSair" << endl;
-			tecla = opcao_valida(opcao, 1, 3);
+			cout << "Lista Piscinas" << endl;
+			cout << "\t\t\tSobre" << endl;
+			cout << "\t\t\tSair" << endl;
+			tecla = opcao_valida(opcao, 1, 4);
+			Sleep(100);
 			break;
 
 		case 3:
@@ -47,20 +51,41 @@ void menu_inicial()
 			cabecalho();
 			cout << endl << endl;
 
-			cout << "\tEscolher piscina" << endl;
-			cout << "\tSobre" << endl;
+			cout << "\t\t\tEscolher piscina" << endl;
+			cout << "\t\t\tLista Piscinas" << endl;
 			textcolor(LIGHT_RED);
-			cout << "\t=> ";
+			cout << "\t\t\t=> ";
+			textcolor(WHITE);
+			cout << "Sobre" << endl;
+			cout << "\t\t\tSair" << endl;
+			tecla = opcao_valida(opcao, 1, 4);
+			Sleep(300);
+			break;
+
+
+
+		case 4:
+			system("cls");
+			titulo();
+			cabecalho();
+			cout << endl << endl;
+
+			cout << "\t\t\tEscolher piscina" << endl;
+			cout << "\t\t\tLista Piscinas" << endl;
+			cout << "\t\t\tSobre" << endl;
+			textcolor(LIGHT_RED);
+			cout << "\t\t\t=> ";
 			textcolor(WHITE);
 			cout << "Sair" << endl;
-			tecla = opcao_valida(opcao, 1, 3);
+			tecla = opcao_valida(opcao, 1, 4);
+			Sleep(300);
 			break;
 
 
 
 		}
 	
-	} while ((opcao != 3) || (tecla != 13));
+	} while ((opcao != 4) || (tecla != 13));
 
 	cout << endl << endl;
 }
