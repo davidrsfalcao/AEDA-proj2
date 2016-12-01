@@ -11,6 +11,9 @@
 #include <windows.h>
 
 #define ENTER 13
+#define DOWN_KEY 22472
+#define UP_KEY 22480
+
 
 /**
  * @brief verifica se uma data existe

@@ -483,10 +483,10 @@ int opcao_valida(int &opcao, int min, int max)
 
 	tecla = make * 100 + breakc;
 
-	if (tecla == 22472)
+	if (tecla == DOWN_KEY)
 		opcao--;
 
-	if (tecla == 22480)
+	if (tecla == UP_KEY)
 		opcao++;
 
 	if (opcao > max)
