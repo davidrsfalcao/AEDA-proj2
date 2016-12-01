@@ -531,7 +531,7 @@ void titulo()
 	int g = 219;
 	char i = g; // obter -> █
 
-	textcolor(YELLOW);
+	textcolor(LIGHT_CYAN);
 	cout << "\t      " << char2 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char4 << endl;
 	cout << "\t      "<<char1 << " "<<i<<i<<i<<i<<i<<i<<i<<"  "<<i<<i<<i<<"   "<<i<<i<<i<<i<<i<<i<<"   "<<i<<i<<i<<i<<i<<i<<"  "<<i<<i<<i<<"  "<<i<<i<<i<<"   "<<i<<i<<i<<"     "<<i<<i<<i<<"     " << char1 << endl;
 	cout << "\t      "<<char1 << " "<<i<<i<<i<<"  "<<i<<i<<i<<" "<<i<<i<<i<<"  "<<i<<i<<i<<"      "<<i<<i<<i<<i<<"     "<<i<<i<<i<<"  "<<i<<i<<i<<i<<"  "<<i<<i<<i<<"    "<<i<<i<<i<<i<<i<<"    " << char1 << endl;

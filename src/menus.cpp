@@ -13,19 +13,19 @@ void creditos()
 	cout << "\t    Desenvolvido por:" << endl << endl;
 
 	cout << "\t\t\t David Falcao    -  up201506571";
-	textcolor(YELLOW);
+	textcolor(LIGHT_CYAN);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout <<"fe.up.pt" << endl;
 
 	cout << "\t\t\t Pedro Miranda   -  up201506574";
-	textcolor(YELLOW);
+	textcolor(LIGHT_CYAN);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout << "fe.up.pt" << endl;
 
 	cout << "\t\t\t Jose Machado    -  up201504779";
-	textcolor(YELLOW);
+	textcolor(LIGHT_CYAN);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout << "fe.up.pt" << endl;
@@ -43,7 +43,7 @@ void menu_inicial_ops(int opcao)
 	char square = a; // obter 
 	if (opcao == 1)
 	{
-		textcolor(LIGHT_RED);
+		textcolor(YELLOW);
 		cout << "\t\t\t\t  " <<  square;
 		textcolor(WHITE);
 		cout << " Criar Piscina" << endl;
@@ -52,7 +52,7 @@ void menu_inicial_ops(int opcao)
 
 	if (opcao == 2)
 	{
-		textcolor(LIGHT_RED);
+		textcolor(YELLOW);
 		cout << "\t\t\t\t  " << square;
 		textcolor(WHITE);
 		cout << " Carregar Piscina" << endl;
@@ -61,7 +61,7 @@ void menu_inicial_ops(int opcao)
 
 	if (opcao == 3)
 	{
-		textcolor(LIGHT_RED);
+		textcolor(YELLOW);
 		cout << "\t\t\t\t  " << square;
 		textcolor(WHITE);
 		cout << " Sobre" << endl;
@@ -70,7 +70,7 @@ void menu_inicial_ops(int opcao)
 
 	if (opcao == 4)
 	{
-		textcolor(LIGHT_RED);
+		textcolor(YELLOW);
 		cout << "\t\t\t\t  " << square;
 		textcolor(WHITE);
 		cout << " Sair" << endl;
