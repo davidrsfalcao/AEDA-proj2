@@ -2,4 +2,4 @@
 
 Segundo trabalho prático AEDA-FEUP
 
-![alt tag](http://image.prntscr.com/image/d29c2317039f4c078ba74de6e39018c1.png)
+![alt tag](http://image.prntscr.com/image/6e19b5b856184aebb382cca857f910e2.png)
