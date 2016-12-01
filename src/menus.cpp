@@ -4,6 +4,47 @@
 
 using namespace std;
 
+void menu_inicial_ops(int opcao)
+{
+	if (opcao == 1)
+	{
+		textcolor(LIGHT_RED);
+		cout << "\t\t\t\t\  => ";
+		textcolor(WHITE);
+		cout << "Criar Piscina" << endl;
+	}
+	else cout << "\t\t\t\t     Criar Piscina" << endl;
+
+	if (opcao == 2)
+	{
+		textcolor(LIGHT_RED);
+		cout << "\t\t\t\t  => ";
+		textcolor(WHITE);
+		cout << "Carregar Piscina" << endl;
+	}
+	else cout << "\t\t\t\t     Carregar Piscina" << endl;
+
+	if (opcao == 3)
+	{
+		textcolor(LIGHT_RED);
+		cout << "\t\t\t\t  => ";
+		textcolor(WHITE);
+		cout << "Sobre" << endl;
+	}
+	else cout << "\t\t\t\t     Sobre" << endl;
+
+	if (opcao == 4)
+	{
+		textcolor(LIGHT_RED);
+		cout << "\t\t\t\t  => ";
+		textcolor(WHITE);
+		cout << "Sair" << endl;
+	}
+	else cout << "\t\t\t\t     Sair" << endl;
+
+
+}
+
 void menu_inicial()
 {
 	int opcao = 1, tecla;
@@ -12,44 +53,13 @@ void menu_inicial()
 	{
 		system("cls");
 		titulo();
-		cabecalho();
 		cout << endl << endl;
-		
-		if (opcao == 1)
-		{
-			textcolor(LIGHT_RED);
-			cout << "\t\t\t=> ";
-			textcolor(WHITE);
-			cout << "Escolher piscina" << endl;
-		}
-		else cout << "\t\t\tEscolher piscina" << endl;
+		menu_inicial_ops(opcao);
 
-		if (opcao == 2)
-		{
-			textcolor(LIGHT_RED);
-			cout << "\t\t\t=> ";
-			textcolor(WHITE);
-			cout << "Lista piscinas" << endl;
-		}
-		else cout << "\t\t\tLista piscinas" << endl;
+		cout << endl << endl;
+		cout << "\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
+		cout << endl << endl;
 
-		if (opcao == 3)
-		{
-			textcolor(LIGHT_RED);
-			cout << "\t\t\t=> ";
-			textcolor(WHITE);
-			cout << "Sobre" << endl;
-		}
-		else cout << "\t\t\tSobre" << endl;
-
-		if (opcao == 4)
-		{
-			textcolor(LIGHT_RED);
-			cout << "\t\t\t=> ";
-			textcolor(WHITE);
-			cout << "Sair" << endl;
-		}
-		else cout << "\t\t\tSair" << endl;
 
 		tecla = opcao_valida(opcao, 1, 4);
 		Sleep(100);
@@ -59,14 +69,19 @@ void menu_inicial()
 		switch (opcao)
 		{
 		case 1:
+			cout << "\n\n EM CONSTRUCAO" << endl;
+			Sleep(3000);
 			break;
 
 		case 2:
+			cout << "\n\n EM CONSTRUCAO" << endl;
+			Sleep(3000);
 			break;
 
 		case 3:
+			cout << "\n\n EM CONSTRUCAO" << endl;
+			Sleep(3000);
 			break;
-
 
 		case 4:
 			break;
