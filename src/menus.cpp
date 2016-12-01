@@ -10,78 +10,66 @@ void menu_inicial()
 
 	do
 	{
-		switch (opcao)
+		system("cls");
+		titulo();
+		cabecalho();
+		cout << endl << endl;
+		
+		if (opcao == 1)
 		{
-		case 1:
-			system("cls");
-			titulo();
-			cabecalho();
-			cout << endl << endl;
 			textcolor(LIGHT_RED);
 			cout << "\t\t\t=> ";
 			textcolor(WHITE);
 			cout << "Escolher piscina" << endl;
-			cout << "\t\t\tLista Piscinas" << endl;
-			cout << "\t\t\tSobre" << endl;
-			cout << "\t\t\tSair" << endl;
-			tecla = opcao_valida(opcao, 1, 4);
-			Sleep(100);
-			break;
+		}
+		else cout << "\t\t\tEscolher piscina" << endl;
 
-		case 2:
-			system("cls");
-			titulo();
-			cabecalho();
-			cout << endl << endl;
-
-			cout << "\t\t\tEscolher piscina" << endl;
+		if (opcao == 2)
+		{
 			textcolor(LIGHT_RED);
 			cout << "\t\t\t=> ";
 			textcolor(WHITE);
-			cout << "Lista Piscinas" << endl;
-			cout << "\t\t\tSobre" << endl;
-			cout << "\t\t\tSair" << endl;
-			tecla = opcao_valida(opcao, 1, 4);
-			Sleep(100);
-			break;
+			cout << "Lista piscinas" << endl;
+		}
+		else cout << "\t\t\tLista piscinas" << endl;
 
-		case 3:
-			system("cls");
-			titulo();
-			cabecalho();
-			cout << endl << endl;
-
-			cout << "\t\t\tEscolher piscina" << endl;
-			cout << "\t\t\tLista Piscinas" << endl;
+		if (opcao == 3)
+		{
 			textcolor(LIGHT_RED);
 			cout << "\t\t\t=> ";
 			textcolor(WHITE);
 			cout << "Sobre" << endl;
-			cout << "\t\t\tSair" << endl;
-			tecla = opcao_valida(opcao, 1, 4);
-			Sleep(300);
-			break;
+		}
+		else cout << "\t\t\tSobre" << endl;
 
-
-
-		case 4:
-			system("cls");
-			titulo();
-			cabecalho();
-			cout << endl << endl;
-
-			cout << "\t\t\tEscolher piscina" << endl;
-			cout << "\t\t\tLista Piscinas" << endl;
-			cout << "\t\t\tSobre" << endl;
+		if (opcao == 4)
+		{
 			textcolor(LIGHT_RED);
 			cout << "\t\t\t=> ";
 			textcolor(WHITE);
 			cout << "Sair" << endl;
-			tecla = opcao_valida(opcao, 1, 4);
-			Sleep(300);
+		}
+		else cout << "\t\t\tSair" << endl;
+
+		tecla = opcao_valida(opcao, 1, 4);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+		switch (opcao)
+		{
+		case 1:
+			break;
+
+		case 2:
+			break;
+
+		case 3:
 			break;
 
 
+		case 4:
+			break;
 
 		}
 	
