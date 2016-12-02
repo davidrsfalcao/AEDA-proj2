@@ -130,7 +130,7 @@ int ano_do_sistema()
 void limparEcra()
 {
 
-	system("clear");
+	system("cls");
 
 }
 
@@ -562,4 +562,15 @@ void configurar_terminal()
 	SetConsoleWindowInfo(console, TRUE, &sr);
 	SetConsoleScreenBufferSize(console, consoleSize);
 
+}
+
+void gotoxy(int x, int y)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	_COORD pos;
+	pos.X = x;
+	pos.Y = y;
+
+	SetConsoleCursorPosition(hConsole, pos);
 }

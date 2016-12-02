@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <windows.h>
 
 #include "uteis.h"
 
@@ -14,24 +15,24 @@ void creditos()
 	cout << "\t    Desenvolvido por:" << endl << endl;
 
 	cout << "\t\t\t David Falcao    -  up201506571";
-	textcolor(LIGHT_CYAN);
+	textcolor(YELLOW);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout <<"fe.up.pt" << endl;
 
 	cout << "\t\t\t Pedro Miranda   -  up201506574";
-	textcolor(LIGHT_CYAN);
+	textcolor(YELLOW);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout << "fe.up.pt" << endl;
 
 	cout << "\t\t\t Jose Machado    -  up201504779";
-	textcolor(LIGHT_CYAN);
+	textcolor(YELLOW);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout << "fe.up.pt" << endl;
 
-	textcolor(RED);
+	textcolor(YELLOW);
 	cout << endl << endl << "\t    Prima ENTER para voltar" << endl;
 	textcolor(WHITE);
 	
@@ -40,64 +41,55 @@ void creditos()
 
 
 // MENU INICIAL
-void menu_inicial_ops(int opcao)
+void menu_inicial_ops(int opcao, int opcao_b)
 {
 	int a = 254;
 	char square = a; // obter 
-	if (opcao == 1)
-	{
-		textcolor(YELLOW);
-		cout << "\t\t\t\t  " <<  square;
-		textcolor(WHITE);
-		cout << " Criar Piscina" << endl;
-	}
-	else cout << "\t\t\t\t    Criar Piscina" << endl;
+	
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
 
-	if (opcao == 2)
-	{
-		textcolor(YELLOW);
-		cout << "\t\t\t\t  " << square;
-		textcolor(WHITE);
-		cout << " Carregar Piscina" << endl;
-	}
-	else cout << "\t\t\t\t    Carregar Piscina" << endl;
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
 
-	if (opcao == 3)
-	{
-		textcolor(YELLOW);
-		cout << "\t\t\t\t  " << square;
-		textcolor(WHITE);
-		cout << " Sobre" << endl;
-	}
-	else cout << "\t\t\t\t    Sobre" << endl;
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
 
-	if (opcao == 4)
-	{
-		textcolor(YELLOW);
-		cout << "\t\t\t\t  " << square;
-		textcolor(WHITE);
-		cout << " Sair" << endl;
-	}
-	else cout << "\t\t\t\t    Sair" << endl;
+	
 
-
+	gotoxy(0, 21);
 }
 
 void menu_inicial()
 {
-	int opcao = 1, tecla;
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
 
 	do
 	{
-		system("cls");
-		titulo();
-		cout << endl  << endl;
-		menu_inicial_ops(opcao);
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			cout << endl << endl;
+			cout << "\t\t\t\t    Criar Piscina" << endl;
+			cout << "\t\t\t\t    Carregar Piscina" << endl;
+			cout << "\t\t\t\t    Sobre" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
+			cout << endl << endl;
+		
+		}
 
-		cout << endl << endl << endl << endl;
-		cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
-		cout << endl << endl;
+		imprimir = false;
 
+		menu_inicial_ops(opcao,opcao_b);
+		opcao_b = opcao;
 		tecla = opcao_valida(opcao, 1, 4);
 		Sleep(100);
 
@@ -108,15 +100,18 @@ void menu_inicial()
 		case 1:
 			cout << "\n\n EM CONSTRUCAO" << endl;
 			Sleep(3000);
+			imprimir = true;
 			break;
 
 		case 2:
 			cout << "\n\n EM CONSTRUCAO" << endl;
 			Sleep(3000);
+			imprimir = true;
 			break;
 
 		case 3:
 			creditos();
+			imprimir = true;
 			break;
 
 		case 4:

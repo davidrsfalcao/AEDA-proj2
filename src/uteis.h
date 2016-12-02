@@ -141,5 +141,7 @@ void titulo();
 
 void configurar_terminal();
 
+void gotoxy(int x, int y);
+
 
 #endif /* UTEIS_H_ */
