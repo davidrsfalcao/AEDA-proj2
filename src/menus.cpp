@@ -20,22 +20,82 @@
 using namespace std;
 
 
+//3.2 Definir lotacao
+void lotacao_piscina(Piscina &p1)
+{
+	unsigned int lotacao;
+	bool fim = false;
+	int a = 254;
+	char square = a; // obter  █
+
+	if (p1.getLotacao() != NULL)
+	{
+		limparEcra();
+		cabecalho();
+		textcolor(LIGHT_GRAY);
+		cout << " Lotacao atual: ";
+		textcolor(WHITE);
+		cout << p1.getLotacao() << endl << endl;
+		
+		string opcao;
+		do {
+			textcolor(LIGHT_GRAY);
+			cout << "\n Deseja aterar? ";
+			textcolor(WHITE);
+			getline(cin, opcao);
+
+		} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
+
+
+		if ((opcao == "nao") || (opcao == "n")) /// se nao deseja guardar
+			return;
+	}
+
+	do
+	{
+		limparEcra();
+		cabecalho();
+		cout << "\n Lotacao: ";
+		cin >> lotacao;
+
+		if (cin.fail())
+		{
+			cout << "\t *Numero invalido \n\n ";
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
+		else fim = true;
+
+	} while (!fim);
+
+	textcolor(LIGHT_GREEN);
+	cout << " " << square << " aceite"<< endl;
+	textcolor(WHITE);
+	Sleep(500);
+
+	p1.setLotacao(lotacao);
+
+}
+
 //3.1 Definir nome
 void nome_piscina(Piscina &p1)
 {
 	string nome;
 	bool fim = false;
-	limparEcra();
-	cabecalho();
+	int a = 254;
+	char square = a; // obter  █
 
 	if (p1.getNome() != "")
 	{
+		limparEcra();
+		cabecalho();
 		textcolor(LIGHT_GRAY);
 		cout << " Nome atual: ";
 		textcolor(WHITE);
 		cout << p1.getNome() << endl << endl;
 		string opcao;
 
+		cin.ignore(256, '\n');
 		do {
 			textcolor(LIGHT_GRAY);
 			cout << "\n Deseja aterar? ";
@@ -53,7 +113,7 @@ void nome_piscina(Piscina &p1)
 	cabecalho();
 	do {
 		textcolor(LIGHT_GRAY);
-		cout << "\n\n Nome da piscina: ";
+		cout << "\n Nome da piscina: ";
 		textcolor(WHITE);
 		getline(cin, nome);
 
@@ -68,13 +128,16 @@ void nome_piscina(Piscina &p1)
 
 	} while (!fim);
 	
+	textcolor(LIGHT_GREEN);
+	cout << " " << square << " aceite" << endl;
+	textcolor(WHITE);
+	Sleep(500);
 
 	p1.setNome(nome);
 
 
 
 }
-
 
 //3. Criar Piscina 
 void menu_criar_piscina_ops(int opcao, int opcao_b)
@@ -149,6 +212,8 @@ void menu_criar_piscina()
 				break;
 
 			case 2:
+				lotacao_piscina(p1);
+				imprimir = true;
 				break;
 
 			case 3:
