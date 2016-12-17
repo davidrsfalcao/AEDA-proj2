@@ -306,8 +306,29 @@ string calculo_dia_da_semana(int dia,int mes,int ano)
 
 void cabecalho()
 {
-	
-	cout << "\t\t    Hora: ";
+	int a = 186;
+	char char1 = a;  // obter -> ║
+
+	int b = 201;
+	char char2 = b; // obter -> ╔
+
+	int c = 205;
+	char char3 = c; // obter -> ═
+
+	int d = 187;
+	char char4 = d; // obter -> ╗
+
+	int e = 200;
+	char char5 = e; // obter -> ╚
+
+	int f = 188;
+	char char6 = f; // obter -> ╝
+
+	textcolor(CYAN);
+	cout << "\t      " << char2 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char4 << endl;
+	cout << "\t      " << char1;
+	textcolor(WHITE);
+	cout << "   Hora: ";
 	if (horas_do_sistema() < 10)
 		cout << "0" << horas_do_sistema() << ":";
 	else
@@ -324,8 +345,12 @@ void cabecalho()
 	ano = ano_do_sistema();
 
 	cout << "\t\t" << calculo_dia_da_semana(dia, mes, ano) << ", " << dia
-			<< " de " << mostrar_mes(mes) << " de " << ano;
-
+		<< " de " << mostrar_mes(mes) << " de " << ano << "     ";
+	
+	textcolor(CYAN);
+	cout << char1 << endl;
+	cout << "\t      " << char5 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char6 << endl;
+	textcolor(WHITE);
 }
 
 unsigned int encontra_string_vetor(string palavra, vector<string> v1)

@@ -1,12 +1,79 @@
-﻿#include <iostream>
+﻿
 #include <windows.h>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <map>
 
+#include "professor.h"
 #include "uteis.h"
+#include "aula.h"
+#include "piscina.h"
+#include "utente.h"
+#include "data.h"
+
 
 using namespace std;
 
 
 //3.1 Definir nome
+void nome_piscina(Piscina &p1)
+{
+	string nome;
+	bool fim = false;
+	limparEcra();
+	cabecalho();
+
+	if (p1.getNome() != "")
+	{
+		textcolor(LIGHT_GRAY);
+		cout << " Nome atual: ";
+		textcolor(WHITE);
+		cout << p1.getNome() << endl << endl;
+		string opcao;
+
+		do {
+			textcolor(LIGHT_GRAY);
+			cout << "\n Deseja aterar? ";
+			textcolor(WHITE);
+			getline(cin, opcao);
+
+		} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
+
+
+		if ((opcao == "nao") || (opcao == "n")) /// se nao deseja guardar
+			return;
+	}
+
+	limparEcra();
+	cabecalho();
+	do {
+		textcolor(LIGHT_GRAY);
+		cout << "\n\n Nome da piscina: ";
+		textcolor(WHITE);
+		getline(cin, nome);
+
+		if (nome != "")
+			fim = true;
+		else {
+			textcolor(RED);
+			cout << "\t *Campo obrigatorio!";
+			textcolor(WHITE);
+		}
+
+
+	} while (!fim);
+	
+
+	p1.setNome(nome);
+
+
+
+}
 
 
 //3. Criar Piscina 
@@ -45,6 +112,7 @@ void menu_criar_piscina()
 
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
+	Piscina p1;
 
 	do
 	{
@@ -76,6 +144,8 @@ void menu_criar_piscina()
 			switch (opcao)
 			{
 			case 1:
+				nome_piscina(p1);
+				imprimir = true;
 				break;
 
 			case 2:
@@ -167,6 +237,7 @@ void menu_inicial()
 {
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
+	Piscina p1;
 
 	do
 	{
