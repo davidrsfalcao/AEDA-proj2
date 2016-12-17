@@ -6,6 +6,105 @@
 using namespace std;
 
 
+//3.1 Definir nome
+
+
+//3. Criar Piscina 
+void menu_criar_piscina_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a; // obter  █
+
+	int y = 0;
+	int y1 = 0;
+
+	if (opcao_b <= 5)
+		 y = 9 + opcao_b;
+	else y = 10 + opcao_b;
+	
+	if(opcao <=5)
+		y1 = 9 + opcao;
+	else y1 = 10 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+	gotoxy(0, 21);
+
+}
+
+void menu_criar_piscina()
+{
+
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			cout << endl << endl;
+			cout << "\t\t\t\t    Definir nome" << endl;
+			cout << "\t\t\t\t    Definir lotacao" << endl;
+			cout << "\t\t\t\t    Definir horario" << endl;
+			cout << "\t\t\t\t    Definir localizacao" << endl;
+			cout << "\t\t\t\t    Definir base de dados" << endl << endl;
+			cout << "\t\t\t\t    Concluir e avancar" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_criar_piscina_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 7);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				break;
+
+			case 2:
+				break;
+
+			case 3:
+				break;
+
+			case 4:
+				break;
+
+			case 5:
+				break;
+
+			case 6:
+				break;
+
+			case 7:
+				break;
+			}
+
+	} while ((opcao != 7) || (tecla != 13));
+
+	cout << endl << endl;
+
+
+}
+
+//2. CREDITOS
 void creditos()
 {
 	system("cls");
@@ -20,17 +119,18 @@ void creditos()
 	textcolor(WHITE);
 	cout <<"fe.up.pt" << endl;
 
+	cout << "\t\t\t Jose Machado    -  up201504779";
+	textcolor(YELLOW);
+	cout << " @ ";
+	textcolor(WHITE);
+	cout << "fe.up.pt" << endl;
+
 	cout << "\t\t\t Pedro Miranda   -  up201506574";
 	textcolor(YELLOW);
 	cout << " @ ";
 	textcolor(WHITE);
 	cout << "fe.up.pt" << endl;
 
-	cout << "\t\t\t Jose Machado    -  up201504779";
-	textcolor(YELLOW);
-	cout << " @ ";
-	textcolor(WHITE);
-	cout << "fe.up.pt" << endl;
 
 	textcolor(YELLOW);
 	cout << endl << endl << "\t    Prima ENTER para voltar" << endl;
@@ -39,12 +139,11 @@ void creditos()
 	cin.ignore();
 }
 
-
-// MENU INICIAL
+// 1.MENU INICIAL
 void menu_inicial_ops(int opcao, int opcao_b)
 {
 	int a = 254;
-	char square = a; // obter 
+	char square = a; // obter  █
 	
 	int y = 9 + opcao_b;
 	int y1 = 9 + opcao;
@@ -98,8 +197,7 @@ void menu_inicial()
 		switch (opcao)
 		{
 		case 1:
-			cout << "\n\n EM CONSTRUCAO" << endl;
-			Sleep(3000);
+			menu_criar_piscina();
 			imprimir = true;
 			break;
 

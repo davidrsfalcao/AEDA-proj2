@@ -146,11 +146,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Desktop\src\professor.h" />
+    <ClInclude Include="src\aula.h" />
+    <ClInclude Include="src\data.h" />
+    <ClInclude Include="src\piscina.h" />
     <ClInclude Include="src\uteis.h" />
+    <ClInclude Include="src\utente.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Desktop\src\professor.cpp" />
+    <ClCompile Include="src\aula.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\menus.cpp" />
     <ClCompile Include="src\uteis.cpp" />
+    <ClCompile Include="src\utente.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
