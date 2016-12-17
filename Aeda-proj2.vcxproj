@@ -154,6 +154,7 @@
     <ClInclude Include="src\utente.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Desktop\src\piscina.cpp" />
     <ClCompile Include="..\..\..\Desktop\src\professor.cpp" />
     <ClCompile Include="src\aula.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
