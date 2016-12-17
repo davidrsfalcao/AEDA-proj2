@@ -224,7 +224,7 @@ void mostrar_calendario(Piscina p1)
 
 		}
 
-		textcolor(YELLOW);
+		textcolor(CYAN);
 		cout << "\n\n\t Prima ENTER para voltar" << endl;
 		textcolor(WHITE);
 		int opcao;
@@ -245,16 +245,14 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 		limparEcra();
 		cabecalho();
 		cout << endl << endl;
-		for (size_t a{}; a < i; a++) {
-			map<string, string>::iterator it = p1.horariomap.find(dias[a]);
-			string horario_dia = it->second;
-			cout << dias[a] << " : " << horario_dia << endl;
 
-		}
 		///hora de inicio
 		do {
+			textcolor(RED);
 			cout << "\n\n " << dias[i] << ": " << endl;
+			textcolor(LIGHT_GRAY);
 			cout << "Hora de abertura (hh:mm): ";
+			textcolor(WHITE);
 			getline(cin, hora_i);
 			stringstream ss1(hora_i);
 			ss1 >> horas >> car >> minutos;
@@ -265,7 +263,9 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 			if ((horas < 0) || (horas > 24) || ((horas == 24) && (minutos > 0)) || (minutos < 0) || (minutos >= 60) || (car != ':'))
 			{
 				avancar = false;
+				textcolor(RED);
 				cout << "* hora invalida";
+				textcolor(WHITE);
 			}
 			else {
 				avancar = true;
@@ -281,7 +281,9 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 		// hora de encerramento
 
 		do {
+			textcolor(LIGHT_GRAY);
 			cout << "Hora de encerramento (hh:mm): ";
+			textcolor(WHITE);
 			getline(cin, hora_f);
 			stringstream ss2(hora_f);
 			ss2 >> horas >> car >> minutos;
@@ -292,7 +294,9 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 			if ((horas < 0) || (horas > 24) || ((horas == 24) && (minutos > 0)) || (minutos < 0) || (minutos >= 60) || (hora_f < hora_i) || (car != ':'))
 			{
 				avancar = false;
+				textcolor(RED);
 				cout << "* hora invalida\n";
+				textcolor(WHITE);
 			}
 			else {
 				avancar = true;
@@ -354,9 +358,16 @@ void editar_dias(Piscina &p1, vector<string>&dias)
 		limparEcra();
 		cabecalho();
 
+		textcolor(LIGHT_GRAY);
 		cout << "\n\n Atualmente: ";
+		textcolor(WHITE);
 		if (temp.size() == 0)
+		{
+			textcolor(RED);
 			cout << "sem dias de funcionamento ";
+			textcolor(WHITE);
+
+		}
 		else
 		{
 			temp = ordena_dias_semana(temp);
@@ -510,12 +521,12 @@ void definir_dias_funcionamento_ops(int opcao, int opcao_b)
 		y1 = 8 + opcao;
 	else y1 = 9 + opcao;
 
-	gotoxy(10, y);
+	gotoxy(34, y);
 	textcolor(YELLOW);
 	cout << " ";
 	textcolor(WHITE);
 
-	gotoxy(10, y1);
+	gotoxy(34, y1);
 	textcolor(YELLOW);
 	cout << square;
 	textcolor(WHITE);
@@ -540,7 +551,7 @@ int definir_dias_funcionamento(Piscina &p1)
 			limparEcra();
 			cabecalho();
 			textcolor(LIGHT_GRAY);
-			cout << "\n\n Atualmente: ";
+			cout << "\n\n\t\t Atualmente: ";
 			textcolor(WHITE);
 			if (dias.size() == 0)
 			{
@@ -558,13 +569,13 @@ int definir_dias_funcionamento(Piscina &p1)
 			}
 
 			textcolor(LIGHT_GRAY);
-			cout << "\n\n Dias de funcionamento:" << endl << endl;
+			cout << "\n\n\t\t Dias de funcionamento:" << endl << endl;
 			textcolor(WHITE);
-			cout << "\t    Todos os dias" << endl;
-			cout << "\t    Dias uteis" << endl;
-			cout << "\t    Editar" << endl << endl;
-			cout << "\t    Avancar" << endl;
-			cout << "\t    Voltar atras" << endl << endl;
+			cout << "\t\t\t\t    Todos os dias" << endl;
+			cout << "\t\t\t\t    Dias uteis" << endl;
+			cout << "\t\t\t\t    Editar" << endl << endl;
+			cout << "\t\t\t\t    Avancar" << endl;
+			cout << "\t\t\t\t    Voltar atras" << endl << endl;
 		}
 		imprimir = false;
 
