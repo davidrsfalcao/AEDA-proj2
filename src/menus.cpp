@@ -1,5 +1,4 @@
-﻿
-#include <windows.h>
+﻿#include <windows.h>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -19,8 +18,250 @@
 
 using namespace std;
 
-//3.3 Definir horario
+// 3.5 Definir base de dados
+void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
+{
+	limparEcra();
+	cabecalho();
 
+	if (fichPiscina != "")
+	{
+		textcolor(RED);
+		cout << "\n\n\t\tPiscina: ";
+		textcolor(WHITE);
+		cout << fichPiscina << endl;
+		textcolor(RED);
+		cout << "\t\tUtentes: ";
+		textcolor(WHITE);
+		cout << fichUtentes << endl;
+		textcolor(RED);
+		cout << "\t\tAulas: ";
+		textcolor(WHITE);
+		cout << fichAulas << endl;
+		textcolor(RED);
+		cout << "\t\tProfessores: ";
+		textcolor(WHITE);
+		cout << fichProfessores << endl;
+
+		string opcao;
+
+		do {
+			textcolor(LIGHT_GRAY);
+			cout << "\n Deseja aterar? ";
+			textcolor(WHITE);
+			getline(cin, opcao);
+
+		} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
+
+
+		if ((opcao == "nao") || (opcao == "n")) /// se nao deseja guardar
+			return;
+
+
+	}
+	else cout << "\n\n Escolha o ficheiro para guardar informacoes sobre: \n\n";
+
+
+	ifstream in{};
+	ofstream out{};
+	//cin.ignore(256, '\n'); //limpar lixo no buffer
+
+	 // escolher nome do ficheiro para guardar Piscina
+
+	string piscina_temp;
+	do {
+		in.close();
+		out.close();
+
+		textcolor(LIGHT_GRAY);
+		cout << "\n Piscina: ";
+		textcolor(WHITE);
+		cin.clear();
+		getline(cin, piscina_temp);
+		if (piscina_temp == "sair")
+			return; //sair sem modificacoes
+
+		piscina_temp += ".txt";
+		in.open(piscina_temp);
+
+		if (!in.fail()) {
+			textcolor(RED);
+			cout << piscina_temp << " ja existente!" << endl;
+			textcolor(WHITE);
+		}
+		else {
+
+			out.open(piscina_temp);
+			if (out.fail()) {
+				textcolor(RED);
+				cout << piscina_temp << " : nome do ficheiro invalido" << endl;
+				textcolor(WHITE);
+			}
+		}
+
+	} while (!in.fail() || out.fail());
+
+	in.close();
+	out.close();
+
+	// escolher nome do ficheiro para guardar Utentes
+
+	string utentes_temp;
+
+	do {
+		in.close();
+		out.close();
+
+		textcolor(LIGHT_GRAY);
+		cout << "\n Utentes: ";
+		textcolor(WHITE);
+		cin.clear();
+		getline(cin, utentes_temp);
+
+		if (utentes_temp == "sair")
+			return; //sair sem modificacoes
+
+		utentes_temp += ".txt";
+		in.open(utentes_temp);
+
+		if (!in.fail()) {
+			textcolor(RED);
+			cout << utentes_temp << " ja existente!" << endl;
+			textcolor(WHITE);
+		}
+		else {
+
+			out.open(utentes_temp);
+			if (out.fail()) {
+				textcolor(RED);
+				cout << utentes_temp << " : nome do ficheiro invalido" << endl;
+				textcolor(WHITE);
+			}
+		}
+
+	} while (!in.fail() || out.fail());
+
+	in.close();
+	out.close();
+
+
+	// escolher nome do ficheiro para guardar Aulas
+
+	string aulas_temp;
+
+	do {
+		in.close();
+		out.close();
+
+		textcolor(LIGHT_GRAY);
+		cout << "\n Aulas: ";
+		textcolor(WHITE);
+		cin.clear();
+		getline(cin, aulas_temp);
+
+		if (aulas_temp == "sair")
+			return; //sair sem modificacoes
+
+		aulas_temp += ".txt";
+		in.open(aulas_temp);
+
+		if (!in.fail()) {
+			textcolor(RED);
+			cout << aulas_temp << " ja existente!" << endl;
+			textcolor(WHITE);
+		}
+		else {
+
+			out.open(aulas_temp);
+			if (out.fail()) {
+				textcolor(RED);
+				cout << aulas_temp << " : nome do ficheiro invalido" << endl;
+				textcolor(WHITE);
+			}
+		}
+
+	} while (!in.fail() || out.fail());
+
+	in.close();
+	out.close();
+
+
+	// escolher nome do ficheiro para guardar Professores
+
+	string profs_temp;
+
+	do {
+		in.close();
+		out.close();
+
+		textcolor(LIGHT_GRAY);
+		cout << "\n Professores: ";
+		textcolor(WHITE);
+		cin.clear();
+		getline(cin, profs_temp);
+
+		if (profs_temp == "sair")
+			return; //sair sem modificacoes
+
+		profs_temp += ".txt";
+		in.open(profs_temp);
+
+		if (!in.fail()) {
+			textcolor(RED);
+			cout << profs_temp << " ja existente!" << endl;
+			textcolor(WHITE);
+		}
+		else {
+
+			out.open(profs_temp);
+			if (out.fail()) {
+				textcolor(RED);
+				cout << profs_temp << " : nome do ficheiro invalido" << endl;
+				textcolor(WHITE);
+			}
+		}
+
+	} while (!in.fail() || out.fail());
+
+	in.close();
+	out.close();
+
+	const char *lixo = piscina_temp.c_str();  // apagar ficheiro temporario piscina
+	remove(lixo);
+	const char *lixo1 = utentes_temp.c_str();  // apagar ficheiro temporario utentes
+	remove(lixo1);
+	const char *lixo2 = aulas_temp.c_str();  // apagar ficheiro temporario aulas
+	remove(lixo2);
+	const char *lixo3 = profs_temp.c_str();  // apagar ficheiro temporario lixo
+	remove(lixo3);
+
+	/// Guardar ou não
+
+	string opcao{};
+
+	do {
+		cout << "\n Deseja guardar? ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+
+	} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim")
+		&& (opcao != "s"));
+
+	if ((opcao == "nao") || (opcao == "n")) /// se nao deseja guardar
+		return; /// retorna sem modificacoes
+
+				  /// guardar nomes dos ficheiros
+
+	fichPiscina = piscina_temp;
+	fichUtentes = utentes_temp;
+	fichAulas = aulas_temp;
+	fichProfessores = profs_temp;
+
+}
+
+//3.4 Definir localizacao
+
+//3.3 Definir horario
 void mostrar_calendario(Piscina p1)
 {
 	int tecla;
@@ -693,6 +934,7 @@ void lotacao_piscina(Piscina &p1)
 
 }
 
+
 //3.1 Definir nome
 void nome_piscina(Piscina &p1)
 {
@@ -755,6 +997,7 @@ void nome_piscina(Piscina &p1)
 
 }
 
+
 //3. Criar Piscina 
 void menu_criar_piscina_ops(int opcao, int opcao_b)
 {
@@ -791,6 +1034,7 @@ void menu_criar_piscina()
 	unsigned int result = 0;
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
+	string fichPiscina, fichUtentes, fichAulas, fichProfessores;
 	Piscina p1;
 
 	do
@@ -843,6 +1087,8 @@ void menu_criar_piscina()
 				break;
 
 			case 5:
+				definir_base_de_dados(fichPiscina, fichUtentes, fichAulas, fichProfessores);
+				imprimir = true;
 				break;
 
 			case 6:
@@ -858,6 +1104,7 @@ void menu_criar_piscina()
 
 
 }
+
 
 //2. CREDITOS
 void creditos()
@@ -893,6 +1140,7 @@ void creditos()
 	
 	cin.ignore();
 }
+
 
 // 1.MENU INICIAL
 void menu_inicial_ops(int opcao, int opcao_b)
