@@ -18,6 +18,82 @@
 
 using namespace std;
 
+// 3.6 Verificação antes de avançar
+unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
+{
+	limparEcra();
+	cabecalho();
+
+	bool falta = false;
+	unsigned int nome = 0, lotacao = 0, horario = 0, base_dados = 0;
+	//unsigned int localização = 0;
+	int a = 254;
+	char square = a;
+
+	if (p1.getNome() == "")
+	{
+		falta = true;
+	}
+	else nome = 1;
+
+	if (p1.getLotacao() == NULL)
+	{
+		falta = true;
+	}
+	else lotacao = 1;
+
+	map<string, string>::iterator it = p1.horariomap.begin();
+
+	if (it == p1.horariomap.end())
+	{
+		falta = true;
+	}
+	else horario = 1;
+
+	/// fazer o mesmo para a localizacao
+
+	if ((fichUtentes == "") && (fichPiscina == ""))
+	{
+		falta = true;
+	}
+	else base_dados = 1;
+
+
+	if (falta)
+	{
+		cout << "\t\t Informacoes em falta: " << endl;
+		textcolor(RED);
+		if (!nome)
+		{
+			cout << "\t\t " << square << " nome" << endl;
+		}
+		if (!lotacao)
+		{
+			cout << "\t\t " << square << " lotacao" << endl;
+		}
+		if (!horario)
+		{
+			cout << "\t\t " << square << " horario" << endl;
+		}
+
+		// fazer o mesmo para a localizacao
+
+		if (!base_dados)
+		{
+			cout << "\t\t " << square << " base de dados" << endl;
+		}
+		textcolor(WHITE);
+
+		cout << "\n\n\t\t Prima enter para voltar";
+		gotoxy(0, 21);
+		cin.ignore(256, '\n');
+
+		return 0;
+	}
+
+	return 1;
+}
+
 // 3.5 Definir base de dados
 void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
 {
@@ -64,7 +140,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 	ifstream in{};
 	ofstream out{};
-	//cin.ignore(256, '\n'); //limpar lixo no buffer
+	cin.ignore(256, '\n'); //limpar lixo no buffer
 
 	 // escolher nome do ficheiro para guardar Piscina
 
@@ -1093,6 +1169,8 @@ void menu_criar_piscina()
 				break;
 
 			case 6:
+				check(p1, fichPiscina, fichProfessores);
+				imprimir = true;
 				break;
 
 			case 7:
@@ -1147,7 +1225,7 @@ void creditos()
 void menu_inicial_ops(int opcao, int opcao_b)
 {
 	int a = 254;
-	char square = a; // obter  █
+	char square = a;
 	
 	int y = 9 + opcao_b;
 	int y1 = 9 + opcao;
