@@ -345,9 +345,10 @@ void cabecalho()
 	ano = ano_do_sistema();
 
 	cout << "\t\t" << calculo_dia_da_semana(dia, mes, ano) << ", " << dia
-		<< " de " << mostrar_mes(mes) << " de " << ano << "     ";
+		<< " de " << mostrar_mes(mes) << " de " << ano;
 	
 	textcolor(CYAN);
+	gotoxy(75, 1);
 	cout << char1 << endl;
 	cout << "\t      " << char5 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char6 << endl;
 	textcolor(WHITE);
