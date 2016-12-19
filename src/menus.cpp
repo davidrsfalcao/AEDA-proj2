@@ -240,6 +240,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 	string opcao{};
 
 	do {
+		textcolor(LIGHT_GRAY);
 		cout << "\n Deseja guardar? ";
 		textcolor(WHITE);
 		getline(cin, opcao);
