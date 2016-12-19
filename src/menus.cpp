@@ -18,12 +18,206 @@
 
 using namespace std;
 
+// 5.1 Entrar como utente
+Utente * encontra_parecido(Piscina p1, string nome)
+{
+	unsigned int melhor_count = 0;
+	unsigned int atual=0;
+	string nome_a;
+
+	Utente *melhor = new Utente();
+
+	for (size_t i = 0; i < p1.getUtentes().size(); i++)
+	{
+		atual = 0;
+		nome_a = p1.getUtentes()[i]->getNome();
+
+		for (size_t j = 0; j < nome.size(); j++)
+		{
+			for (size_t k = 0; k <nome_a.size(); k++)
+			{
+				if (nome[j] == nome_a[k])
+				{
+					atual++;
+					break;
+				}
+			}
+
+		}
+
+		if (atual > melhor_count)
+		{
+			melhor = p1.getUtentes()[i];
+			melhor_count = atual;
+		}
+		else if (atual == melhor_count)
+		{
+			int a1, a2;
+			a1 = abs(nome[0] - melhor->getNome()[0]);
+			a2 = abs(nome[0] - p1.getUtentes()[i]->getNome()[0]);
+
+			if (a2 < a1)
+			{
+				melhor = p1.getUtentes()[i];
+				melhor_count = atual;
+			}
+		}
+	}
+
+	return melhor;
+}
+
+void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
+{
+	limparEcra();
+	cabecalho();
+	bool encontrou = false;
+	vector<Utente *> ute = p1.getUtentes();
+	Utente *novo = new Utente();
+
+	string nome;
+
+	if (p1.getUtentes().size() >= 1)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Nome utente: ";
+		textcolor(WHITE);
+		getline(cin, nome);
+		nome = delete_space(nome);
+		if (nome == "sair")
+			return;
+
+		for (size_t i = 0; i < ute.size(); i++)
+		{
+			if (ute[i]->getNome() == nome)
+			{
+				novo = ute[i];
+				encontrou = true;
+				break;
+			}
+		}
+		if (!encontrou)
+		{
+			novo = encontra_parecido(p1, nome);
+			cout << endl;
+			textcolor(RED);
+			cout << "Sugestao: " << novo->getNome() << endl;
+			cin.ignore(256,'\n');
+
+		}
+
+		cin.ignore();
+
+	}
+	else {
+
+		textcolor(RED);
+		cout << "\n\n\t\t A lista de utentes encontra-se vazia " << endl;
+		textcolor(WHITE);
+		cout << endl << endl;
+		cout << "\t\t Prima ENTER para voltar" << endl;
+		cin.ignore(256, '\n');
+	}
+
+}
+
+
+// 5 MENU GERAL
+void menu_geral_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
+{
+
+	Utente *novo = new Utente();
+	string a = "David";
+	novo->setNome(a);
+	p1.addUtente(novo);
+	
+	Utente *novo1 = new Utente();
+	string a1 = "Divad";
+	novo1->setNome(a1);
+	p1.addUtente(novo1);
+
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			cout << endl << endl;
+			cout << "\t\t\t\t    Entrar como administrador" << endl;
+			cout << "\t\t\t\t    Entrar como utente" << endl;
+			cout << "\t\t\t\t    Voltar ao menu anterior" << endl;
+
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_geral_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 3);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				entrar_como_utente(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
+				imprimir = true;
+				break;
+
+
+			case 3:
+				break;
+
+			}
+
+	} while ((opcao != 3) || (tecla != 13));
+
+	cout << endl << endl;
+
+
+
+}
+
+
 // 4.4 Testar ficheiro professores
 string testar_fich_professores()
 {
 	string opcao;
-	ifstream in{};
-	bool ok{};
+	ifstream in;
+	bool ok;
 
 	do
 	{
@@ -230,7 +424,7 @@ string testar_fich_piscina()
 }
 
 
-// 4 Carregar Piscina
+// 4 CARREGAR PISCINA
 void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores) /// importar conteudo dos ficheiros
 {
 	Piscina p1;
@@ -240,7 +434,7 @@ void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAu
 	p1.ler_FichUtente(fichUtentes);
 	p1.utentes_aulas();
 	p1.professores_aulas();
-	//menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
+	menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
 
 
 }
@@ -251,8 +445,9 @@ void escolher_ficheiros() /// um para cada classe
 
 	limparEcra();
 	cabecalho();
-
+	textcolor(LIGHT_GRAY);
 	cout << "\n\n\t\t Defina os ficheiros que contem informacoes sobre: \n";
+	textcolor(WHITE);
 	fichPiscina = testar_fich_piscina();
 	if (fichPiscina != "sair") {
 		fichUtentes = testar_fich_utentes();
@@ -389,12 +584,15 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 
 	}
-	else cout << "\n\n Escolha o ficheiro para guardar informacoes sobre: \n\n";
+	else {
+		textcolor(LIGHT_GRAY);
+		cout << "\n\n Escolha o ficheiro para guardar informacoes sobre: \n\n"; 
+		textcolor(WHITE);
+	}
 
 
 	ifstream in{};
 	ofstream out{};
-	cin.ignore(256, '\n'); //limpar lixo no buffer
 
 	 // escolher nome do ficheiro para guardar Piscina
 
@@ -1223,14 +1421,15 @@ void lotacao_piscina(Piscina &p1)
 		limparEcra();
 		cabecalho();
 		textcolor(LIGHT_GRAY);
-		cout << " Lotacao atual: ";
+		cout << "\t\t Lotacao atual: ";
 		textcolor(WHITE);
 		cout << p1.getLotacao() << endl << endl;
 		
+		cin.ignore();
 		string opcao;
 		do {
 			textcolor(LIGHT_GRAY);
-			cout << "\n Deseja aterar? ";
+			cout << "\n\t\t Deseja aterar? ";
 			textcolor(WHITE);
 			getline(cin, opcao);
 
@@ -1245,12 +1444,12 @@ void lotacao_piscina(Piscina &p1)
 	{
 		limparEcra();
 		cabecalho();
-		cout << "\n Lotacao: ";
+		cout << "\n\t\t Lotacao: ";
 		cin >> lotacao;
 
 		if (cin.fail())
 		{
-			cout << "\t *Numero invalido \n\n ";
+			cout << "\t\t\t " << square << "Numero invalido \n\n ";
 			cin.clear();
 			cin.ignore(256, '\n');
 		}
@@ -1259,7 +1458,7 @@ void lotacao_piscina(Piscina &p1)
 	} while (!fim);
 
 	textcolor(LIGHT_GREEN);
-	cout << " " << square << " aceite"<< endl;
+	cout << "\t\t " << square << " aceite"<< endl;
 	textcolor(WHITE);
 	Sleep(500);
 
@@ -1281,15 +1480,15 @@ void nome_piscina(Piscina &p1)
 		limparEcra();
 		cabecalho();
 		textcolor(LIGHT_GRAY);
-		cout << " Nome atual: ";
+		cout << "\t\t Nome atual: ";
 		textcolor(WHITE);
 		cout << p1.getNome() << endl << endl;
 		string opcao;
 
-		cin.ignore(256, '\n');
+		//cin.ignore(256, '\n');
 		do {
 			textcolor(LIGHT_GRAY);
-			cout << "\n Deseja aterar? ";
+			cout << "\n\t\t Deseja aterar? ";
 			textcolor(WHITE);
 			getline(cin, opcao);
 
@@ -1304,7 +1503,7 @@ void nome_piscina(Piscina &p1)
 	cabecalho();
 	do {
 		textcolor(LIGHT_GRAY);
-		cout << "\n Nome da piscina: ";
+		cout << "\n\t\t Nome da piscina: ";
 		textcolor(WHITE);
 		getline(cin, nome);
 
@@ -1312,7 +1511,7 @@ void nome_piscina(Piscina &p1)
 			fim = true;
 		else {
 			textcolor(RED);
-			cout << "\t *Campo obrigatorio!";
+			cout << "\t\t\t " << square << "Campo obrigatorio!";
 			textcolor(WHITE);
 		}
 
@@ -1320,7 +1519,7 @@ void nome_piscina(Piscina &p1)
 	} while (!fim);
 	
 	textcolor(LIGHT_GREEN);
-	cout << " " << square << " aceite" << endl;
+	cout << "\t\t " << square << " aceite" << endl;
 	textcolor(WHITE);
 	Sleep(500);
 
@@ -1331,7 +1530,7 @@ void nome_piscina(Piscina &p1)
 }
 
 
-//3. Criar Piscina 
+//3. CRIAR PISCINA
 void menu_criar_piscina_ops(int opcao, int opcao_b)
 {
 	int a = 254;
@@ -1425,7 +1624,8 @@ void menu_criar_piscina()
 				break;
 
 			case 6:
-				check(p1, fichPiscina, fichProfessores);
+				if (check(p1, fichPiscina, fichProfessores))
+					menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
 				imprimir = true;
 				break;
 

@@ -600,3 +600,4 @@ void gotoxy(int x, int y)
 
 	SetConsoleCursorPosition(hConsole, pos);
 }
+
