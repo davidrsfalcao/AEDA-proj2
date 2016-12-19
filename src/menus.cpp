@@ -18,6 +18,259 @@
 
 using namespace std;
 
+// 4.4 Testar ficheiro professores
+string testar_fich_professores()
+{
+	string opcao;
+	ifstream in{};
+	bool ok{};
+
+	do
+	{
+		cout << "\n\t\t Professores: ";
+		getline(cin, opcao);
+		if (opcao == "sair")
+			return opcao;
+
+		opcao = opcao + ".txt";
+
+		in.open(opcao);
+
+		if (!in.is_open())
+		{
+			textcolor(RED);
+			cout << "\t\tO ficheiro " << opcao << " nao existe! \n";
+			textcolor(WHITE);
+
+		}
+		else {
+			string tipo;
+			getline(in, tipo, ';');
+			tipo = delete_space(tipo);
+
+			if (tipo == "Professor") {
+				ok = true;
+			}
+			else {
+				textcolor(RED);
+				cout << "\t\tO ficheiro " << opcao
+					<< " nao contem informacoes sobre Professores! \n";
+				textcolor(WHITE);
+				ok = false;
+				in.close();
+			}
+		}
+
+	} while (!in.is_open() || !ok);
+
+	in.close();
+
+
+	return opcao;
+
+}
+
+
+// 4.3 Testar ficheiro aulas
+string testar_fich_aulas()
+{
+	string opcao;
+	ifstream in{};
+	bool ok{};
+
+	do
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Aulas: ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+		if (opcao == "sair")
+			return opcao;
+
+		opcao = opcao + ".txt";
+
+		in.open(opcao);
+
+		if (!in.is_open())
+		{
+			textcolor(RED);
+			cout << "\t\tO ficheiro " << opcao << " nao existe! \n";
+			textcolor(WHITE);
+		}
+		else {
+			string tipo;
+			getline(in, tipo, ';');
+			tipo = delete_space(tipo);
+
+			if (tipo == "Aula") {
+				ok = true;
+			}
+			else {
+				textcolor(RED);
+				cout << "\t\tO ficheiro " << opcao << " nao contem informacoes sobre a Aulas! \n";
+				textcolor(WHITE);
+				ok = false;
+				in.close();
+			}
+		}
+
+	} while (!in.is_open() || !ok);
+
+	in.close();
+
+	return opcao;
+
+}
+
+
+// 4.2 Testar ficheiro utentes
+string testar_fich_utentes()
+{
+	string opcao;
+	ifstream in{};
+	bool ok{};
+
+	do
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Utentes: ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+		if (opcao == "sair")
+			return opcao;
+
+		opcao = opcao + ".txt";
+
+		in.open(opcao);
+
+		if (!in.is_open())
+		{ 
+			textcolor(RED);
+			cout << "\t\tO ficheiro " << opcao << " nao existe! \n";
+			textcolor(WHITE);
+		}
+		else {
+			string tipo;
+			getline(in, tipo, ';');
+			tipo = delete_space(tipo);
+
+			if (tipo == "Utente") {
+				ok = true;
+			}
+			else {
+				textcolor(RED);
+				cout << "\t\tO ficheiro " << opcao << " nao contem informacoes sobre a Utentes! \n";
+				textcolor(WHITE);
+				ok = false;
+				in.close();
+			}
+		}
+
+
+	} while (!in.is_open() || !ok);
+
+	in.close();
+
+	return opcao;
+
+
+}
+
+
+// 4.1 Testar ficheiro piscina
+string testar_fich_piscina() 
+{
+	string opcao;
+	ifstream in{};
+
+	bool ok{};
+
+	do {
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Piscina: ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+
+		if (opcao == "sair")
+			return opcao;
+
+		opcao = opcao + ".txt";
+
+		in.open(opcao);
+
+		if (!in.is_open())
+		{ 
+			textcolor(RED);
+			cout << "\t\tO ficheiro " << opcao << " nao existe! \n";
+			textcolor(WHITE);
+		}
+		else {
+			string tipo;
+			getline(in, tipo, ';');
+			tipo = delete_space(tipo);
+
+			if (tipo == "Piscina") {
+				ok = true;
+			}
+			else {
+				textcolor(RED);
+				cout << "\t\tO ficheiro " << opcao << " nao contem informacoes sobre a Piscina! \n";
+				textcolor(WHITE);
+				ok = false;
+				in.close();
+			}
+		}
+
+	} while (!in.is_open() || !ok);
+
+	in.close();
+
+	return opcao;
+
+}
+
+
+// 4 Carregar Piscina
+void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores) /// importar conteudo dos ficheiros
+{
+	Piscina p1;
+	p1.ler_FichPiscina(fichPiscina);
+	p1.ler_FichAulas(fichAulas);
+	p1.ler_FichProfessores(fichProfessores);
+	p1.ler_FichUtente(fichUtentes);
+	p1.utentes_aulas();
+	p1.professores_aulas();
+	//menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
+
+
+}
+
+void escolher_ficheiros() /// um para cada classe
+{
+	string fichPiscina, fichUtentes, fichAulas, fichProfessores;
+
+	limparEcra();
+	cabecalho();
+
+	cout << "\n\n\t\t Defina os ficheiros que contem informacoes sobre: \n";
+	fichPiscina = testar_fich_piscina();
+	if (fichPiscina != "sair") {
+		fichUtentes = testar_fich_utentes();
+		if (fichUtentes != "sair") {
+			fichAulas = testar_fich_aulas();
+			if (fichAulas != "sair") {
+				fichProfessores = testar_fich_professores();
+				if (fichProfessores != "sair")
+					importar_ficheiros(fichPiscina, fichUtentes, fichAulas, fichProfessores);
+			}
+		}
+	}
+
+	cout << " Importacao cancelada pelo utilizador! Redirecionando ...\n ";
+	system("sleep 2");
+}
+
+
 // 3.6 Verificação antes de avançar
 unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 {
@@ -93,6 +346,7 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 
 	return 1;
 }
+
 
 // 3.5 Definir base de dados
 void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
@@ -336,7 +590,9 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 }
 
+
 //3.4 Definir localizacao
+
 
 //3.3 Definir horario
 void mostrar_calendario(Piscina p1)
@@ -1285,8 +1541,7 @@ void menu_inicial()
 			break;
 
 		case 2:
-			cout << "\n\n EM CONSTRUCAO" << endl;
-			Sleep(3000);
+			escolher_ficheiros();
 			imprimir = true;
 			break;
 
