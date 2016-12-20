@@ -19,13 +19,12 @@
 using namespace std;
 
 // 5.1 Entrar como utente
-Utente * encontra_parecido(Piscina p1, string nome)
+void encontra_parecido(Piscina p1, string nome, Utente &melhor)
 {
 	unsigned int melhor_count = 0;
 	unsigned int atual=0;
 	string nome_a;
 
-	Utente *melhor = new Utente();
 
 	for (size_t i = 0; i < p1.getUtentes().size(); i++)
 	{
@@ -47,24 +46,46 @@ Utente * encontra_parecido(Piscina p1, string nome)
 
 		if (atual > melhor_count)
 		{
-			melhor = p1.getUtentes()[i];
+			melhor = *p1.getUtentes()[i];
 			melhor_count = atual;
 		}
 		else if (atual == melhor_count)
 		{
 			int a1, a2;
-			a1 = abs(nome[0] - melhor->getNome()[0]);
+			a1 = abs(nome[0] - melhor.getNome()[0]);
 			a2 = abs(nome[0] - p1.getUtentes()[i]->getNome()[0]);
 
 			if (a2 < a1)
 			{
-				melhor = p1.getUtentes()[i];
+				melhor = *p1.getUtentes()[i];
 				melhor_count = atual;
 			}
 		}
 	}
 
-	return melhor;
+}
+
+void entrar_como__utente_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 7 + opcao_b;
+	int y1 = 7 + opcao;
+
+	gotoxy(22, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(22, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
 }
 
 void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
@@ -98,15 +119,43 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 		}
 		if (!encontrou)
 		{
-			novo = encontra_parecido(p1, nome);
+			encontra_parecido(p1, nome, (*novo));
 			cout << endl;
 			textcolor(RED);
-			cout << "Sugestao: " << novo->getNome() << endl;
-			cin.ignore(256,'\n');
+			cout << "\t\t Cliente nao encontrado.";
+			cout << " Sera que quis dizer " << novo->getNome() << "?" << endl << endl;
+			textcolor(WHITE);
+
+			cout << "\t\t\tSim" << endl;
+			cout << "\t\t\tNao" << endl;
+
+			int opcao = 1, opcao_b = 1, tecla;
+
+			while (1)
+			{
+				entrar_como__utente_ops(opcao, opcao_b);
+				opcao_b = opcao;
+				tecla = opcao_valida(opcao, 1, 2);
+				Sleep(100);
+				
+				if (tecla == ENTER)
+				{
+					switch (opcao)
+					{
+					case 1: 
+						break;
+					case 2:
+						break;
+					}
+
+					break;
+				}
+
+
+			}
 
 		}
-
-		cin.ignore();
+		else cin.ignore(256, '\n');
 
 	}
 	else {
@@ -1446,18 +1495,21 @@ void lotacao_piscina(Piscina &p1)
 			return;
 	}
 
+	limparEcra();
+	cabecalho();
+
 	do
 	{
-		limparEcra();
-		cabecalho();
 		textcolor(LIGHT_GRAY);
-		cout << "\n\t\t Lotacao: ";
+		cout << "\t\t Lotacao: ";
 		textcolor(WHITE);
 		cin >> lotacao;
 
 		if (cin.fail())
 		{
-			cout << "\t\t\t " << square << "Numero invalido \n\n ";
+			textcolor(RED);
+			cout << "\t\t " << square << "Numero invalido \n\n ";
+			textcolor(WHITE);
 			cin.clear();
 			cin.ignore(256, '\n');
 		}
@@ -1519,7 +1571,7 @@ void nome_piscina(Piscina &p1)
 			fim = true;
 		else {
 			textcolor(RED);
-			cout << "\t\t\t " << square << "Campo obrigatorio!";
+			cout << "\t\t " << square << " Campo obrigatorio!" << endl;
 			textcolor(WHITE);
 		}
 
