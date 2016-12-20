@@ -548,6 +548,9 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 {
 	limparEcra();
 	cabecalho();
+	int a = 254;
+	char square = a;
+
 
 	if (fichPiscina != "")
 	{
@@ -572,7 +575,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 		do {
 			textcolor(LIGHT_GRAY);
-			cout << "\n Deseja aterar? ";
+			cout << "\n\t\t Deseja aterar? ";
 			textcolor(WHITE);
 			getline(cin, opcao);
 
@@ -585,8 +588,10 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 	}
 	else {
+		limparEcra();
+		cabecalho();
 		textcolor(LIGHT_GRAY);
-		cout << "\n\n Escolha o ficheiro para guardar informacoes sobre: \n\n"; 
+		cout << "\n\n\t\t Escolha o ficheiro para guardar informacoes sobre: \n\n"; 
 		textcolor(WHITE);
 	}
 
@@ -602,7 +607,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		out.close();
 
 		textcolor(LIGHT_GRAY);
-		cout << "\n Piscina: ";
+		cout << "\n\t\t Piscina: ";
 		textcolor(WHITE);
 		cin.clear();
 		getline(cin, piscina_temp);
@@ -614,7 +619,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 		if (!in.fail()) {
 			textcolor(RED);
-			cout << piscina_temp << " ja existente!" << endl;
+			cout << "\t\t" << square << piscina_temp << " ja existente!" << endl;
 			textcolor(WHITE);
 		}
 		else {
@@ -641,7 +646,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		out.close();
 
 		textcolor(LIGHT_GRAY);
-		cout << "\n Utentes: ";
+		cout << "\n\t\t Utentes: ";
 		textcolor(WHITE);
 		cin.clear();
 		getline(cin, utentes_temp);
@@ -654,7 +659,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 		if (!in.fail()) {
 			textcolor(RED);
-			cout << utentes_temp << " ja existente!" << endl;
+			cout << "\t\t"<< square << utentes_temp << " ja existente!" << endl;
 			textcolor(WHITE);
 		}
 		else {
@@ -682,7 +687,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		out.close();
 
 		textcolor(LIGHT_GRAY);
-		cout << "\n Aulas: ";
+		cout << "\n\t\t Aulas: ";
 		textcolor(WHITE);
 		cin.clear();
 		getline(cin, aulas_temp);
@@ -695,7 +700,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 		if (!in.fail()) {
 			textcolor(RED);
-			cout << aulas_temp << " ja existente!" << endl;
+			cout << "\t\t " << square <<aulas_temp << " ja existente!" << endl;
 			textcolor(WHITE);
 		}
 		else {
@@ -723,7 +728,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		out.close();
 
 		textcolor(LIGHT_GRAY);
-		cout << "\n Professores: ";
+		cout << "\n\t\t Professores: ";
 		textcolor(WHITE);
 		cin.clear();
 		getline(cin, profs_temp);
@@ -736,7 +741,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 		if (!in.fail()) {
 			textcolor(RED);
-			cout << profs_temp << " ja existente!" << endl;
+			cout << "\t\t" << square <<profs_temp << " ja existente!" << endl;
 			textcolor(WHITE);
 		}
 		else {
@@ -769,7 +774,7 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 	do {
 		textcolor(LIGHT_GRAY);
-		cout << "\n Deseja guardar? ";
+		cout << "\n\t\t Deseja guardar? ";
 		textcolor(WHITE);
 		getline(cin, opcao);
 
@@ -997,7 +1002,7 @@ void mostrar_calendario(Piscina p1)
 		}
 
 		textcolor(CYAN);
-		cout << "\n\n\t Prima ENTER para voltar" << endl;
+		cout << "\n\n\t Prima ENTER para continuar" << endl;
 		textcolor(WHITE);
 		int opcao;
 		tecla = opcao_valida(opcao, 1, 1);
@@ -1010,6 +1015,8 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 	int horas{}, minutos{};
 	char car{};
 	bool avancar{ false };
+	int a = 254;
+	char square = a; // obter  █
 
 	cin.ignore(256, '\n');
 
@@ -1021,9 +1028,9 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 		///hora de inicio
 		do {
 			textcolor(RED);
-			cout << "\n\n " << dias[i] << ": " << endl;
+			cout << "\n\n\t\t " << dias[i] << ": " << endl;
 			textcolor(LIGHT_GRAY);
-			cout << "Hora de abertura (hh:mm): ";
+			cout << "\t\tHora de abertura (hh:mm): ";
 			textcolor(WHITE);
 			getline(cin, hora_i);
 			stringstream ss1(hora_i);
@@ -1036,7 +1043,7 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 			{
 				avancar = false;
 				textcolor(RED);
-				cout << "* hora invalida";
+				cout << "\t\t"<< square <<"hora invalida";
 				textcolor(WHITE);
 			}
 			else {
@@ -1054,7 +1061,7 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 
 		do {
 			textcolor(LIGHT_GRAY);
-			cout << "Hora de encerramento (hh:mm): ";
+			cout << "\t\tHora de encerramento (hh:mm): ";
 			textcolor(WHITE);
 			getline(cin, hora_f);
 			stringstream ss2(hora_f);
@@ -1067,7 +1074,7 @@ unsigned int definir_horas(Piscina &p1, vector<string> &dias)
 			{
 				avancar = false;
 				textcolor(RED);
-				cout << "* hora invalida\n";
+				cout << "\t\t" << square << "hora invalida";
 				textcolor(WHITE);
 			}
 			else {
@@ -1444,7 +1451,9 @@ void lotacao_piscina(Piscina &p1)
 	{
 		limparEcra();
 		cabecalho();
+		textcolor(LIGHT_GRAY);
 		cout << "\n\t\t Lotacao: ";
+		textcolor(WHITE);
 		cin >> lotacao;
 
 		if (cin.fail())
