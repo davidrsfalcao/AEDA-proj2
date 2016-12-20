@@ -19,15 +19,88 @@
 using namespace std;
 
 // 7 MENU UTENTE
+void menu_utente_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 10+ opcao_b;
+	int y1 = 10 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
 void menu_utente(Piscina &p1, Utente &ute)
 {
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
 
-	limparEcra();
-	titulo();
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			cout << endl;
+			cout << "\t\t\t Bem vindo, ";
+			textcolor(CYAN);
+			cout << ute.getNome();
+			textcolor(WHITE);
 
-	cout << "\t\t Bem vindo, " << ute.getNome() << endl;
+			cout << endl << endl;
+			cout << "\t\t\t\t    Ver registos" << endl;
+			cout << "\t\t\t\t    Inscrever aulas" << endl;
+			cout << "\t\t\t\t    Loja" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
+			cout << endl << endl;
 
-	cin.ignore(256, '\n');
+		}
+
+		imprimir = false;
+
+		menu_utente_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 4);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				imprimir = true;
+				break;
+
+			case 4:
+				break;
+
+			}
+
+	} while ((opcao != 4) || (tecla != ENTER));
+
+	cout << endl << endl;
 
 
 }
@@ -1708,6 +1781,7 @@ void menu_criar_piscina()
 				break;
 
 			case 7:
+				return;
 				break;
 			}
 
@@ -1783,7 +1857,7 @@ void menu_inicial()
 {
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
-	Piscina p1;
+	//Piscina p1;
 
 	do
 	{
