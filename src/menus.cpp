@@ -587,13 +587,12 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 
 	}
-	else {
+	
 		limparEcra();
 		cabecalho();
 		textcolor(LIGHT_GRAY);
 		cout << "\n\n\t\t Escolha o ficheiro para guardar informacoes sobre: \n\n"; 
 		textcolor(WHITE);
-	}
 
 
 	ifstream in{};
