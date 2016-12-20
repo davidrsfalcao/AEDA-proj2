@@ -18,6 +18,23 @@
 
 using namespace std;
 
+// 7 MENU UTENTE
+void menu_utente(Piscina &p1, Utente &ute)
+{
+
+	limparEcra();
+	titulo();
+
+	cout << "\t\t Bem vindo, " << ute.getNome() << endl;
+
+	cin.ignore(256, '\n');
+
+
+}
+
+
+// 6 MENU ADMIN
+
 // 5.1 Entrar como utente
 void encontra_parecido(Piscina p1, string nome, Utente &melhor)
 {
@@ -143,6 +160,7 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 					switch (opcao)
 					{
 					case 1: 
+						menu_utente(p1,(*novo));
 						break;
 					case 2:
 						break;
@@ -155,7 +173,7 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 			}
 
 		}
-		else cin.ignore(256, '\n');
+		else menu_utente(p1, (*novo));
 
 	}
 	else {
@@ -198,7 +216,7 @@ void menu_geral_ops(int opcao, int opcao_b)
 void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
 {
 
-	Utente *novo = new Utente();
+ 	Utente *novo = new Utente();
 	string a = "David";
 	novo->setNome(a);
 	p1.addUtente(novo);
