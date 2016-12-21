@@ -147,6 +147,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Desktop\src\professor.h" />
+    <ClInclude Include="BST.h" />
+    <ClInclude Include="loja.h" />
     <ClInclude Include="src\aula.h" />
     <ClInclude Include="src\data.h" />
     <ClInclude Include="src\piscina.h" />
@@ -156,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Desktop\src\piscina.cpp" />
     <ClCompile Include="..\..\..\Desktop\src\professor.cpp" />
+    <ClCompile Include="loja.cpp" />
     <ClCompile Include="src\aula.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
