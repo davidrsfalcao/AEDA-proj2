@@ -7,7 +7,7 @@ class Loja{
 	BST<Produto> produtos;
 public:
 	BST<Produto> getProdutos();
-
+	void vende(Produto &prod);
 
 
 };
@@ -24,6 +24,7 @@ public:
 	void setNome(string &nome);
 	void setTamanho(string &tamanho);
 	void setStock(unsigned int &stock);
+	bool operator == (const Produto &p) const;
 
 
 
