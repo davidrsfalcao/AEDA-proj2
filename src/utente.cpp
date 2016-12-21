@@ -6,14 +6,14 @@ using namespace std;
 
 Utente::Utente()
 {
-	entradas=0;
+	entradas = 0;
 }
 
 Utente::~Utente()
 {
-	for (size_t i=0; i <aulas.size();i++){
-				delete(aulas[i]);
-			}
+	for (size_t i = 0; i <aulas.size(); i++) {
+		delete(aulas[i]);
+	}
 }
 
 
@@ -39,11 +39,11 @@ unsigned int Utente::getTotalAulas()
 
 unsigned int Utente::getAulasLivres()
 {
-	unsigned int n { 0 };
+	unsigned int n{ 0 };
 
-	for(size_t i= 0; i< aulas.size(); i++)
+	for (size_t i = 0; i< aulas.size(); i++)
 	{
-		if(!(aulas[i]->pro()))
+		if (!(aulas[i]->pro()))
 			n++;
 
 	}
@@ -54,11 +54,11 @@ unsigned int Utente::getAulasLivres()
 
 unsigned int Utente::getAulasPro()
 {
-	unsigned int n { 0 };
+	unsigned int n{ 0 };
 
-	for(size_t i= 0; i< aulas.size(); i++)
+	for (size_t i = 0; i< aulas.size(); i++)
 	{
-		if(aulas[i]->pro())
+		if (aulas[i]->pro())
 			n++;
 
 	}
@@ -69,11 +69,11 @@ unsigned int Utente::getAulasPro()
 
 float Utente::totalPrice()
 {
-	float total { };
-	total=0;
-	for (size_t i=0;i < aulas.size();i++)
+	float total{};
+	total = 0;
+	for (size_t i = 0; i < aulas.size(); i++)
 	{
-		total=total + aulas[i]->price();
+		total = total + aulas[i]->price();
 	}
 
 	return total;
@@ -82,12 +82,12 @@ float Utente::totalPrice()
 float Utente::totalPriceMes(int & mes)
 {
 	float total;
-	total=0;
-	for(size_t n=0; n<aulas.size();n++)
+	total = 0;
+	for (size_t n = 0; n<aulas.size(); n++)
 	{
-		if(aulas[n]->getInicio().getMes() == mes)
+		if (aulas[n]->getInicio().getMes() == mes)
 		{
-			total=total+aulas[n]->price();
+			total = total + aulas[n]->price();
 
 		}
 	}
@@ -98,20 +98,20 @@ float Utente::totalPriceMes(int & mes)
 
 void Utente::setId(int id)
 {
-	this->Id=id;
+	this->Id = id;
 }
 
 void Utente::setNome(string &nome)
 {
-	this->nome=nome;
+	this->nome = nome;
 }
 
 void Utente::setAulas(vector<Aula *> &aulas)
 {
-	this->aulas=aulas;
+	this->aulas = aulas;
 }
 
-vector<Aula *> Utente::getaulas(){
+vector<Aula *> Utente::getaulas() {
 	return aulas;
 }
 int Utente::getEntradas()
@@ -121,7 +121,7 @@ int Utente::getEntradas()
 
 void Utente::setEntradas(int n)
 {
-	entradas=n;
+	entradas = n;
 }
 
 void Utente::adicionaAula(Aula *aula)
@@ -133,32 +133,32 @@ void Utente::adicionaAula(Aula *aula)
 void Utente::getAulasMes(int &mes)
 {
 	bool existe = false;
-	cout << "Aulas Frequentadas pelo Utente: ";
-	for(size_t n=0; n<aulas.size();n++)
+	cout << "Aulas Frequentadas pelo Utente: " << endl;
+	for (size_t n = 0; n<aulas.size(); n++)
+	{
+		if (aulas[n]->getInicio().getMes() == mes)
 		{
-			if(aulas[n]->getInicio().getMes() == mes)
+			existe = true;
+			if (aulas[n]->pro())
 			{
-				existe = true;
-				if(aulas[n]->pro())
-				{
-					cout << aulas[n]->getInicio() <<"- Treino"<< endl;
-				}
-				if(!(aulas[n]->pro()))
-					cout << aulas[n]->getInicio() <<"- Aula Livre" << endl;
-
+				cout << aulas[n]->getInicio() << "- Treino" << endl;
 			}
-		}
+			if (!(aulas[n]->pro()))
+				cout << aulas[n]->getInicio() << "- Aula Livre" << endl;
 
-	if (! existe)
-		cout << "Nao ha aulas a pagar neste mes"<<endl;
+		}
+	}
+
+	if (!existe)
+		cout << "Nao ha aulas a pagar neste mes" << endl;
 }
 
 void Utente::limpaAulaMes(int &mes)
 {
-	for(vector<Aula *>::iterator i = aulas.begin();i != aulas.end();i++)
+	for (vector<Aula *>::iterator i = aulas.begin(); i != aulas.end(); i++)
 	{
 
-		if((*i)->getInicio().getMes() == mes)
+		if ((*i)->getInicio().getMes() == mes)
 		{
 			i = aulas.erase(i);
 			i--;
@@ -173,18 +173,18 @@ void Utente::limpaAulaMes(int &mes)
 
 
 
-ostream & Utente::operator <<(ostream &of){
-of << Id << " - " << nome << endl;
-return of;
+ostream & Utente::operator <<(ostream &of) {
+	of << Id << " - " << nome << endl;
+	return of;
 }
 
 void Utente::ApagaAula(Aula * aula)
 {
-	for(size_t i=0;i<aulas.size();i++)
+	for (size_t i = 0; i<aulas.size(); i++)
 	{
-		if(aulas[i]->getId() == aula->getId())
+		if (aulas[i]->getId() == aula->getId())
 		{
-			aulas.erase(aulas.begin()+i);
+			aulas.erase(aulas.begin() + i);
 			break;
 		}
 

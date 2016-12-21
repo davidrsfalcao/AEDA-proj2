@@ -107,6 +107,76 @@ void menu_utente(Piscina &p1, Utente &ute)
 
 
 // 6 MENU ADMIN
+void menu_admin(Piscina &p1)
+{
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			cout << endl;
+			cout << "\t\t\t Bem vindo, ";
+			textcolor(CYAN);
+			cout << "admin";
+			textcolor(WHITE);
+
+			cout << endl << endl;
+			cout << "\t\t\t\t    Gerir Piscina" << endl;
+			cout << "\t\t\t\t    Gerir Utentes" << endl;
+			cout << "\t\t\t\t    Gerir Aulas" << endl;
+			cout << "\t\t\t\t    Gerir Professores" << endl;
+			cout << "\t\t\t\t    Gerir Loja" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_utente_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 6);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				imprimir = true;
+				break;
+
+			case 4:
+				break;
+
+			case 5:
+				break;
+
+			case 6:
+				break;
+
+			}
+
+	} while ((opcao != 6) || (tecla != ENTER));
+
+	cout << endl << endl;
+
+}
+
 
 // 5.1 Entrar como utente
 void encontra_parecido(Piscina p1, string nome, Utente &melhor)
@@ -339,6 +409,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 
 
 			case 3:
+				return;
 				break;
 
 			}
