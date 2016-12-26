@@ -18,6 +18,34 @@
 
 using namespace std;
 
+// 7.1.1 Detalhes cliente
+void detalhes_cliente(Utente &ute)
+{
+	limparEcra();
+	cabecalho();
+
+	textcolor(LIGHT_GRAY);
+	cout << "\t\t Nome: ";
+	textcolor(WHITE);
+	cout << ute.getNome();
+
+
+	textcolor(LIGHT_GRAY);
+	cout << "\t\t Mail: ";
+	textcolor(WHITE);
+	//cout << ute.getMail();
+
+	textcolor(LIGHT_GRAY);
+	cout << "\t\t Telefone: ";
+	textcolor(WHITE);
+	//cout << ute.getTelefone();
+
+
+
+
+}
+
+
 // 7.1 Gerir registros
 void menu_registros_ops(int opcao, int opcao_b)
 {
@@ -55,7 +83,7 @@ void menu_registros(Piscina &p1, Utente &ute)
 			titulo();
 
 			cout << endl << endl;
-			cout << "\t\t\t\t    Detalhes cliente" << endl;
+			cout << "\t\t\t\t    Informacoes pessoais" << endl;
 			cout << "\t\t\t\t    Aulas frequentadas" << endl;
 			cout << "\t\t\t\t    (...) acrescentar" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
@@ -100,6 +128,7 @@ void menu_registros(Piscina &p1, Utente &ute)
 	return;
 
 }
+
 
 // 7 MENU UTENTE
 void menu_utente_ops(int opcao, int opcao_b)
@@ -760,7 +789,7 @@ void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAu
 	p1.professores_aulas();
 	menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
 
-
+	return;
 }
 
 void escolher_ficheiros() /// um para cada classe
@@ -780,7 +809,10 @@ void escolher_ficheiros() /// um para cada classe
 			if (fichAulas != "sair") {
 				fichProfessores = testar_fich_professores();
 				if (fichProfessores != "sair")
+				{
 					importar_ficheiros(fichPiscina, fichUtentes, fichAulas, fichProfessores);
+					return;
+				}
 			}
 		}
 	}
@@ -1635,6 +1667,7 @@ void definir_dias_funcionamento_ops(int opcao, int opcao_b)
 
 	gotoxy(0, 21);
 
+	return;
 
 }
 
@@ -1799,6 +1832,8 @@ void lotacao_piscina(Piscina &p1)
 
 	p1.setLotacao(lotacao);
 
+	return;
+
 }
 
 
@@ -1860,6 +1895,7 @@ void nome_piscina(Piscina &p1)
 
 	p1.setNome(nome);
 
+	return;
 
 
 }
@@ -2087,6 +2123,7 @@ void menu_inicial()
 			break;
 
 		case 4:
+			return;
 			break;
 
 		}
