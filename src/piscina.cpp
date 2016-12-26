@@ -879,6 +879,7 @@ void Piscina::atribui_profaula(Aula *a) {
 
 	unsigned int min = professores[0]->getaulas().size();
 	unsigned int min_id = 0;
+	
 	for (size_t i = 1; i<professores.size(); i++) {
 		if (professores[i]->getaulas().size()<min) {
 			min = professores[i]->getaulas().size();
@@ -886,8 +887,12 @@ void Piscina::atribui_profaula(Aula *a) {
 		}
 
 	}
-	a->setProfessor(professores[min_id]);
-	professores[min_id]->addaula(a);
+
+	if (professores.size() != 0)
+	{
+		a->setProfessor(professores[min_id]);
+		professores[min_id]->addaula(a);
+	}
 
 }
 

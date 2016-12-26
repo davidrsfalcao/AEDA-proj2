@@ -72,7 +72,7 @@ void atualizar_aulas_piscina(Piscina &p1)
 				a1->setNumMaximo(p1.getLotacao());
 
 				if (!p1.aulaSobreposta(a1)) {
-					p1.atribui_profaula(a1);
+					//p1.atribui_profaula(a1);
 					p1.adicionaAula(a1);
 				}
 
@@ -93,7 +93,7 @@ void atualizar_aulas_piscina(Piscina &p1)
 
 	} // fim ciclo for
 
-	//p1.ordena_por_data();
+	p1.ordena_por_data();
 	//	p1.atribuiprofs();
 }
 
@@ -503,7 +503,7 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
 
-	//atualizar_aulas_piscina(p1);
+	atualizar_aulas_piscina(p1);
 
 	do
 	{
