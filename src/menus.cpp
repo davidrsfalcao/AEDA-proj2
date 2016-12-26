@@ -17,6 +17,86 @@
 
 
 using namespace std;
+// @@@ funções atualização
+void atualizar_aulas_piscina(Piscina &p1)
+{
+	string dia_S;
+	int dia = dia_do_sistema();
+	int mes = mes_do_sistema();
+	int ano = ano_do_sistema();
+	dia_S = calculo_dia_da_semana(dia, mes, ano);
+
+	for (size_t i{}; i < 7; i++) {
+		dia_S = calculo_dia_da_semana(dia, mes, ano);
+
+		map<string, string>::iterator it = p1.horariomap.find(dia_S);
+		if (it != p1.horariomap.end())
+		{
+			string temp = it->second;
+			int hora_i = stoi(temp.substr(0, 2));
+			int min_i = stoi(temp.substr(3, 2));
+			int hora_f = stoi(temp.substr(8, 2));
+			int min_f = stoi(temp.substr(11, 2));
+			int hora{ hora_i };
+			int minutos{ min_i };
+
+
+			do {
+				// inicio aula
+
+				Aula *a1 = new AulaPro();
+				Data d_ini{};
+				d_ini.setAno(ano);
+				d_ini.setMes(mes);
+				d_ini.setDia(dia);
+				d_ini.setDiaSemana(dia_S);
+				d_ini.setHoras(hora);
+				d_ini.setMinutos(minutos);
+				a1->setInicio(d_ini);
+
+				//fim aula
+				hora++;
+				Data d_fim{};
+				d_fim.setAno(ano);
+				d_fim.setMes(mes);
+				d_fim.setDia(dia);
+				d_fim.setDiaSemana(dia_S);
+				d_fim.setHoras(hora);
+				d_fim.setMinutos(minutos);
+
+				a1->setFim(d_fim);
+				a1->setId();
+				a1->setDuracao(60);
+
+
+				a1->setNumMaximo(p1.getLotacao());
+
+				if (!p1.aulaSobreposta(a1)) {
+					p1.atribui_profaula(a1);
+					p1.adicionaAula(a1);
+				}
+
+			} while ((hora < (hora_f - 1)) || ((hora == (hora_f - 1) && (minutos <= min_f)))); // fim while
+
+		}
+
+		dia++;
+		if (!dia_existe(dia, mes, ano)) {
+			dia = 1;
+			mes++;
+		}
+		if (!dia_existe(dia, mes, ano)) {
+			dia = 1;
+			mes = 1;
+			ano++;
+		}
+
+	} // fim ciclo for
+
+	//p1.ordena_por_data();
+	//	p1.atribuiprofs();
+}
+
 
 // 7.1.1 Detalhes cliente
 void detalhes_cliente(Utente &ute)
@@ -217,6 +297,96 @@ void menu_utente(Piscina &p1, Utente &ute)
 
 }
 
+// 6.1.1 Estado atual
+void estado_atual(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+
+	cout << endl << endl;
+
+	Data atual{};
+	int dia = dia_do_sistema();
+	int mes = mes_do_sistema();
+	int ano = ano_do_sistema();
+	string dia_S = calculo_dia_da_semana(dia, mes, ano);
+	int horas = horas_do_sistema();
+	int minutos = minutos_do_sistema();
+
+	atual.setAno(ano);
+	atual.setMes(mes);
+	atual.setDia(dia);
+	atual.setHoras(horas);
+	atual.setMinutos(minutos);
+	atual.setDiaSemana(dia_S);
+
+	unsigned int utentes_a{};
+	bool existe{ false };
+	unsigned int id{};
+
+	for (size_t i{}; i < p1.getHorario().size(); i++) {
+		if ((p1.getHorario()[i]->getInicio() < atual)
+			&& (atual < p1.getHorario()[i]->getFim())) {
+			existe = true;
+			id = i;
+			break;
+
+		}
+
+	}
+
+	utentes_a = p1.getUtentesNaPisicina().size();
+
+	if (!existe)
+	{
+		cout << "\n\t Atualmente a piscina encontra-se fechada! 'Enter' para continuar " << endl << endl;
+		getchar();
+
+	}
+	else {
+		cout << "Id aula: " << p1.getHorario()[id]->getId() << endl;
+		cout << "Duracao:" << p1.getHorario()[id]->getDuracao() << endl;
+		cout << "Hora inicio: ";
+
+		if (p1.getHorario()[id]->getInicio().getHoras()<10)
+			cout << "0" << p1.getHorario()[id]->getInicio().getHoras();
+		else
+			cout << p1.getHorario()[id]->getInicio().getHoras();
+
+		cout << ":";
+		if (p1.getHorario()[id]->getInicio().getMinutos()<10)
+			cout << "0" << p1.getHorario()[id]->getInicio().getMinutos() << endl;
+		else
+			cout << p1.getHorario()[id]->getInicio().getMinutos() << endl;
+
+
+		cout << "Hora fim: ";
+
+		if (p1.getHorario()[id]->getFim().getHoras() < 10)
+			cout << "0" << p1.getHorario()[id]->getFim().getHoras();
+		else
+			cout << p1.getHorario()[id]->getFim().getHoras();
+
+		cout << ":";
+		if (p1.getHorario()[id]->getFim().getMinutos() < 10)
+			cout << "0" << p1.getHorario()[id]->getFim().getMinutos() << endl;
+		else
+			cout << p1.getHorario()[id]->getFim().getMinutos() << endl;
+
+		cout << "Profesor: " << p1.getHorario()[id]->getProfessor();
+		cout << endl << endl;
+
+
+		faz_grafico(utentes_a, "pessoas na piscina", (p1.getLotacao() - utentes_a), "vagas", "lugares na piscina");
+
+
+
+	}
+
+	cin.ignore(256, '\n');
+
+}
+
 
 // 6.1 Menu gerir piscina
 void menu_gerir_piscina_ops(int opcao, int opcao_b)
@@ -224,8 +394,8 @@ void menu_gerir_piscina_ops(int opcao, int opcao_b)
 	int a = 254;
 	char square = a;
 
-	int y = 10 + opcao_b;
-	int y1 = 10 + opcao;
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
 
 	gotoxy(34, y);
 	textcolor(YELLOW);
@@ -276,6 +446,7 @@ void menu_gerir_piscina(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
+				estado_atual(p1);
 				imprimir = true;
 				break;
 
@@ -307,8 +478,8 @@ void menu_admin_ops(int opcao, int opcao_b)
 	int a = 254;
 	char square = a;
 
-	int y = 9 + opcao_b;
-	int y1 = 9 + opcao;
+	int y = 10 + opcao_b;
+	int y1 = 10 + opcao;
 
 	gotoxy(34, y);
 	textcolor(YELLOW);
@@ -331,6 +502,8 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 {
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
+
+	//atualizar_aulas_piscina(p1);
 
 	do
 	{
