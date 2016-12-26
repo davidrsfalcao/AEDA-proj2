@@ -88,7 +88,6 @@ void menu_registros(Piscina &p1, Utente &ute)
 			cout << "\t\t\t\t    (...) acrescentar" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
 			cout << endl << endl << endl << endl;
-			cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
 			cout << endl << endl;
 
 		}
@@ -219,8 +218,8 @@ void menu_utente(Piscina &p1, Utente &ute)
 }
 
 
-// 6 MENU ADMIN
-void menu_admin_ops(int opcao, int opcao_b)
+// 6.1 Menu gerir piscina
+void menu_gerir_piscina_ops(int opcao, int opcao_b)
 {
 	int a = 254;
 	char square = a;
@@ -241,11 +240,94 @@ void menu_admin_ops(int opcao, int opcao_b)
 
 
 	gotoxy(0, 21);
+}
+
+void menu_gerir_piscina(Piscina &p1)
+{
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+
+			cout << endl << endl;
+			cout << "\t\t\t\t    Estado atual" << endl;
+			cout << "\t\t\t\t    Horario de funcionamento" << endl;
+			cout << "\t\t\t\t    Piscinas nas proximidades" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_gerir_piscina_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 4);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				imprimir = true;
+				break;
+
+			case 4:
+				break;
+
+			}
+
+	} while ((opcao != 4) || (tecla != ENTER));
+
+	cout << endl << endl;
+
+	return;
+
+}
+
+
+// 6 MENU ADMIN
+void menu_admin_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
 
 	return;
 }
 
-void menu_admin(Piscina &p1)
+void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
 {
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
@@ -287,6 +369,7 @@ void menu_admin(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
+				menu_gerir_piscina(p1);
 				imprimir = true;
 				break;
 
@@ -500,6 +583,7 @@ void menu_geral_ops(int opcao, int opcao_b)
 void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
 {
 
+	////////////////////////////////////////////////////////////////////////// <- UTENTES PARA TESTE ---- APAGAR
  	Utente *novo = new Utente();
 	string a = "David";
 	novo->setNome(a);
@@ -509,6 +593,8 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	string a1 = "Divad";
 	novo1->setNome(a1);
 	p1.addUtente(novo1);
+
+	////////////////////////////////////////////////////////////////////////////
 
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
@@ -540,7 +626,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 			switch (opcao)
 			{
 			case 1:
-				menu_admin(p1);
+				menu_admin(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
 				imprimir = true;
 				break;
 
