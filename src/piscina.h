@@ -24,7 +24,6 @@ class Piscina
 	string nomePiscina;
 	vector<Utente *> utentes;
 	vector <Professor *> professores;
-	vector <string> regras;
 	vector <Aula *> horario;
 	vector<Utente *> utentesNaPisicina;
 
@@ -71,6 +70,7 @@ public:
 	* @param utente Utente que se pretende adicionar
 	*/
 	void addUtente(Utente * utente);
+	
 	bool addAula(Aula * aula); //nao defenido
 							   /**
 							   * @brief Adicona um Professor ao vetor de professores da piscina

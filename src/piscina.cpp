@@ -85,8 +85,6 @@ void Piscina::atribuiprofs() {
 
 }
 
-
-
 void Piscina::ler_FichAulas(string &fichAulas) {
 	ifstream fich;
 	fich.open(fichAulas);
