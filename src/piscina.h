@@ -86,7 +86,7 @@ public:
 	*
 	* @param professor Professor que se pretende adicionar
 	*/
-	void apaga_prof(string &nome);
+	bool apaga_prof(string &nome);
 	/**
 	* @brief apaga um utente do vetor de utentes e das aulas em que ele se encontrava inscrito
 	*
@@ -214,7 +214,7 @@ public:
 	/**
 	* @brief Apresenta o numero de vezes que um determinado utente teve aulas na piscina
 	*/
-	void freq_Utente(Utente *ut);
+
 	/**
 	* @brief Pesquisa no vetor de professores se existe um dado professor
 	*
@@ -233,7 +233,7 @@ public:
 	*	@param vetor de aulas a ordenar
 	*/
 
-	void ordena_por_data(vector<Aula> &v);
+	void ordena_por_data();
 
 	/**
 	* @brief verfica se a aula a1 se sobrepõe a alguma outra
@@ -257,6 +257,15 @@ public:
 
 	void apaga_aulas();
 
+	void paga_mensalidade(Utente * u1);
+
+	void adiciona_utente_aula(Aula *a, Utente *u);
+
+	void ordena_professores();
+
+	void detalhes_professor();
+
+	void ordena_utentes();
 };
 
 
