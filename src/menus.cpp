@@ -18,6 +18,89 @@
 
 using namespace std;
 
+// 7.1 Gerir registros
+void menu_registros_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 10 + opcao_b;
+	int y1 = 10 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+void menu_registros(Piscina &p1, Utente &ute)
+{
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+
+			cout << endl << endl;
+			cout << "\t\t\t\t    Detalhes cliente" << endl;
+			cout << "\t\t\t\t    Aulas frequentadas" << endl;
+			cout << "\t\t\t\t    (...) acrescentar" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_registros_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 4);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				imprimir = true;
+				break;
+
+			case 4:
+				break;
+
+			}
+
+	} while ((opcao != 4) || (tecla != ENTER));
+
+	cout << endl << endl;
+
+	return;
+
+}
+
 // 7 MENU UTENTE
 void menu_utente_ops(int opcao, int opcao_b)
 {
@@ -60,7 +143,7 @@ void menu_utente(Piscina &p1, Utente &ute)
 			textcolor(WHITE);
 
 			cout << endl << endl;
-			cout << "\t\t\t\t    Ver registos" << endl;
+			cout << "\t\t\t\t    Ver registros" << endl;
 			cout << "\t\t\t\t    Inscrever aulas" << endl;
 			cout << "\t\t\t\t    Loja" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
@@ -103,7 +186,6 @@ void menu_utente(Piscina &p1, Utente &ute)
 	cout << endl << endl;
 	
 	return;
-
 
 }
 
