@@ -154,7 +154,7 @@ void Piscina::ler_FichAulas(string &fichAulas) {
 	}
 	fich.close();
 	horario[horario.size() - 1]->setIdloc(horario[horario.size() - 1]->getId());
-	//ordena_por_data();
+	ordena_por_data();
 }
 
 void Piscina::utentes_aulas() {
@@ -349,6 +349,7 @@ void Piscina::ler_FichProfessores(string &fichProfessor)
 	ordena_professores();
 
 }
+
 void Piscina::ordena_professores() {
 	for (unsigned int p = 1; p < professores.size(); p++)
 	{
@@ -709,8 +710,7 @@ void Piscina::apaga_aula(Aula *a) {
 	}
 }
 
-
-/*void Piscina::ordena_por_data()
+void Piscina::ordena_por_data()
 {
 	for (unsigned int p = 1; p < horario.size(); p++)
 	{
@@ -722,7 +722,6 @@ void Piscina::apaga_aula(Aula *a) {
 		horario[j] = tmp;
 	}
 }
-*/
 
 bool Piscina::aulaSobreposta(Aula *a1)
 {
