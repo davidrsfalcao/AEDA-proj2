@@ -511,6 +511,7 @@ void mostrar_horario(Piscina p1)
 	} while (tecla != ENTER);
 }
 
+
 // 6.1.1 Estado atual
 void estado_atual(Piscina &p1)
 {
@@ -553,14 +554,13 @@ void estado_atual(Piscina &p1)
 
 	if (!existe)
 	{
-		cout << "\n\t Atualmente a piscina encontra-se fechada! 'Enter' para continuar " << endl << endl;
-		getchar();
+		cout << "\n\t\t\t Atualmente a piscina encontra-se fechada!" << endl << endl;
 
 	}
 	else {
-		cout << "Id aula: " << p1.getHorario()[id]->getId() << endl;
-		cout << "Duracao:" << p1.getHorario()[id]->getDuracao() << endl;
-		cout << "Hora inicio: ";
+		cout << "\t\tId aula: " << p1.getHorario()[id]->getId() << endl;
+		cout << "\t\tDuracao: " << p1.getHorario()[id]->getDuracao() << endl;
+		cout << "\t\tHora inicio: ";
 
 		if (p1.getHorario()[id]->getInicio().getHoras()<10)
 			cout << "0" << p1.getHorario()[id]->getInicio().getHoras();
@@ -574,7 +574,7 @@ void estado_atual(Piscina &p1)
 			cout << p1.getHorario()[id]->getInicio().getMinutos() << endl;
 
 
-		cout << "Hora fim: ";
+		cout << "\t\tHora fim: ";
 
 		if (p1.getHorario()[id]->getFim().getHoras() < 10)
 			cout << "0" << p1.getHorario()[id]->getFim().getHoras();
@@ -587,17 +587,22 @@ void estado_atual(Piscina &p1)
 		else
 			cout << p1.getHorario()[id]->getFim().getMinutos() << endl;
 
-		cout << "Profesor: " << p1.getHorario()[id]->getProfessor();
+		cout << "\t\tProfesor: " << p1.getHorario()[id]->getProfessor();
 		cout << endl << endl;
 
 
-		faz_grafico(utentes_a, "pessoas na piscina", (p1.getLotacao() - utentes_a), "vagas", "lugares na piscina");
+		faz_grafico(utentes_a+1, "pessoas na piscina", (p1.getLotacao() - utentes_a -1), "vagas", "lugares na piscina");
 
 
 
 	}
 
+	textcolor(CYAN);
+	cout << "\t\tPrima 'Enter' para continuar " << endl;
+	textcolor(WHITE);
 	cin.ignore(256, '\n');
+
+	return;
 
 }
 
@@ -2257,6 +2262,7 @@ void lotacao_piscina(Piscina &p1)
 	{
 		limparEcra();
 		cabecalho();
+		cout << endl;
 		textcolor(LIGHT_GRAY);
 		cout << "\t\t Lotacao atual: ";
 		textcolor(WHITE);
@@ -2283,7 +2289,7 @@ void lotacao_piscina(Piscina &p1)
 	do
 	{
 		textcolor(LIGHT_GRAY);
-		cout << "\t\t Lotacao: ";
+		cout << "\n\t\t Lotacao: ";
 		textcolor(WHITE);
 		cin >> lotacao;
 
