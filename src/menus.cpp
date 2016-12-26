@@ -101,12 +101,39 @@ void menu_utente(Piscina &p1, Utente &ute)
 	} while ((opcao != 4) || (tecla != ENTER));
 
 	cout << endl << endl;
+	
+	return;
 
 
 }
 
 
 // 6 MENU ADMIN
+void menu_admin_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 10 + opcao_b;
+	int y1 = 10 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+
+	return;
+}
+
 void menu_admin(Piscina &p1)
 {
 	int opcao = 1, opcao_b = 1, tecla;
@@ -139,7 +166,7 @@ void menu_admin(Piscina &p1)
 
 		imprimir = false;
 
-		menu_utente_ops(opcao, opcao_b);
+		menu_admin_ops(opcao, opcao_b);
 		opcao_b = opcao;
 		tecla = opcao_valida(opcao, 1, 6);
 		Sleep(100);
@@ -174,6 +201,8 @@ void menu_admin(Piscina &p1)
 	} while ((opcao != 6) || (tecla != ENTER));
 
 	cout << endl << endl;
+
+	return;
 
 }
 
@@ -223,6 +252,7 @@ void encontra_parecido(Piscina p1, string nome, Utente &melhor)
 		}
 	}
 
+	return;
 }
 
 void entrar_como__utente_ops(int opcao, int opcao_b)
@@ -399,6 +429,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 			switch (opcao)
 			{
 			case 1:
+				menu_admin(p1);
 				imprimir = true;
 				break;
 
@@ -1320,12 +1351,12 @@ void editar_dias_ops(int opcao, int opcao_b)
 		y1 = 6 + opcao;
 	else y1 = 7 + opcao;
 
-	gotoxy(9, y);
+	gotoxy(25, y);
 	textcolor(YELLOW);
 	cout << " ";
 	textcolor(WHITE);
 
-	gotoxy(9, y1);
+	gotoxy(25, y1);
 	textcolor(YELLOW);
 	cout << square;
 	textcolor(WHITE);
@@ -1348,7 +1379,7 @@ void editar_dias(Piscina &p1, vector<string>&dias)
 		cabecalho();
 
 		textcolor(LIGHT_GRAY);
-		cout << "\n\n Atualmente: ";
+		cout << "\n\n\t\t Atualmente: ";
 		textcolor(WHITE);
 		if (temp.size() == 0)
 		{
@@ -1366,50 +1397,50 @@ void editar_dias(Piscina &p1, vector<string>&dias)
 			}
 		}
 
-		cout << "\n\n\t  ";
+		cout << "\n\n\t\t\t  ";
 		if (encontra_string_vetor("segunda", temp) != -1)
 			cout << " Retirar Segunda" << endl;
 		else
 			cout << " Adicionar Segunda" << endl;
 
-		cout << "\t  ";
+		cout << "\t\t\t  ";
 		if (encontra_string_vetor("terca", temp) != -1)
 			cout << " Retirar Terca" << endl;
 		else
 			cout << " Adicionar Terca" << endl;
 
-		cout << "\t  ";
+		cout << "\t\t\t  ";
 		if (encontra_string_vetor("quarta", temp) != -1)
 			cout << " Retirar Quarta" << endl;
 		else
 			cout << " Adicionar Quarta" << endl;
 
-		cout << "\t  ";
+		cout << "\t\t\t  ";
 		if (encontra_string_vetor("quinta", temp) != -1)
 			cout << " Retirar Quinta" << endl;
 		else
 			cout << " Adicionar Quinta" << endl;
 
-		cout << "\t  ";
+		cout << "\t\t\t  ";
 		if (encontra_string_vetor("sexta", temp) != -1)
 			cout << " Retirar Sexta" << endl;
 		else
 			cout << " Adicionar Sexta" << endl;
 
-		cout << "\t  ";
+		cout << "\t\t\t  ";
 		if (encontra_string_vetor("sabado", temp) != -1)
 			cout << " Retirar Sabado" << endl;
 		else
 			cout << " Adicionar Sabado" << endl;
 
-		cout << "\t  ";
+		cout << "\t\t\t  ";
 		if (encontra_string_vetor("domingo", temp) != -1)
 			cout << " Retirar Domingo" << endl << endl;
 		else
 			cout << " Adicionar Domingo" << endl << endl;
 
-		cout << "\t   Concluir" << endl;
-		cout << "\t   Cancelar" << endl;
+		cout << "\t\t\t   Concluir" << endl;
+		cout << "\t\t\t   Cancelar" << endl;
 	}
 		imprimir = false;
 
