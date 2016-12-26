@@ -201,6 +201,9 @@ void faz_grafico (double n1, string nome1, double n2, string nome2, string varia
 	int p1 { }, p2 { };
 	double temp { };
 
+	int a = 219;
+	char char1 = a;  // obter -> █
+
 	temp = (n1/(n1+n2))*100;
 	p1 = temp;
 	p1 /= 2;
@@ -208,21 +211,30 @@ void faz_grafico (double n1, string nome1, double n2, string nome2, string varia
 
 	for (size_t i { }; i < p1; i++)
 	{
-		cout << "█";
+		textcolor(LIGHT_GREEN);
+		cout << char1;
+		textcolor(WHITE);
 
 	}
 
 
 	for (size_t i { }; i < p2; i++)
 		{
-			cout << "░";
+		textcolor(LIGHT_RED);
+		cout << char1;
+		textcolor(WHITE);
 
 		}
 
+	/*
 	cout << endl << endl;
-	cout << "█ : " << n1 << " " << nome1 << " que corresponde a " << p1*2 << "% do total;" << endl;
-	cout << "░ : " << n2 << " " <<nome2 << " que corresponde a " << p2*2 << "% do total;" << endl;
+	cout << "█ : ";
+	cout << n1 << " " << nome1 << " que corresponde a " << p1 * 2 << "% do total;" << endl;
+
+	cout << "░ : ";
+	cout << n2 << " " << nome2 << " que corresponde a " << p2 * 2 << "% do total;" << endl;
 	cout << "totaL : " << n1+n2 << " " << variavel << endl;
+	*/
 
 }
 

@@ -17,6 +17,7 @@
 
 
 using namespace std;
+
 // @@@ funções atualização
 void atualizar_aulas_piscina(Piscina &p1)
 {
