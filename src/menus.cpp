@@ -298,6 +298,219 @@ void menu_utente(Piscina &p1, Utente &ute)
 
 }
 
+
+// 6.1.2 Mostrar horario
+void mostrar_horario(Piscina p1)
+{
+	int tecla;
+	{
+		limparEcra();
+		cabecalho();
+
+		int a = 186;
+		char char1 = a;  // obter -> ║
+
+		int b = 201;
+		char char2 = b; // obter -> ╔
+
+		int c = 205;
+		char char3 = c; // obter -> ═
+
+		int d = 187;
+		char char4 = d; // obter -> ╗
+
+		int e = 200;
+		char char5 = e; // obter -> ╚
+
+		int f = 188;
+		char char6 = f; // obter -> ╝
+
+		int g = 204;
+		char char7 = g; // obter -> ╠
+
+		int h = 185;
+		char char8 = h; // obter -> ╣
+
+		int i = 203;
+		char char9 = i; // obter -> ╦
+
+		int j = 206;
+		char char10 = j; // obter -> ╬
+
+		int k = 202;
+		char char11 = k; // obter -> ╩
+
+		cout << "\t      " << char2 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char9 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char4 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char7 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char10 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char8 << endl;
+		cout << "\t      " << char1 << "                    " << char1 << "                                       " << char1 << endl;
+		cout << "\t      " << char5 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char11 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char3 << char6 << endl;
+
+		textcolor(CYAN);
+		gotoxy(22, 4);
+		cout << "Dias";
+
+		gotoxy(53, 4);
+		cout << "Horario";
+		textcolor(WHITE);
+
+
+
+		for (size_t i = 1; i <= 7; i++)
+		{
+			map<string, string>::iterator it{};
+			switch (i)
+			{
+			case 1:
+				it = p1.horariomap.find("segunda");
+				gotoxy(21, 6);
+				cout << "Segunda";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 6);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 6);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			case 2:
+				it = p1.horariomap.find("terca");
+				gotoxy(21, 8);
+				cout << "Terca";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 8);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 8);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			case 3:
+				it = p1.horariomap.find("quarta");
+				gotoxy(21, 10);
+				cout << "Quarta";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 10);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 10);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			case 4:
+				it = p1.horariomap.find("quinta");
+				gotoxy(21, 12);
+				cout << "Quinta";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 12);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 12);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			case 5:
+				it = p1.horariomap.find("sexta");
+				gotoxy(21, 14);
+				cout << "Sexta";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 14);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 14);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			case 6:
+				it = p1.horariomap.find("sabado");
+				gotoxy(21, 16);
+				cout << "Sabado";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 16);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 16);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			case 7:
+				it = p1.horariomap.find("domingo");
+				gotoxy(21, 18);
+				cout << "Domingo";
+				if (it != p1.horariomap.end())
+				{
+					gotoxy(50, 18);
+					cout << it->second;
+				}
+				else {
+					gotoxy(53, 18);
+					textcolor(RED);
+					cout << "FECHADO";
+					textcolor(WHITE);
+
+				}
+				break;
+
+			}
+
+		}
+
+		textcolor(CYAN);
+		cout << "\n\n\t Prima ENTER para continuar" << endl;
+		textcolor(WHITE);
+		int opcao;
+		tecla = opcao_valida(opcao, 1, 1);
+	} while (tecla != ENTER);
+}
+
 // 6.1.1 Estado atual
 void estado_atual(Piscina &p1)
 {
@@ -452,6 +665,7 @@ void menu_gerir_piscina(Piscina &p1)
 				break;
 
 			case 2:
+				mostrar_horario(p1);
 				imprimir = true;
 				break;
 
