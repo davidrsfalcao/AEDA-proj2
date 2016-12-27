@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <sstream>
 #include <map>
+#include <queue>
 
 #include "professor.h"
 #include "uteis.h"
@@ -2616,6 +2617,7 @@ void menu_inicial()
 int main()
 {
 	configurar_terminal();
+	priority_queue<Piscina> piscinas;
 	menu_inicial();
 
 	return 0;
