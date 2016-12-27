@@ -197,7 +197,7 @@ public:
 	*/
 	float price();
 
-	virtual unsigned int getInfo();;
+	virtual unsigned int getInfo() { return 0; };
 };
 
 
