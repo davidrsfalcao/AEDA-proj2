@@ -143,19 +143,19 @@ public:
 	*/
 	friend ostream & operator <<(std::ostream &of, const Aula &a1);
 
-	/**
-	* @brief operador que compara as aulas consoante a sua data de inÌcio
-	*
-	* @param aula 1 a comparar
-	* @param aula 2 a comparar
-	*/
+
+		/*@brief operador que compara as aulas consoante a sua data de inÌcio
+		*
+		* @param aula 1 a comparar
+		* @param aula 2 a comparar
+		*/
 	bool operator <(const Aula &a1);
 
-	/**
-	*  @brief funÁ„o que retorna o professor da aula
-	*
-	*  @return Professor
-	*/
+		/**
+		*  @brief funÁ„o que retorna o professor da aula
+		*
+		*  @return Professor
+		*/
 	Professor getProfessor();
 
 	void setIdloc(unsigned int id) { this->idloc = id; };
@@ -196,6 +196,35 @@ public:
 	* @return o pre√ßo a pagar por aula
 	*/
 	float price();
+
+	virtual unsigned int getInfo();;
 };
+
+
+class Polo :public AulaPro {
+	Polo() :AulaPro() {};
+	unsigned int getInfo();
+};
+
+class Sincronizada :public AulaPro {
+	Sincronizada() :AulaPro() {};
+	unsigned int getInfo();
+};
+
+class Mergulho :public AulaPro {
+	Mergulho() :AulaPro() {};
+	unsigned int getInfo();
+};
+
+class Hidroginastica :public AulaPro {
+	Hidroginastica() :AulaPro() {};
+	unsigned int getInfo();
+};
+
+class Competicao :public AulaPro {
+	Competicao() :AulaPro() {};
+	unsigned int getInfo();
+};
+
 
 #endif /* AULA_H_ */

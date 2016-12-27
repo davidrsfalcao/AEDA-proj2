@@ -16,37 +16,37 @@ void Loja::vende(Produto &prod)
 	while (!it.isAtEnd())
 	{
 
-		if(prod == it.retrieve())
+		if (prod == it.retrieve())
 		{
-				if(prod.getStock > it.retrieve().getStock)
-				{
-					cout << "Nao ha itens suficientes em stock para concluir a sua compra" << endl;
-					existe = true;
-				}
-				else
-				{
-					unsigned int st = it.retrieve().getStock();
-					st = st - prod.getStock();
-					string name = it.retrieve().getNome();
-					string tm = it.retrieve().getTamanho();
-					Produto px(name, tm, st);
-					produtos.remove(it.retrieve());
-					produtos.insert(px);
-					existe = true;
+			if (prod.getStock() > it.retrieve().getStock())
+			{
+				cout << "Nao ha itens suficientes em stock para concluir a sua compra" << endl;
+				existe = true;
+			}
+			else
+			{
+				unsigned int st = it.retrieve().getStock();
+				st = st - prod.getStock();
+				string name = it.retrieve().getNome();
+				string tm = it.retrieve().getTamanho();
+				Produto px(name, tm, st);
+				produtos.remove(it.retrieve());
+				produtos.insert(px);
+				existe = true;
 
-				}
-					
+			}
+
 		}
 
 		it.advance();
 
-	
+
 	}
 
-	if(! existe)
+	if (!existe)
 	{
 		cout << "o produto nao existe" << endl;
-	
+
 	}
 
 
@@ -54,18 +54,23 @@ void Loja::vende(Produto &prod)
 
 //Produto
 
-Produto::Produto(string &nome,string &tamanho,unsigned int &stock)
+Produto::Produto(string &nome, string &tamanho, unsigned int &stock)
 {
 	this->nome = nome;
 	this->tamanho = tamanho;
 	this->stock = stock;
 }
+Produto::Produto() {
+	this->nome = "";
+	this->tamanho = "";
+	this->stock = 0;
+}
 
-string Produto::getNome()
+string Produto::getNome()const
 {
 	return nome;
 }
-string Produto::getTamanho()
+string Produto::getTamanho() const
 {
 	return tamanho;
 }
@@ -88,10 +93,22 @@ void Produto::setStock(unsigned int &stock)
 
 bool Produto::operator==(const Produto &p) const
 {
-	if (p.getNome == nome && p.getTamanho == tamanho)
+	if (p.getNome() == nome && p.getTamanho() == tamanho)
 		return true;
 	else
 		return false;
 
 
 }
+
+bool Produto::operator<(const Produto & p) const
+{
+	if (nome == p.getNome()) {
+		return tamanho < p.getTamanho();
+	}
+
+	else
+		return nome < p.getNome();
+}
+
+

@@ -128,5 +128,20 @@ public:
 
 };
 
+
+
+class Funcionario
+{
+	unsigned int id;
+	string password;
+
+
+public:
+	unsigned int getId() { return id; }
+	string getPassword() { return password; }
+
+
+};
+
 #endif /* UTENTE_H_ */
 
