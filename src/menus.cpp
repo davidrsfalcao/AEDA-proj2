@@ -8,6 +8,7 @@
 #include <sstream>
 #include <map>
 #include <queue>
+#include <cmath>
 
 #include "professor.h"
 #include "uteis.h"
@@ -2553,7 +2554,28 @@ void menu_inicial_ops(int opcao, int opcao_b)
 
 	gotoxy(0, 21);
 }
+void set_prioridades(const vector<Piscina*> &piscinas, Piscina &piscina_criada) {
+	vector<Piscina *> temp = piscinas;
+	float distmin = 100000000;
+	float dist = 0;
+	unsigned int id = 0;
+	unsigned int c = 0;
+	for (size_t i = 0; i < temp.size();i++) {
+		
 
+		for (size_t j = 0; j < temp.size(); i++) {
+			dist = sqrt(pow(piscina_criada.getX() - temp[j]->getX(), 2) + pow(piscina_criada.getY() - temp[j]->getY(), 2));
+			if (dist < distmin) {
+				dist = distmin;
+				id = j;
+			}
+		}
+		piscinas[id]->setProximidade[c++];
+		temp.erase(temp.begin + id);
+
+	}
+
+}
 void menu_inicial()
 {
 	int opcao = 1, opcao_b = 1, tecla;
@@ -2616,8 +2638,8 @@ void menu_inicial()
 
 int main()
 {
-	configurar_terminal();
 	priority_queue<Piscina> piscinas;
+	configurar_terminal();
 	menu_inicial();
 
 	return 0;

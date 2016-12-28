@@ -20,6 +20,9 @@ class Piscina
 {
 
 	unsigned int NumMaximoUtentes;
+	unsigned int x;
+	unsigned int y;
+	unsigned int proximidade;
 
 	string nomePiscina;
 	vector<Utente *> utentes;
@@ -70,7 +73,7 @@ public:
 	* @param utente Utente que se pretende adicionar
 	*/
 	void addUtente(Utente * utente);
-	
+
 	bool addAula(Aula * aula); //nao defenido
 							   /**
 							   * @brief Adicona um Professor ao vetor de professores da piscina
@@ -266,6 +269,16 @@ public:
 	void detalhes_professor();
 
 	void ordena_utentes();
+	bool operator <(const Piscina &p1);
+
+	unsigned int getX() { return x; };
+
+	unsigned int getY() { return y; };
+
+	unsigned int getProximidade()const { return proximidade; };
+
+	void setProximidade(unsigned int p) { this->proximidade = p; };
+
 };
 
 

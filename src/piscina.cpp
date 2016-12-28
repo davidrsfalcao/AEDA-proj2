@@ -1045,3 +1045,10 @@ void Piscina::detalhes_professor()
 	cout << endl << "prima uma tecla para voltar para o menu anterior" << endl;
 	getchar();
 }
+
+
+
+
+bool Piscina::operator <(const Piscina &p1) {
+	return proximidade < p1.getProximidade();
+}
