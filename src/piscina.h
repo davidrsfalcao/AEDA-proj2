@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <unordered_set>
 
 #include "aula.h"
 #include"utente.h"
@@ -16,6 +17,23 @@ class Aula;
 class Professor;
 
 
+struct UtentesHash {
+	bool operator() (const Utente & u1, const Utente &u2) {
+		if (u1.getId() == u2.getId() && u1.getNome() == u2.getNome())
+			return true;
+		else
+			return false;
+	}
+	//TODO:melhorar função de hash
+	int operator() (const Utente &u1) {
+		return u1.getId() % 97;
+	}
+
+};
+
+
+typedef unordered_set<Utente, UtentesHash, UtentesHash> tabHU;
+typedef unordered_set<Utente, UtentesHash, UtentesHash>::iterator iteratorH;
 class Piscina
 {
 
@@ -29,6 +47,8 @@ class Piscina
 	vector <Professor *> professores;
 	vector <Aula *> horario;
 	vector<Utente *> utentesNaPisicina;
+	//tabHU utentes_inativos;
+
 
 public:
 	map<string, string> horariomap;

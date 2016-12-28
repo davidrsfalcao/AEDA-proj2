@@ -17,6 +17,8 @@ class Utente
 	string nome;
 	vector<Aula *> aulas;
 	int entradas;
+	unsigned int telemovel;
+	string email;
 
 
 
@@ -34,11 +36,11 @@ public:
 	* @return retorna o Nome do Utente
 	*
 	*/
-	string getNome();
+	string getNome() const;
 	/**
 	* @return retorna o Id do Utente
 	*/
-	unsigned int getId();
+	unsigned int getId() const;
 	/**
 	* @brief para mostrar um utente
 	*
@@ -124,6 +126,15 @@ public:
 	void limpaAulaMes(int &mes);
 
 	void ApagaAula(Aula * aula);
+
+	unsigned int getTelemovel() { return telemovel; };
+
+	string getEmail() { return email; };
+
+	void setTelemovel(unsigned int nr_t) { this->telemovel = nr_t; };
+
+	void setEmail(string email) { this->email = email; };
+
 
 
 };

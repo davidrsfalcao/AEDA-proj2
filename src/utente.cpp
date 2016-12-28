@@ -17,13 +17,13 @@ Utente::~Utente()
 }
 
 
-string Utente::getNome()
+string Utente::getNome()const
 {
 	return nome;
 
 }
 
-unsigned int Utente::getId()
+unsigned int Utente::getId()const
 {
 	return Id;
 
