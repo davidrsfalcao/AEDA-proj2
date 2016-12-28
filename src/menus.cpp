@@ -2554,6 +2554,7 @@ void menu_inicial_ops(int opcao, int opcao_b)
 
 	gotoxy(0, 21);
 }
+
 void set_prioridades(const vector<Piscina*> &piscinas, Piscina &piscina_criada) {
 	vector<Piscina *> temp = piscinas;
 	float distmin = 100000000;
@@ -2570,8 +2571,8 @@ void set_prioridades(const vector<Piscina*> &piscinas, Piscina &piscina_criada) 
 				id = j;
 			}
 		}
-		piscinas[id]->setProximidade[c++];
-		temp.erase(temp.begin + id);
+		piscinas[id]->setProximidade(c++);
+		temp.erase(temp.begin() + id);
 
 	}
 
