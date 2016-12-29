@@ -483,6 +483,130 @@ void menu_gerir_professores(Piscina &p1)
 }
 
 
+// 6.3.2 Adicionar aula
+void adicionar_aula(Piscina &p1)
+{
+	string dia, mes, ano, horas;
+	unsigned int dia1{}, mes1{}, ano1{}, horas1{}, minutos1{};
+	char lixo{};
+	bool avancar{};
+	bool avancar2{ false };
+	Data d_ini{};
+	string opcao;
+	Aula *a1 = new Mergulho();
+	
+
+	cin.ignore(256, '\n');
+
+	do {
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
+
+		do {
+			cout << "Dia: ";
+			getline(cin, dia);
+			stringstream ss1;
+			ss1 << delete_space(dia);
+			ss1 >> dia1;
+
+			cout << "\nMes: ";
+			getline(cin, mes);
+			stringstream ss2;
+			ss2 << delete_space(mes);
+			ss2 >> mes1;
+
+			cout << "\nAno: ";
+			getline(cin, ano);
+			stringstream ss3;
+			ss3 << delete_space(ano);
+			ss3 >> ano1;
+
+			if (!dia_existe(dia1, mes1, ano1)) {
+				cout << "\n\t *dia inexistente" << endl << endl;
+			}
+
+		} while (!dia_existe(dia1, mes1, ano1));
+
+		do {
+			cout << "\nHora de incio (hh:mm): ";
+			getline(cin, horas);
+			stringstream ss4;
+			ss4 << delete_space(horas);
+			ss4 >> horas1 >> lixo >> minutos1;
+
+			if ((horas1 > 23) || ((horas1 == 23) && (minutos1 > 0)) || (minutos1 >= 60) || (lixo != ':')) {
+				avancar = false;
+				cout << "* hora invalida";
+			}
+			else {
+				avancar = true;
+			}
+
+		} while (!avancar);
+
+
+		bool existe{ false };
+		d_ini.setAno(ano1);
+		d_ini.setMes(mes1);
+		d_ini.setDia(dia1);
+		string dia_S = calculo_dia_da_semana(dia1, mes1, ano1);
+		d_ini.setDiaSemana(dia_S);
+		d_ini.setHoras(horas1);
+		d_ini.setMinutos(minutos1);
+
+		a1->setInicio(d_ini);
+
+		if (p1.aulaSobreposta(a1))
+			existe = true;
+		else existe = false;
+
+		if (existe)
+		{
+			cout << "\n\n\t*nao e possivel sobrepor aulas";
+
+			do {
+				cout << "\n\n  Deseja tentar outra data? ";
+				getline(cin, opcao);
+
+			} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
+
+		}
+		else avancar2 = true;
+
+
+
+	} while (!avancar2 && (opcao != "nao") && (opcao != "n"));
+
+
+	if (avancar)
+	{
+		string dia_S = calculo_dia_da_semana(dia1, mes1, ano1);
+		horas1++;
+		//fim aula
+		Data d_fim{};
+		d_fim.setAno(ano1);
+		d_fim.setMes(mes1);
+		d_fim.setDia(dia1);
+		d_fim.setDiaSemana(dia_S);
+		d_fim.setHoras(horas1);
+		d_fim.setMinutos(minutos1);
+
+		a1->setFim(d_fim);
+		a1->setId();
+		a1->setNumMaximo(60);
+
+		p1.adicionaAula(a1);
+		//p1.atribui_profaula(a1);
+		p1.ordena_por_data();
+		cout << "\n\n Aula adicionada com sucesso! 'Enter' para continuar" << endl << endl;
+		getchar();
+
+	}
+
+}
+
+
 // 6.3.1 Listar aulas
 void listar_aulas(Piscina &p1)
 {
@@ -546,7 +670,39 @@ void listar_aulas(Piscina &p1)
 				cout << p1.getHorario()[i]->getFim().getMinutos() << endl;
 			
 			textcolor(LIGHT_GRAY);
-			cout << "\t\tTipo: " << endl << endl;
+			cout << "\t\tTipo: ";
+
+			if (p1.getHorario()[i]->pro())
+			{
+				int modo = p1.getHorario()[i]->getInfo();
+
+				switch (modo)
+				{
+				case 0:
+					cout << "Polo";
+					break;
+
+				case 1:
+					cout << "Sincronizada";
+					break;
+
+				case 2:
+					cout << "Mergulho";
+					break;
+
+				case 3:
+					cout << "Hidroginastica";
+					break;
+
+				case 4:
+					cout << "Competicao";
+					break;
+
+				}
+				
+			}
+				
+			cout << endl << endl;
 			textcolor(WHITE);
 
 		}
@@ -574,6 +730,7 @@ void listar_aulas(Piscina &p1)
 			break;
 	}
 }
+
 
 // 6.3 Menu gerir aulas
 void menu_gerir_aulas_ops(int opcao, int opcao_b)
@@ -638,6 +795,7 @@ void menu_gerir_aulas(Piscina &p1)
 				break;
 
 			case 2:
+				adicionar_aula(p1);
 				imprimir = true;
 				break;
 

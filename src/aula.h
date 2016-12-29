@@ -160,6 +160,8 @@ public:
 
 	void setIdloc(unsigned int id) { this->idloc = id; };
 
+	virtual unsigned int getInfo() { return 0; };
+
 };
 
 class AulaLivre :public Aula {
@@ -178,6 +180,8 @@ public:
 	* @return o preço a pagar por aula
 	*/
 	float price();
+
+	unsigned int getInfo() { return 999; }
 };
 
 class AulaPro :public Aula {
@@ -202,26 +206,31 @@ public:
 
 
 class Polo :public AulaPro {
+public:
 	Polo() :AulaPro() {};
 	unsigned int getInfo();
 };
 
 class Sincronizada :public AulaPro {
+public:
 	Sincronizada() :AulaPro() {};
 	unsigned int getInfo();
 };
 
 class Mergulho :public AulaPro {
+public:
 	Mergulho() :AulaPro() {};
 	unsigned int getInfo();
 };
 
 class Hidroginastica :public AulaPro {
+public:
 	Hidroginastica() :AulaPro() {};
 	unsigned int getInfo();
 };
 
 class Competicao :public AulaPro {
+public:
 	Competicao() :AulaPro() {};
 	unsigned int getInfo();
 };
