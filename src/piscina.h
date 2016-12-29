@@ -56,6 +56,7 @@ class Piscina
 
 public:
 	map<string, string> horariomap;
+	
 	/**
 	* @brief Construtor da classe piscina
 	*/
@@ -307,6 +308,10 @@ public:
 	bool retira_inativo(const Utente &u1);
 
 	unsigned int coloca_inativos();
+
+	vector<string> getModalidades();
+
+	void setModalidades(vector<string> mod);
 
 };
 
