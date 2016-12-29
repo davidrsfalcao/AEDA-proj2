@@ -28,6 +28,8 @@ void atualizar_aulas_piscina(Piscina &p1)
 	int mes = mes_do_sistema();
 	int ano = ano_do_sistema();
 	dia_S = calculo_dia_da_semana(dia, mes, ano);
+	vector<string> mod = p1.getModalidades();
+	unsigned int n_mod = mod.size();
 
 	for (size_t i{}; i < 7; i++) {
 		dia_S = calculo_dia_da_semana(dia, mes, ano);
@@ -47,7 +49,22 @@ void atualizar_aulas_piscina(Piscina &p1)
 			do {
 				// inicio aula
 
-				Aula *a1 = new AulaPro();
+				Aula *a1;
+
+				int i = rand() % n_mod;
+
+				if (mod[i] == "polo")
+					a1 = new Polo();
+				else if (mod[i] == "sincronizada")
+					a1 = new Sincronizada();
+				else if (mod[i] == "mergulho")
+					a1 = new Mergulho();
+				else if (mod[i] == "hidroginastica")
+					a1 = new Hidroginastica();
+				else if (mod[i] == "competicao")
+					a1 = new Competicao();
+				else return;
+
 				Data d_ini{};
 				d_ini.setAno(ano);
 				d_ini.setMes(mes);
@@ -75,7 +92,6 @@ void atualizar_aulas_piscina(Piscina &p1)
 				a1->setNumMaximo(p1.getLotacao());
 
 				if (!p1.aulaSobreposta(a1)) {
-					//p1.atribui_profaula(a1);
 					p1.adicionaAula(a1);
 				}
 
@@ -97,7 +113,6 @@ void atualizar_aulas_piscina(Piscina &p1)
 	} // fim ciclo for
 
 	p1.ordena_por_data();
-	//	p1.atribuiprofs();
 }
 
 void apagar_aulas_old(Piscina &p1)
@@ -1300,9 +1315,38 @@ void estado_atual(Piscina &p1)
 		else
 			cout << p1.getHorario()[id]->getFim().getMinutos() << endl;
 
-		cout << "\t\tProfesor: " << p1.getHorario()[id]->getProfessor();
-		cout << endl << endl;
+		cout << "\t\tProfesor: " << p1.getHorario()[id]->getProfessor() << endl;
 
+		cout << "\t\tCategoria: ";
+
+		int categ = p1.getHorario()[id]->getInfo();
+
+		switch (categ)
+		{
+		case 1:
+			cout << "Polo aquatico";
+			break;
+
+		case 2:
+			cout << "Natacao sincronizada";
+			break;
+
+		case 3:
+			cout << "Mergulho";
+			break;
+
+		case 4:
+			cout << "Hidroginastica";
+
+		case 5:
+			cout << "Competicao";
+			break;
+
+		default:
+			break;
+		}
+
+		cout << endl << endl;
 
 		faz_grafico(utentes_a, "pessoas na piscina", p1.getLotacao(), "vagas", "lugares na piscina");
 
@@ -1562,7 +1606,7 @@ void encontra_parecido(Piscina p1, string nome, Utente &melhor)
 	return;
 }
 
-void entrar_como__utente_ops(int opcao, int opcao_b)
+void entrar_como_utente_ops(int opcao, int opcao_b)
 {
 	int a = 254;
 	char square = a;
@@ -1630,7 +1674,7 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 
 			while (1)
 			{
-				entrar_como__utente_ops(opcao, opcao_b);
+				entrar_como_utente_ops(opcao, opcao_b);
 				opcao_b = opcao;
 				tecla = opcao_valida(opcao, 1, 2);
 				Sleep(100);
@@ -2028,7 +2072,7 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 	cabecalho();
 
 	bool falta = false;
-	unsigned int nome = 0, lotacao = 0, horario = 0, base_dados = 0;
+	unsigned int nome = 0, lotacao = 0, horario = 0, base_dados = 0, modalidades = 0;
 	//unsigned int localização = 0;
 	int a = 254;
 	char square = a;
@@ -2055,6 +2099,13 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 
 	/// fazer o mesmo para a localizacao
 
+	if (p1.getModalidades().size() == NULL)
+	{
+		falta = true;
+	}
+	else modalidades = 1;
+
+
 	if ((fichUtentes == "") && (fichPiscina == ""))
 	{
 		falta = true;
@@ -2072,7 +2123,7 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 		}
 		if (!lotacao)
 		{
-			cout << "\t\t " << square << " lotacao" << endl;
+			cout << "\t\t " << square << " lotacao" << endl; 
 		}
 		if (!horario)
 		{
@@ -2080,6 +2131,11 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 		}
 
 		// fazer o mesmo para a localizacao
+		if (!modalidades)
+		{
+			cout << "\t\t " << square << " modalidades" << endl;
+		}
+
 
 		if (!base_dados)
 		{
@@ -2349,13 +2405,21 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 
 
 // 3.6 Definir modalidades
+
 void definir_modalidade_ops(int opcao, int opcao_b)
 {
 	int a = 254;
 	char square = a;
 
-	int y = 6 + opcao_b;
-	int y1 = 6 + opcao;
+	int y, y1;
+
+	if (opcao_b > 5)
+		y = 7 + opcao_b;
+	else y = 6 + opcao_b;
+
+	if (opcao > 5)
+		y1 = 7 + opcao;
+	else y1 = 6 + opcao;
 
 	gotoxy(34, y);
 	textcolor(YELLOW);
@@ -2372,11 +2436,12 @@ void definir_modalidade_ops(int opcao, int opcao_b)
 	gotoxy(0, 21);
 }
 
-void definir_modalidades(Piscina &p1, vector<string> &modalidades)
+void definir_modalidades(Piscina &p1)
 {
 
 	int opcao_a = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
+	vector<string> mod;
 
 	do
 	{
@@ -2387,7 +2452,7 @@ void definir_modalidades(Piscina &p1, vector<string> &modalidades)
 				textcolor(LIGHT_GRAY);
 				cout << "\n\n\t\t Atualmente: ";
 				textcolor(WHITE);
-				if (modalidades.size() == 0)
+				if (mod.size() == 0)
 				{
 					textcolor(RED);
 					cout << "sem modalidades ";
@@ -2395,9 +2460,9 @@ void definir_modalidades(Piscina &p1, vector<string> &modalidades)
 				}
 				else
 				{
-					cout << modalidades[0];
-					for (size_t i = 1; i < modalidades.size(); i++) {
-						cout << ", " << modalidades[i];
+					cout << mod[0];
+					for (size_t i = 1; i < mod.size(); i++) {
+						cout << ", " << mod[i];
 					}
 				}
 
@@ -2406,8 +2471,8 @@ void definir_modalidades(Piscina &p1, vector<string> &modalidades)
 			cout << "\t\t\t\t    Natacao Sincronizada" << endl;
 			cout << "\t\t\t\t    Mergulho" << endl;
 			cout << "\t\t\t\t    Hidroginastica" << endl;
-			cout << "\t\t\t\t    Competicao" << endl;
-			cout << "\t\t\t\t    Sair" << endl;
+			cout << "\t\t\t\t    Competicao" << endl << endl;
+			cout << "\t\t\t\t    Voltar" << endl;
 			cout << endl << endl << endl << endl;
 			cout << endl << endl;
 
@@ -2425,51 +2490,52 @@ void definir_modalidades(Piscina &p1, vector<string> &modalidades)
 			switch (opcao_a)
 			{
 			case 1:
-				if (encontra_string_vetor("polo", modalidades) == -1)
-					modalidades.push_back("polo");
+				if (encontra_string_vetor("polo", mod) == -1)
+					mod.push_back("polo");
 				else {
-					modalidades.erase(modalidades.begin() + (encontra_string_vetor("polo", modalidades)));
+					mod.erase(mod.begin() + (encontra_string_vetor("polo", mod)));
 				}
 				imprimir = true;
 				break;
 
 			case 2:
-				if (encontra_string_vetor("sincronizada", modalidades) == -1)
-					modalidades.push_back("sincronizada");
+				if (encontra_string_vetor("sincronizada", mod) == -1)
+					mod.push_back("sincronizada");
 				else {
-					modalidades.erase(modalidades.begin() + (encontra_string_vetor("sincronizada", modalidades)));
+					mod.erase(mod.begin() + (encontra_string_vetor("sincronizada", mod)));
 				}
 				imprimir = true;
 				break;
 
 			case 3:
-				if (encontra_string_vetor("mergulho", modalidades) == -1)
-					modalidades.push_back("mergulho");
+				if (encontra_string_vetor("mergulho", mod) == -1)
+					mod.push_back("mergulho");
 				else {
-					modalidades.erase(modalidades.begin() + (encontra_string_vetor("mergulho", modalidades)));
+					mod.erase(mod.begin() + (encontra_string_vetor("mergulho", mod)));
 				}
 				imprimir = true;
 				break;
 
 			case 4:
-				if (encontra_string_vetor("hidroginastica", modalidades) == -1)
-					modalidades.push_back("hidroginastica");
+				if (encontra_string_vetor("hidroginastica", mod) == -1)
+					mod.push_back("hidroginastica");
 				else {
-					modalidades.erase(modalidades.begin() + (encontra_string_vetor("hidroginastica", modalidades)));
+					mod.erase(mod.begin() + (encontra_string_vetor("hidroginastica", mod)));
 				}
 				imprimir = true;
 				break;
 
 			case 5:
-				if (encontra_string_vetor("competicao", modalidades) == -1)
-					modalidades.push_back("competicao");
+				if (encontra_string_vetor("competicao", mod) == -1)
+					mod.push_back("competicao");
 				else {
-					modalidades.erase(modalidades.begin() + (encontra_string_vetor("competicao", modalidades)));
+					mod.erase(mod.begin() + (encontra_string_vetor("competicao", mod)));
 				}
 				imprimir = true;
 				break;
 
 			case 6:
+				p1.setModalidades(mod);
 				return;
 				break;
 
@@ -2479,96 +2545,6 @@ void definir_modalidades(Piscina &p1, vector<string> &modalidades)
 
 
 }
-
-void menu_definir_modalidades_ops(int opcao, int opcao_b)
-{
-	int a = 254;
-	char square = a;
-
-	int y = 10 + opcao_b;
-	int y1 = 10 + opcao;
-
-	gotoxy(34, y);
-	textcolor(YELLOW);
-	cout << " ";
-	textcolor(WHITE);
-
-	gotoxy(34, y1);
-	textcolor(YELLOW);
-	cout << square;
-	textcolor(WHITE);
-
-
-
-	gotoxy(0, 21);
-}
-
-void menu_definir_modalidades(Piscina &p1)
-{
-	int opcao = 1, opcao_b = 1, tecla;
-	bool imprimir = true;
-	vector<string> modalidades;
-
-	do
-	{
-		if (imprimir)
-		{
-			limparEcra();
-			titulo();
-			textcolor(LIGHT_GRAY);
-			cout << "\n\t\t Atualmente: ";
-			textcolor(WHITE);
-			if (modalidades.size() == 0)
-			{
-				textcolor(RED);
-				cout << "sem modalidades ";
-				textcolor(WHITE);
-			}
-			else
-			{
-				cout << modalidades[0];
-				for (size_t i = 1; i < modalidades.size(); i++) {
-					cout << ", " << modalidades[i];
-				}
-			}
-			cout << endl << endl;
-			cout << "\t\t\t\t    Escolher modalidades" << endl;
-			cout << "\t\t\t\t    Definir horarios" << endl;
-			cout << "\t\t\t\t    Sair" << endl;
-			cout << endl << endl;
-
-		}
-
-		imprimir = false;
-
-		menu_definir_modalidades_ops(opcao, opcao_b);
-		opcao_b = opcao;
-		tecla = opcao_valida(opcao, 1, 3);
-		Sleep(100);
-
-
-		if (tecla == ENTER)
-			switch (opcao)
-			{
-			case 1:
-				definir_modalidades(p1, modalidades);
-				imprimir = true;
-				break;
-
-			case 2:
-				imprimir = true;
-				break;
-
-			case 3:
-				break;
-
-			}
-
-	} while ((opcao != 3) || (tecla != 13));
-
-	cout << endl << endl;
-}
-
 
 //3.4 Definir localizacao
 
@@ -2644,7 +2620,7 @@ void mostrar_calendario(Piscina p1)
 
 		for (size_t i = 1; i <= 7; i++)
 		{
-			map<string, string>::iterator it{};
+			map<string, string>::iterator it;
 			switch (i)
 			{
 			case 1:
@@ -3415,10 +3391,10 @@ void menu_criar_piscina()
 				break;
 
 			case 5:
-				menu_definir_modalidades(p1);
+				definir_modalidades(p1);
 				imprimir = true;
 				break;
-
+			
 			case 6:
 				definir_base_de_dados(fichPiscina, fichUtentes, fichAulas, fichProfessores);
 				imprimir = true;
@@ -3566,6 +3542,7 @@ int main()
 {
 	configurar_terminal();
 	menu_inicial();
+
 
 	return 0;
 }
