@@ -375,6 +375,7 @@ void menu_utente(Piscina &p1, Utente &ute)
 			switch (opcao)
 			{
 			case 1:
+				menu_registros(p1, ute);
 				imprimir = true;
 				break;
 
@@ -776,6 +777,7 @@ void listar_aulas(Piscina &p1)
 			
 			textcolor(LIGHT_GRAY);
 			cout << "\t\tTipo: ";
+			textcolor(WHITE);
 
 			if (p1.getHorario()[i]->pro())
 			{
@@ -2346,6 +2348,228 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 }
 
 
+// 3.6 Definir modalidades
+void definir_modalidade_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 6 + opcao_b;
+	int y1 = 6 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+void definir_modalidades(Piscina &p1, vector<string> &modalidades)
+{
+
+	int opcao_a = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+			if (imprimir)
+			{
+				limparEcra();
+				cabecalho();
+				textcolor(LIGHT_GRAY);
+				cout << "\n\n\t\t Atualmente: ";
+				textcolor(WHITE);
+				if (modalidades.size() == 0)
+				{
+					textcolor(RED);
+					cout << "sem modalidades ";
+					textcolor(WHITE);
+				}
+				else
+				{
+					cout << modalidades[0];
+					for (size_t i = 1; i < modalidades.size(); i++) {
+						cout << ", " << modalidades[i];
+					}
+				}
+
+			cout << endl << endl;
+			cout << "\t\t\t\t    Polo" << endl;
+			cout << "\t\t\t\t    Natacao Sincronizada" << endl;
+			cout << "\t\t\t\t    Mergulho" << endl;
+			cout << "\t\t\t\t    Hidroginastica" << endl;
+			cout << "\t\t\t\t    Competicao" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		definir_modalidade_ops(opcao_a, opcao_b);
+		opcao_b = opcao_a;
+		tecla = opcao_valida(opcao_a, 1, 6);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao_a)
+			{
+			case 1:
+				if (encontra_string_vetor("polo", modalidades) == -1)
+					modalidades.push_back("polo");
+				else {
+					modalidades.erase(modalidades.begin() + (encontra_string_vetor("polo", modalidades)));
+				}
+				imprimir = true;
+				break;
+
+			case 2:
+				if (encontra_string_vetor("sincronizada", modalidades) == -1)
+					modalidades.push_back("sincronizada");
+				else {
+					modalidades.erase(modalidades.begin() + (encontra_string_vetor("sincronizada", modalidades)));
+				}
+				imprimir = true;
+				break;
+
+			case 3:
+				if (encontra_string_vetor("mergulho", modalidades) == -1)
+					modalidades.push_back("mergulho");
+				else {
+					modalidades.erase(modalidades.begin() + (encontra_string_vetor("mergulho", modalidades)));
+				}
+				imprimir = true;
+				break;
+
+			case 4:
+				if (encontra_string_vetor("hidroginastica", modalidades) == -1)
+					modalidades.push_back("hidroginastica");
+				else {
+					modalidades.erase(modalidades.begin() + (encontra_string_vetor("hidroginastica", modalidades)));
+				}
+				imprimir = true;
+				break;
+
+			case 5:
+				if (encontra_string_vetor("competicao", modalidades) == -1)
+					modalidades.push_back("competicao");
+				else {
+					modalidades.erase(modalidades.begin() + (encontra_string_vetor("competicao", modalidades)));
+				}
+				imprimir = true;
+				break;
+
+			case 6:
+				return;
+				break;
+
+			}
+
+	} while ((tecla != ENTER)|| (opcao_a != 6));
+
+
+}
+
+void menu_definir_modalidades_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 10 + opcao_b;
+	int y1 = 10 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+void menu_definir_modalidades(Piscina &p1)
+{
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+	vector<string> modalidades;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			textcolor(LIGHT_GRAY);
+			cout << "\n\t\t Atualmente: ";
+			textcolor(WHITE);
+			if (modalidades.size() == 0)
+			{
+				textcolor(RED);
+				cout << "sem modalidades ";
+				textcolor(WHITE);
+			}
+			else
+			{
+				cout << modalidades[0];
+				for (size_t i = 1; i < modalidades.size(); i++) {
+					cout << ", " << modalidades[i];
+				}
+			}
+			cout << endl << endl;
+			cout << "\t\t\t\t    Escolher modalidades" << endl;
+			cout << "\t\t\t\t    Definir horarios" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_definir_modalidades_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 3);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				definir_modalidades(p1, modalidades);
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				break;
+
+			}
+
+	} while ((opcao != 3) || (tecla != 13));
+
+	cout << endl << endl;
+}
+
+
 //3.4 Definir localizacao
 
 
@@ -2937,7 +3161,9 @@ int definir_dias_funcionamento(Piscina &p1)
 			case 4:
 				if (dias.size() == 0)
 				{
+					textcolor(CYAN);
 					cout << "\n Defina os dias de funcionamento antes de avancar! 'Enter' para continuar";
+					textcolor(WHITE);
 					getchar();
 					imprimir = true;
 				}
@@ -3108,11 +3334,11 @@ void menu_criar_piscina_ops(int opcao, int opcao_b)
 	int y = 0;
 	int y1 = 0;
 
-	if (opcao_b <= 5)
+	if (opcao_b <= 6)
 		 y = 9 + opcao_b;
 	else y = 10 + opcao_b;
 	
-	if(opcao <=5)
+	if(opcao <=6)
 		y1 = 9 + opcao;
 	else y1 = 10 + opcao;
 
@@ -3149,6 +3375,7 @@ void menu_criar_piscina()
 			cout << "\t\t\t\t    Definir lotacao" << endl;
 			cout << "\t\t\t\t    Definir horario" << endl;
 			cout << "\t\t\t\t    Definir localizacao" << endl;
+			cout << "\t\t\t\t    Definir modalidades" << endl;
 			cout << "\t\t\t\t    Definir base de dados" << endl << endl;
 			cout << "\t\t\t\t    Concluir e avancar" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
@@ -3160,7 +3387,7 @@ void menu_criar_piscina()
 
 		menu_criar_piscina_ops(opcao, opcao_b);
 		opcao_b = opcao;
-		tecla = opcao_valida(opcao, 1, 7);
+		tecla = opcao_valida(opcao, 1, 8);
 		Sleep(100);
 
 
@@ -3188,22 +3415,27 @@ void menu_criar_piscina()
 				break;
 
 			case 5:
-				definir_base_de_dados(fichPiscina, fichUtentes, fichAulas, fichProfessores);
+				menu_definir_modalidades(p1);
 				imprimir = true;
 				break;
 
 			case 6:
+				definir_base_de_dados(fichPiscina, fichUtentes, fichAulas, fichProfessores);
+				imprimir = true;
+				break;
+
+			case 7:
 				if (check(p1, fichPiscina, fichProfessores))
 					menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
 				imprimir = true;
 				break;
 
-			case 7:
+			case 8:
 				return;
 				break;
 			}
 
-	} while ((opcao != 7) || (tecla != 13));
+	} while ((opcao != 8) || (tecla != 13));
 
 	cout << endl << endl;
 
