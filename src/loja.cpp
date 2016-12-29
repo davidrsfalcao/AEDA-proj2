@@ -115,7 +115,7 @@ void Loja::repor_stock(Produto &prod)
 	bool existe = false;
 	BSTItrIn<Produto> it(produtos);
 
-	while(! it.isAtEnd)
+	while(! (it.isAtEnd()))
 	{
 		if (prod == it.retrieve())
 		{
