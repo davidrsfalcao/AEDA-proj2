@@ -2577,11 +2577,11 @@ void set_prioridades(const vector<Piscina*> &piscinas, Piscina &piscina_criada) 
 	}
 
 }
+
 void menu_inicial()
 {
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
-	//Piscina p1;
 
 	do
 	{
