@@ -473,26 +473,25 @@ void listar_aulas(Piscina &p1)
 			cout << p1.getHorario()[i]->getInicio().getDia() << " de ";
 			cout << mostrar_mes(p1.getHorario()[i]->getInicio().getMes()) << " de ";
 			cout << p1.getHorario()[i]->getInicio().getAno() << endl;
+
 			textcolor(LIGHT_GRAY);
 			cout << "\t\tHora: ";
 			textcolor(WHITE);
 
+			if (p1.getHorario()[i]->getInicio().getHoras() < 10)
+				cout << "0" << p1.getHorario()[i]->getInicio().getHoras();
+			else
+				cout << p1.getHorario()[i]->getInicio().getHoras();
 
-		cout << " - ";
+			cout << ":";
+			if (p1.getHorario()[i]->getInicio().getMinutos() < 10)
+				cout << "0" << p1.getHorario()[i]->getInicio().getMinutos();
+			else
+				cout << p1.getHorario()[i]->getInicio().getMinutos();
 
-		if (p1.getHorario()[i]->getFim().getHoras() < 10)
-			cout << "0" << p1.getHorario()[i]->getFim().getHoras();
-		else
-			cout << p1.getHorario()[i]->getFim().getHoras();
 
-		cout << ":";
-		if (p1.getHorario()[i]->getFim().getMinutos() < 10)
-			cout << "0" << p1.getHorario()[i]->getFim().getMinutos() << endl;
-		else
-			cout << p1.getHorario()[i]->getFim().getMinutos() << endl;
+			cout << " - ";
 
-		textcolor(LIGHT_GRAY);
-		cout << "\t\tTipo: " << endl << endl;
 			if (p1.getHorario()[i]->getFim().getHoras() < 10)
 				cout << "0" << p1.getHorario()[i]->getFim().getHoras();
 			else
@@ -503,6 +502,7 @@ void listar_aulas(Piscina &p1)
 				cout << "0" << p1.getHorario()[i]->getFim().getMinutos() << endl;
 			else
 				cout << p1.getHorario()[i]->getFim().getMinutos() << endl;
+			
 			textcolor(LIGHT_GRAY);
 			cout << "\t\tTipo: " << endl << endl;
 			textcolor(WHITE);
