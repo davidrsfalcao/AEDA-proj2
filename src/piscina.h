@@ -51,16 +51,11 @@ class Piscina
 	vector <Aula *> horario;
 	vector<Utente *> utentesNaPisicina;
 	tabHU utentes_inativos;
+	vector<string> modalidades;
 
 
 public:
 	map<string, string> horariomap;
-	map<string, string> polomap;
-	map<string, string> sincronizadamap;
-	map<string, string> mergulhomap;
-	map<string, string> hidroginasticamap;
-	map<string, string> competicaomap;
-
 	/**
 	* @brief Construtor da classe piscina
 	*/

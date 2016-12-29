@@ -1082,3 +1082,12 @@ unsigned int Piscina::coloca_inativos() {
 	return contador;
 }
 
+vector<string> Piscina::getModalidades()
+{
+	return modalidades;
+}
+
+void Piscina::setModalidades(vector<string> mod)
+{
+	modalidades = mod;
+}
