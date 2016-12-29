@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "BST.h"
 
 using namespace std;
@@ -31,6 +32,8 @@ public:
 	BST<Produto> getProdutos();
 	void vende(Produto &prod);
 	void repor_stock(Produto &prod);
+	void ler_FichLoja(string &fichLoja);
+	void escrever_FichLoja(string &fichLoja);
 
 
 };

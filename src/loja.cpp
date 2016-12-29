@@ -1,5 +1,6 @@
 #include "loja.h"
 
+
 using namespace std;
 
 //Loja
@@ -138,5 +139,63 @@ void Loja::repor_stock(Produto &prod)
 		produtos.insert(prod);
 	}
 	
+
+}
+
+void Loja::ler_FichLoja(string &fichLoja)
+{
+	ifstream in;
+	int n = 0;
+	in.open(fichLoja);
+	string line, titulo;
+	getline(in, titulo);
+	getline(in, line);
+	n = stoi(line);
+	line = "";
+	if (n != 0)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			string nome, tamanho;
+			unsigned int stock;
+			getline(in, nome);
+			getline(in, tamanho);
+			getline(in, line);
+			stock = stoi(line);
+			Produto p(nome, tamanho, stock);
+			produtos.insert(p);
+			line = "";
+
+		}
+
+	}
+
+	in.close();
+
+}
+void Loja::escrever_FichLoja(string &fichLoja)
+{
+	BSTItrIn<Produto> it(produtos);
+	BSTItrIn<Produto> i(produtos);
+	ofstream ofile(fichLoja);
+	ofile << "Loja;" << endl;
+	int c = 0;
+	while (!it.isAtEnd()) 
+	{
+		c++;
+		it.advance();
+	}
+	ofile << c << endl;
+	while (!i.isAtEnd()) 
+	{
+		ofile << i.retrieve().getNome() << endl;
+		ofile << i.retrieve().getTamanho() << endl;
+		ofile << i.retrieve().getStock() << endl;
+		i.advance();
+	}
+
+
+	ofile.close();
+
 
 }
