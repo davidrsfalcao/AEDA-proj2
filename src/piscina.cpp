@@ -1052,3 +1052,32 @@ void Piscina::detalhes_professor()
 bool Piscina::operator <(const Piscina &p1) const{
 	return proximidade < p1.getProximidade();
 }
+
+
+bool Piscina::retira_inativo(const Utente &u1) {
+	iteratorH it = utentes_inativos.begin();
+
+
+	while (it != utentes_inativos.end()) {
+		if (it->getId() == u1.getId()) {
+			it = utentes_inativos.erase(it);
+			return true;
+		}
+
+		it++;
+	}
+	return false;
+}
+
+
+unsigned int Piscina::coloca_inativos() {
+
+	unsigned int contador = 0;
+	for (size_t i = 0; i <  utentesNaPisicina.size(); i++) {
+		if (utentesNaPisicina[i]->getLast_class().days_passed() > 30) {
+			utentes_inativos.insert((*utentesNaPisicina[i]));
+			contador++;
+		}
+	}
+	return contador;
+}

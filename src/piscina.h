@@ -29,7 +29,7 @@ struct UtentesEq {
 struct UtentesHash {
 	//TODO:melhorar função de hash
 	int operator() (const Utente &u1) const{
-		return u1.getId() % 97;
+		return u1.getId();
 	}
 };
 
@@ -291,6 +291,7 @@ public:
 	void detalhes_professor();
 
 	void ordena_utentes();
+
 	bool operator <(const Piscina &p1)const;
 
 	unsigned int getX() { return x; };
@@ -301,6 +302,9 @@ public:
 
 	void setProximidade(unsigned int p) { this->proximidade = p; };
 
+	bool retira_inativo(const Utente &u1);
+
+	unsigned int coloca_inativos();
 };
 
 

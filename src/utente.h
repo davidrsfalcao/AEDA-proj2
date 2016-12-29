@@ -19,6 +19,7 @@ class Utente
 	int entradas;
 	unsigned int telemovel;
 	string email;
+	Data last_class;
 
 
 
@@ -134,6 +135,10 @@ public:
 	void setTelemovel(unsigned int nr_t) { this->telemovel = nr_t; };
 
 	void setEmail(string email) { this->email = email; };
+
+	void setLast_class(const Data &a1) { this->last_class = a1; };
+
+	Data getLast_class() { return last_class; };
 
 
 

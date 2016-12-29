@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "uteis.h"
+#include <ctime>
 
 using namespace std;
 
@@ -109,6 +110,8 @@ public:
 	int operator-(Data data1);
 
 	bool operator==(Data &data1);
+
+	unsigned int days_passed();
 };
 
 #endif /* DATA_H_ */
