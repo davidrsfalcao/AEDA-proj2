@@ -422,9 +422,8 @@ void menu_gerir_aulas(Piscina &p1)
 
 			cout << endl << endl;
 			cout << "\t\t\t\t    Listar aulas" << endl;
-			cout << "\t\t\t\t    Adicionar utente" << endl;
-			cout << "\t\t\t\t    Remover utente" << endl;
-			cout << "\t\t\t\t    Utentes inativos" << endl;
+			cout << "\t\t\t\t    Adicionar aula" << endl;
+			cout << "\t\t\t\t    Remover aula" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
 			cout << endl << endl << endl << endl;
 			cout << endl << endl;
@@ -435,7 +434,7 @@ void menu_gerir_aulas(Piscina &p1)
 
 		menu_gerir_aulas_ops(opcao, opcao_b);
 		opcao_b = opcao;
-		tecla = opcao_valida(opcao, 1, 5);
+		tecla = opcao_valida(opcao, 1, 4);
 		Sleep(100);
 
 
@@ -455,15 +454,11 @@ void menu_gerir_aulas(Piscina &p1)
 				break;
 
 			case 4:
-				imprimir = true;
-				break;
-
-			case 5:
 				break;
 
 			}
 
-	} while ((opcao != 5) || (tecla != ENTER));
+	} while ((opcao != 4) || (tecla != ENTER));
 
 	cout << endl << endl;
 
