@@ -194,6 +194,7 @@ unsigned int Hidroginastica::getInfo()
 	return 3;
 }
 
+////Competicao
 unsigned int Competicao::getInfo()
 {
 	return 4;
