@@ -547,6 +547,34 @@ int opcao_valida(int &opcao, int min, int max)
 
 }
 
+int opcao_valida_listas(int &opcao, int min, int max)
+{
+	int tecla;
+	int make = 0, breakc = 0;
+	make = _getch();
+
+	if (make == 224)
+		breakc = _getch();
+	else return make;
+
+	tecla = make * 100 + breakc;
+
+	if (tecla == LEFT_KEY)
+		opcao--;
+
+	if (tecla == RIGHT_KEY)
+		opcao++;
+
+	if (opcao > max)
+		opcao = min;
+
+	if (opcao < min)
+		opcao = max;
+
+	return tecla;
+
+}
+
 void textcolor(DOS_COLORS iColor)
 {
 	HANDLE hl = GetStdHandle(STD_OUTPUT_HANDLE);

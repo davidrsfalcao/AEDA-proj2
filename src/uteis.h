@@ -14,6 +14,8 @@
 #define ENTER 13
 #define DOWN_KEY 22472
 #define UP_KEY 22480
+#define LEFT_KEY 22475
+#define RIGHT_KEY 22477
 
 
 /**
@@ -128,6 +130,9 @@ std::vector<std::string> ordena_dias_semana(std::vector<std::string> v1);
  */
 
 int opcao_valida(int &opcao, int min, int max);
+
+int opcao_valida_listas(int &opcao, int min, int max);
+
 
 enum DOS_COLORS
 {
