@@ -9,6 +9,7 @@
 #include <conio.h>
 #include <cstdlib>
 #include <windows.h>
+#include <cmath>
 
 #define ENTER 13
 #define DOWN_KEY 22472
@@ -84,7 +85,7 @@ std::string delete_space(std::string str);
  * @param nome2 nome da primeira variavel
  * @param variavel tipo de variavel
  */
-void faz_grafico(double n1, std::string nome1, double n2, std::string nome2,
+void faz_grafico(int n1, std::string nome1, int n2, std::string nome2,
 		std::string variavel);
 /**
  * @brief Calcula que dia da semana corresponde a uma data

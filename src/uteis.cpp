@@ -196,20 +196,22 @@ string delete_space(string str)
 	return new_str1;
 }
 
-void faz_grafico (double n1, string nome1, double n2, string nome2, string variavel)
+void faz_grafico (int n1, string nome1, int n2, string nome2, string variavel)
 {
-	int p1, p2;
+	double p1, p2;
+	double pr1, pr2;
 	double temp;
 
 	int a = 219;
 	char char1 = a;  // obter -> █
 
-	temp = ((n1*100)/(n1+n2));
-	p1 = temp;
+	temp = (n1*100)/n2;
+	pr1 = temp;
+	pr2 = 100.00 - temp;
+	p1 = round(temp);
 	p1 = ceil(p1/2);
 	p2 = 50 - p1;
 
-	cout << p1;
 	cout << "\t\t";
 	for (size_t i = 0; i < p1; i++)
 	{
@@ -218,7 +220,7 @@ void faz_grafico (double n1, string nome1, double n2, string nome2, string varia
 		textcolor(WHITE);
 
 	}
-	cout << "  " << p1 * 2 << "%" << endl;
+	cout << "  " << pr1 << "%" << endl;
 
 	cout << "\t\t";
 	for (size_t i = 0; i < p2; i++)
@@ -228,7 +230,7 @@ void faz_grafico (double n1, string nome1, double n2, string nome2, string varia
 		textcolor(WHITE);
 		}
 
-	cout << "  " <<  p2 * 2 << "%" << endl;
+	cout << "  " <<  pr2 << "%" << endl;
 
 	
 	cout << endl << endl;
@@ -240,8 +242,8 @@ void faz_grafico (double n1, string nome1, double n2, string nome2, string varia
 	textcolor(LIGHT_RED);
 	cout << "\t\t" << char1;
 	textcolor(WHITE);
-	cout << " " << nome2 << " : " << n2 << endl;
-	cout << "\t\ttotal : " << n1+n2 << " " << variavel << endl;
+	cout << " " << nome2 << " : " << n2 - n1 << endl;
+	cout << "\t\ttotal : " << n2 << " " << variavel << endl;
 	
 
 }
