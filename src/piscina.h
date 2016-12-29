@@ -17,23 +17,25 @@ class Aula;
 class Professor;
 
 
-struct UtentesHash {
-	bool operator() (const Utente & u1, const Utente &u2) {
+struct UtentesEq {
+	bool operator() (const Utente & u1, const Utente &u2)const {
 		if (u1.getId() == u2.getId() && u1.getNome() == u2.getNome())
 			return true;
 		else
 			return false;
 	}
+};
+
+struct UtentesHash {
 	//TODO:melhorar função de hash
-	int operator() (const Utente &u1) {
+	int operator() (const Utente &u1) const{
 		return u1.getId() % 97;
 	}
-
 };
 
 
-typedef unordered_set<Utente, UtentesHash, UtentesHash> tabHU;
-typedef unordered_set<Utente, UtentesHash, UtentesHash>::iterator iteratorH;
+typedef unordered_set<Utente, UtentesHash, UtentesEq> tabHU;
+typedef unordered_set<Utente, UtentesHash, UtentesEq >::iterator iteratorH;
 class Piscina
 {
 
@@ -47,7 +49,7 @@ class Piscina
 	vector <Professor *> professores;
 	vector <Aula *> horario;
 	vector<Utente *> utentesNaPisicina;
-	//tabHU utentes_inativos;
+	tabHU utentes_inativos;
 
 
 public:
