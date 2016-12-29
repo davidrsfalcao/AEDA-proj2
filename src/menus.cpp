@@ -125,6 +125,48 @@ void apagar_aulas_old(Piscina &p1)
 
 }
 
+void atualizar_utentes_piscina(Piscina &p1)
+{
+	vector<Utente *> temp;
+
+	Data atual{};
+	int dia = dia_do_sistema();
+	int mes = mes_do_sistema();
+	int ano = ano_do_sistema();
+	string dia_S = calculo_dia_da_semana(dia, mes, ano);
+	int horas = horas_do_sistema();
+	int minutos = minutos_do_sistema();
+
+	atual.setAno(ano);
+	atual.setMes(mes);
+	atual.setDia(dia);
+	atual.setHoras(horas);
+	atual.setMinutos(minutos);
+	atual.setDiaSemana(dia_S);
+
+	while (p1.getutentes_piscina().size() != 0)
+	{
+		p1.remove_utente_napiscina(p1.getutentes_piscina()[0]);
+	}
+
+	for (size_t i{}; i < p1.getHorario().size(); i++) {
+		if ((p1.getHorario()[i]->getInicio() < atual) && (atual < p1.getHorario()[i]->getFim())) {
+			for (size_t in = 0; in < p1.getHorario()[i]->getUtentes().size(); in++)
+			{
+				temp.push_back(p1.getHorario()[i]->getUtentes()[in]);
+			}
+
+		}
+	}
+
+	for (size_t i = 0; i < temp.size(); i++)
+	{
+		p1.add_utente_napiscina(temp[i]);
+
+	}
+
+}
+
 void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 	vector<Piscina > temp = piscinas;
 	float distmin = 100000000;
@@ -1134,6 +1176,7 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	do
 	{
 		apagar_aulas_old(p1);
+		atualizar_utentes_piscina(p1);
 
 		if (imprimir)
 		{
