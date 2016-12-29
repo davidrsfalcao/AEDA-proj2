@@ -22,6 +22,7 @@ public:
 
 
 
+
 };
 class Loja {
 	BST<Produto> produtos;
@@ -29,6 +30,7 @@ public:
 	Loja() :produtos(Produto()) {};
 	BST<Produto> getProdutos();
 	void vende(Produto &prod);
+	void repor_stock(Produto &prod);
 
 
 };

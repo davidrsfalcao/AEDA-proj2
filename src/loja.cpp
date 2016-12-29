@@ -111,4 +111,33 @@ bool Produto::operator<(const Produto & p) const
 		return nome < p.getNome();
 }
 
+void Loja::repor_stock(Produto &prod)
+{
+	bool existe = false;
+	BSTItrIn<Produto> it(produtos);
 
+	while(! it.isAtEnd)
+	{
+		if (prod == it.retrieve())
+		{
+			unsigned int st = it.retrieve().getStock();
+			st = st + prod.getStock();
+			string name = it.retrieve().getNome();
+			string tm = it.retrieve().getTamanho();
+			Produto px(name, tm, st);
+			produtos.remove(it.retrieve());
+			produtos.insert(px);
+			existe = true;
+		
+		}
+		it.advance();
+	
+	}
+
+	if (!existe) 
+	{
+		produtos.insert(prod);
+	}
+	
+
+}
