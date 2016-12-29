@@ -152,14 +152,9 @@ bool Data::operator==(Data &data1)
 }
 
 unsigned int Data::days_passed() {
-	struct std::tm  a = { 0,0,0,dia,mes,ano};
-	struct std::tm b = { 0,0,0,dia_do_sistema(),mes_do_sistema(),ano_do_sistema() };
-	std::time_t x = std::mktime(&a);
-	std::time_t y = std::mktime(&b);
-	if (x != (std::time_t)(-1) && y != (std::time_t)(-1))
-	{
-		unsigned difference = std::difftime(y, x) / (60 * 60 * 24);
+	unsigned int  a = dia+mes*30+365*ano;
+	unsigned int b= dia_do_sistema()+mes_do_sistema()*30+ 365*ano_do_sistema();
+	unsigned difference = b-a;
 		return difference;
-	}
-	return 0;
+
 }
