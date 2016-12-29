@@ -8,7 +8,6 @@ BST<Produto> Loja::getProdutos()
 	return produtos;
 }
 
-//confirmar se esta correto
 void Loja::vende(Produto &prod)
 {
 	BSTItrIn<Produto> it(produtos);
