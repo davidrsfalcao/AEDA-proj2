@@ -7,6 +7,7 @@
 #include <fstream>
 #include <unordered_set>
 
+
 #include "aula.h"
 #include"utente.h"
 
@@ -97,10 +98,10 @@ public:
 	void addUtente(Utente * utente);
 
 	bool addAula(Aula * aula); //nao defenido
-							   /**
-							   * @brief Adicona um Professor ao vetor de professores da piscina
-							   * @param professor Professor que se pretende adicionar
-							   */
+	 /**
+	 * @brief Adicona um Professor ao vetor de professores da piscina
+	 * @param professor Professor que se pretende adicionar
+	 */
 	void addProfessor(Professor *professor);
 	/**
 	* @brief Atribui os professores a aulas
@@ -305,6 +306,7 @@ public:
 	bool retira_inativo(const Utente &u1);
 
 	unsigned int coloca_inativos();
+
 };
 
 

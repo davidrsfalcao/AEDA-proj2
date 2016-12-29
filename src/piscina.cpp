@@ -1081,3 +1081,4 @@ unsigned int Piscina::coloca_inativos() {
 	}
 	return contador;
 }
+
