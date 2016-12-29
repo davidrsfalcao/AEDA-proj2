@@ -444,42 +444,38 @@ void menu_gerir_professores(Piscina &p1)
 // 6.3.1 Listar aulas
 void listar_aulas(Piscina &p1)
 {
-	limparEcra();
-	cabecalho();
-	cout << endl << endl;
+	int opcao = 1;
+	int tecla = 0;
+	int imax = p1.getHorario().size();
+	int opcaomax = ((imax-1) / 3) + 1;
+	size_t i;
 
-	for (size_t i{}; i < p1.getHorario().size(); i++)
+	while (1)
 	{
-		textcolor(LIGHT_GRAY);
-		cout << "\t\tId aula: ";
-		textcolor(WHITE);
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
 
-		cout << p1.getHorario()[i]->getId() << endl;
+		for (i = (opcao - 1) * 3; ((i < opcao * 3) && (i < imax)); i++)
+		{
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tId aula: ";
+			textcolor(WHITE);
 
-		textcolor(LIGHT_GRAY);
-		cout << "\t\tData: ";
-		textcolor(WHITE);
-		
-		cout << p1.getHorario()[i]->getInicio().getDiaSemana() << ", ";
+			cout << p1.getHorario()[i]->getId() << endl;
 
-		cout << p1.getHorario()[i]->getInicio().getDia() << " de ";
-		cout << mostrar_mes(p1.getHorario()[i]->getInicio().getMes()) << " de ";
-		cout << p1.getHorario()[i]->getInicio().getAno() << endl;
-	
-		textcolor(LIGHT_GRAY);
-		cout << "\t\tHora: ";
-		textcolor(WHITE);
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tData: ";
+			textcolor(WHITE);
 
-		if (p1.getHorario()[i]->getInicio().getHoras() < 10)
-			cout << "0" << p1.getHorario()[i]->getInicio().getHoras();
-		else
-			cout << p1.getHorario()[i]->getInicio().getHoras();
+			cout << p1.getHorario()[i]->getInicio().getDiaSemana() << ", ";
 
-		cout << ":";
-		if (p1.getHorario()[i]->getInicio().getMinutos() < 10)
-			cout << "0" << p1.getHorario()[i]->getInicio().getMinutos();
-		else
-			cout << p1.getHorario()[i]->getInicio().getMinutos();
+			cout << p1.getHorario()[i]->getInicio().getDia() << " de ";
+			cout << mostrar_mes(p1.getHorario()[i]->getInicio().getMes()) << " de ";
+			cout << p1.getHorario()[i]->getInicio().getAno() << endl;
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tHora: ";
+			textcolor(WHITE);
 
 
 		cout << " - ";
@@ -497,16 +493,44 @@ void listar_aulas(Piscina &p1)
 
 		textcolor(LIGHT_GRAY);
 		cout << "\t\tTipo: " << endl << endl;
+			if (p1.getHorario()[i]->getFim().getHoras() < 10)
+				cout << "0" << p1.getHorario()[i]->getFim().getHoras();
+			else
+				cout << p1.getHorario()[i]->getFim().getHoras();
+
+			cout << ":";
+			if (p1.getHorario()[i]->getFim().getMinutos() < 10)
+				cout << "0" << p1.getHorario()[i]->getFim().getMinutos() << endl;
+			else
+				cout << p1.getHorario()[i]->getFim().getMinutos() << endl;
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tTipo: " << endl << endl;
+			textcolor(WHITE);
+
+		}
+
+		cout << "\t\t\t\t";
+		
+		gotoxy(37, 20);
+		textcolor(YELLOW);
+		cout << "<<";
 		textcolor(WHITE);
 
 
+		cout << " Pagina " << opcao;
+
+		textcolor(YELLOW);
+		cout << " >>";
+		textcolor(WHITE);
+
+		textcolor(CYAN);
+		cout << "\n\n\n Prima 'ENTER' para sair \n";
+		textcolor(WHITE);
+
+		tecla = opcao_valida_listas(opcao, 1, opcaomax);
+		if (tecla == ENTER)
+			break;
 	}
-
-	textcolor(CYAN);
-	cout << "\n\n\n Prima 'ENTER' para sair \n";
-	textcolor(WHITE);
-	cin.ignore(256,'\n');
-
 }
 
 // 6.3 Menu gerir aulas
