@@ -100,6 +100,63 @@ void atualizar_aulas_piscina(Piscina &p1)
 	//	p1.atribuiprofs();
 }
 
+void apagar_aulas_old(Piscina &p1)
+{
+	string dia_S;
+	int dia = dia_do_sistema();
+	int mes = mes_do_sistema();
+	int ano = ano_do_sistema();
+	dia_S = calculo_dia_da_semana(dia, mes, ano);
+	int horas = horas_do_sistema();
+	int min = minutos_do_sistema();
+
+	Data atual(dia, mes, ano, horas, min);
+	atual.setDiaSemana(dia_S);
+
+	for (size_t k = 0; k< p1.getHorario().size(); k++)
+	{
+		if (p1.getHorario()[k]->getFim() < atual)
+		{
+			p1.apaga_aula(p1.getHorario()[k]);
+			k--;
+		}
+	}
+
+
+}
+
+void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
+	vector<Piscina > temp = piscinas;
+	float distmin = 100000000;
+	float dist = 0;
+	unsigned int id = 0;
+	unsigned int c = 0;
+	for (size_t i = 0; i < temp.size(); i++) {
+
+
+		for (size_t j = 0; j < temp.size(); i++) {
+			dist = sqrt(pow(piscina_criada.getX() - temp[j].getX(), 2) + pow(piscina_criada.getY() - temp[j].getY(), 2));
+			if (dist < distmin) {
+				dist = distmin;
+				id = j;
+			}
+		}
+		piscinas[id].setProximidade(c++);
+		temp.erase(temp.begin() + id);
+
+	}
+
+}
+
+priority_queue<Piscina> cria_listapri(const vector<Piscina> &piscinas) {
+	priority_queue<Piscina> piscinas_pri;
+
+	for (size_t i = 0; i < piscinas.size(); i++) {
+		piscinas_pri.push(piscinas[i]);
+	}
+	return piscinas_pri;
+}
+
 
 // 7.1.1 Detalhes cliente
 void detalhes_cliente(Utente &ute)
@@ -384,6 +441,74 @@ void menu_gerir_professores(Piscina &p1)
 }
 
 
+// 6.3.1 Listar aulas
+void listar_aulas(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+
+	for (size_t i{}; i < p1.getHorario().size(); i++)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tId aula: ";
+		textcolor(WHITE);
+
+		cout << p1.getHorario()[i]->getId() << endl;
+
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tData: ";
+		textcolor(WHITE);
+		
+		cout << p1.getHorario()[i]->getInicio().getDiaSemana() << ", ";
+
+		cout << p1.getHorario()[i]->getInicio().getDia() << " de ";
+		cout << mostrar_mes(p1.getHorario()[i]->getInicio().getMes()) << " de ";
+		cout << p1.getHorario()[i]->getInicio().getAno() << endl;
+	
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tHora: ";
+		textcolor(WHITE);
+
+		if (p1.getHorario()[i]->getInicio().getHoras() < 10)
+			cout << "0" << p1.getHorario()[i]->getInicio().getHoras();
+		else
+			cout << p1.getHorario()[i]->getInicio().getHoras();
+
+		cout << ":";
+		if (p1.getHorario()[i]->getInicio().getMinutos() < 10)
+			cout << "0" << p1.getHorario()[i]->getInicio().getMinutos();
+		else
+			cout << p1.getHorario()[i]->getInicio().getMinutos();
+
+
+		cout << " - ";
+
+		if (p1.getHorario()[i]->getFim().getHoras() < 10)
+			cout << "0" << p1.getHorario()[i]->getFim().getHoras();
+		else
+			cout << p1.getHorario()[i]->getFim().getHoras();
+
+		cout << ":";
+		if (p1.getHorario()[i]->getFim().getMinutos() < 10)
+			cout << "0" << p1.getHorario()[i]->getFim().getMinutos() << endl;
+		else
+			cout << p1.getHorario()[i]->getFim().getMinutos() << endl;
+
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tTipo: " << endl << endl;
+		textcolor(WHITE);
+
+
+	}
+
+	textcolor(CYAN);
+	cout << "\n\n\n Prima 'ENTER' para sair \n";
+	textcolor(WHITE);
+	cin.ignore(256,'\n');
+
+}
+
 // 6.3 Menu gerir aulas
 void menu_gerir_aulas_ops(int opcao, int opcao_b)
 {
@@ -442,6 +567,7 @@ void menu_gerir_aulas(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
+				listar_aulas(p1);
 				imprimir = true;
 				break;
 
@@ -983,6 +1109,8 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 
 	do
 	{
+		apagar_aulas_old(p1);
+
 		if (imprimir)
 		{
 			limparEcra();
@@ -1028,6 +1156,7 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 				break;
 
 			case 3:
+				menu_gerir_aulas(p1);
 				imprimir = true;
 				break;
 
@@ -2810,38 +2939,6 @@ void menu_inicial_ops(int opcao, int opcao_b)
 	
 
 	gotoxy(0, 21);
-}
-
-void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
-	vector<Piscina > temp = piscinas;
-	float distmin = 100000000;
-	float dist = 0;
-	unsigned int id = 0;
-	unsigned int c = 0;
-	for (size_t i = 0; i < temp.size();i++) {
-		
-
-		for (size_t j = 0; j < temp.size(); i++) {
-			dist = sqrt(pow(piscina_criada.getX() - temp[j].getX(), 2) + pow(piscina_criada.getY() - temp[j].getY(), 2));
-			if (dist < distmin) {
-				dist = distmin;
-				id = j;
-			}
-		}
-		piscinas[id].setProximidade(c++);
-		temp.erase(temp.begin() + id);
-
-	}
-
-}
-
-priority_queue<Piscina> cria_listapri(const vector<Piscina> &piscinas) {
-	priority_queue<Piscina> piscinas_pri;
-
-	for (size_t i = 0; i < piscinas.size(); i++) {
-		piscinas_pri.push(piscinas[i]);
-	}
-	return piscinas_pri;
 }
 
 void menu_inicial()
