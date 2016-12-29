@@ -301,7 +301,7 @@ void menu_utente(Piscina &p1, Utente &ute)
 }
 
 
-// 6.3 Menu gerir professor
+// 6.4 Menu gerir professor
 void menu_gerir_professores_ops(int opcao, int opcao_b)
 {
 	int a = 254;
@@ -349,7 +349,7 @@ void menu_gerir_professores(Piscina &p1)
 
 		imprimir = false;
 
-		menu_gerir_utentes_ops(opcao, opcao_b);
+		menu_gerir_professores_ops(opcao, opcao_b);
 		opcao_b = opcao;
 		tecla = opcao_valida(opcao, 1, 4);
 		Sleep(100);
@@ -359,12 +359,10 @@ void menu_gerir_professores(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
-				estado_atual(p1);
 				imprimir = true;
 				break;
 
 			case 2:
-				mostrar_horario(p1);
 				imprimir = true;
 				break;
 
@@ -384,6 +382,95 @@ void menu_gerir_professores(Piscina &p1)
 	return;
 
 }
+
+
+// 6.3 Menu gerir aulas
+void menu_gerir_aulas_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+void menu_gerir_aulas(Piscina &p1)
+{
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+
+			cout << endl << endl;
+			cout << "\t\t\t\t    Listar aulas" << endl;
+			cout << "\t\t\t\t    Adicionar utente" << endl;
+			cout << "\t\t\t\t    Remover utente" << endl;
+			cout << "\t\t\t\t    Utentes inativos" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl << endl << endl;
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_gerir_aulas_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 5);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				imprimir = true;
+				break;
+
+			case 4:
+				imprimir = true;
+				break;
+
+			case 5:
+				break;
+
+			}
+
+	} while ((opcao != 5) || (tecla != ENTER));
+
+	cout << endl << endl;
+
+	return;
+
+}
+
 
 // 6.2 Menu gerir utente
 void menu_gerir_utentes_ops(int opcao, int opcao_b)
@@ -444,12 +531,10 @@ void menu_gerir_utentes(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
-				estado_atual(p1);
 				imprimir = true;
 				break;
 
 			case 2:
-				mostrar_horario(p1);
 				imprimir = true;
 				break;
 
