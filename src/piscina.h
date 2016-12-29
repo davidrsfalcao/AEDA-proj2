@@ -291,7 +291,7 @@ public:
 	void detalhes_professor();
 
 	void ordena_utentes();
-	bool operator <(const Piscina &p1);
+	bool operator <(const Piscina &p1)const;
 
 	unsigned int getX() { return x; };
 

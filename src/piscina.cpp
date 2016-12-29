@@ -1049,6 +1049,6 @@ void Piscina::detalhes_professor()
 
 
 
-bool Piscina::operator <(const Piscina &p1) {
+bool Piscina::operator <(const Piscina &p1) const{
 	return proximidade < p1.getProximidade();
 }
