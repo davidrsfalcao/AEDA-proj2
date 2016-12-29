@@ -2812,8 +2812,8 @@ void menu_inicial_ops(int opcao, int opcao_b)
 	gotoxy(0, 21);
 }
 
-void set_prioridades(const vector<Piscina*> &piscinas, Piscina &piscina_criada) {
-	vector<Piscina *> temp = piscinas;
+void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
+	vector<Piscina > temp = piscinas;
 	float distmin = 100000000;
 	float dist = 0;
 	unsigned int id = 0;
@@ -2822,17 +2822,26 @@ void set_prioridades(const vector<Piscina*> &piscinas, Piscina &piscina_criada) 
 		
 
 		for (size_t j = 0; j < temp.size(); i++) {
-			dist = sqrt(pow(piscina_criada.getX() - temp[j]->getX(), 2) + pow(piscina_criada.getY() - temp[j]->getY(), 2));
+			dist = sqrt(pow(piscina_criada.getX() - temp[j].getX(), 2) + pow(piscina_criada.getY() - temp[j].getY(), 2));
 			if (dist < distmin) {
 				dist = distmin;
 				id = j;
 			}
 		}
-		piscinas[id]->setProximidade(c++);
+		piscinas[id].setProximidade(c++);
 		temp.erase(temp.begin() + id);
 
 	}
 
+}
+
+priority_queue<Piscina> cria_listapri(const vector<Piscina> &piscinas) {
+	priority_queue<Piscina> piscinas_pri;
+
+	for (size_t i = 0; i < piscinas.size(); i++) {
+		piscinas_pri.push(piscinas[i]);
+	}
+	return piscinas_pri;
 }
 
 void menu_inicial()
@@ -2896,7 +2905,6 @@ void menu_inicial()
 
 int main()
 {
-	priority_queue<Piscina> piscinas;
 	configurar_terminal();
 	menu_inicial();
 
