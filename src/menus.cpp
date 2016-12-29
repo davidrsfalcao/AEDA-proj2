@@ -484,52 +484,148 @@ void menu_gerir_professores(Piscina &p1)
 
 
 // 6.3.2 Adicionar aula
+void adicionar_aula_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 4 + opcao_b;
+	int y1 = 4 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
 void adicionar_aula(Piscina &p1)
 {
 	string dia, mes, ano, horas;
-	unsigned int dia1{}, mes1{}, ano1{}, horas1{}, minutos1{};
-	char lixo{};
-	bool avancar{};
-	bool avancar2{ false };
+	unsigned int dia1, mes1, ano1, horas1, minutos1;
+	char lixo;
+	bool avancar;
+	bool avancar2 = false ;
 	Data d_ini{};
 	string opcao;
-	Aula *a1 = new Mergulho();
+	Aula *a1 = new AulaPro();
 	
-
-	cin.ignore(256, '\n');
 
 	do {
 		limparEcra();
 		cabecalho();
 		cout << endl << endl;
 
+		int opcao_a = 1, opcao_b = 1, tecla;
+		bool imprimir = true;
+
+		do
+		{
+			if (imprimir)
+			{
+				limparEcra();
+				cabecalho();
+
+				cout << endl << endl;
+				cout << "\t\t\t\t    Polo" << endl;
+				cout << "\t\t\t\t    Natacao Sincronizada" << endl;
+				cout << "\t\t\t\t    Mergulho" << endl;
+				cout << "\t\t\t\t    Hidroginastica" << endl;
+				cout << "\t\t\t\t    Competicao" << endl;
+				cout << "\t\t\t\t    Sair" << endl;
+				cout << endl << endl << endl << endl;
+				cout << endl << endl;
+
+			}
+
+			imprimir = false;
+
+			adicionar_aula_ops(opcao_a, opcao_b);
+			opcao_b = opcao_a;
+			tecla = opcao_valida(opcao_a, 1, 6);
+			Sleep(100);
+
+
+			if (tecla == ENTER)
+				switch (opcao_a)
+				{
+				case 1:
+					a1 = new Polo();
+					break;
+
+				case 2:
+					a1 = new Sincronizada();
+					break;
+
+				case 3:
+					a1 = new Mergulho();
+					break;
+
+				case 4:
+					a1 = new Hidroginastica();
+					break;
+
+				case 5:
+					a1 = new Competicao();
+					break;
+
+				case 6:
+					return;
+					break;
+
+				}
+
+		} while (tecla != ENTER);
+
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
+
 		do {
-			cout << "Dia: ";
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tDia: ";
+			textcolor(WHITE);
 			getline(cin, dia);
 			stringstream ss1;
 			ss1 << delete_space(dia);
 			ss1 >> dia1;
 
-			cout << "\nMes: ";
+			textcolor(LIGHT_GRAY);
+			cout << "\n\t\tMes: ";
+			textcolor(WHITE);
 			getline(cin, mes);
 			stringstream ss2;
 			ss2 << delete_space(mes);
 			ss2 >> mes1;
 
-			cout << "\nAno: ";
+			textcolor(LIGHT_GRAY);
+			cout << "\n\t\tAno: ";
+			textcolor(WHITE);
 			getline(cin, ano);
 			stringstream ss3;
 			ss3 << delete_space(ano);
 			ss3 >> ano1;
 
 			if (!dia_existe(dia1, mes1, ano1)) {
-				cout << "\n\t *dia inexistente" << endl << endl;
+				textcolor(RED);
+				cout << "\n\t\t  *dia inexistente" << endl << endl;
+				textcolor(WHITE);
 			}
 
 		} while (!dia_existe(dia1, mes1, ano1));
 
 		do {
-			cout << "\nHora de incio (hh:mm): ";
+			textcolor(LIGHT_GRAY);
+			cout << "\n\t\tHora de incio (hh:mm): ";
+			textcolor(WHITE);
 			getline(cin, horas);
 			stringstream ss4;
 			ss4 << delete_space(horas);
@@ -537,7 +633,9 @@ void adicionar_aula(Piscina &p1)
 
 			if ((horas1 > 23) || ((horas1 == 23) && (minutos1 > 0)) || (minutos1 >= 60) || (lixo != ':')) {
 				avancar = false;
-				cout << "* hora invalida";
+				textcolor(RED);
+				cout << "\t\t  *hora invalida";
+				textcolor(WHITE);
 			}
 			else {
 				avancar = true;
@@ -563,10 +661,14 @@ void adicionar_aula(Piscina &p1)
 
 		if (existe)
 		{
-			cout << "\n\n\t*nao e possivel sobrepor aulas";
+			textcolor(RED);
+			cout << "\n\n\t\t   *nao e possivel sobrepor aulas";
+			textcolor(WHITE);
 
 			do {
-				cout << "\n\n  Deseja tentar outra data? ";
+				textcolor(LIGHT_GRAY);
+				cout << "\n\n\t\tDeseja tentar outra data? ";
+				textcolor(WHITE);
 				getline(cin, opcao);
 
 			} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
@@ -599,8 +701,11 @@ void adicionar_aula(Piscina &p1)
 		p1.adicionaAula(a1);
 		//p1.atribui_profaula(a1);
 		p1.ordena_por_data();
-		cout << "\n\n Aula adicionada com sucesso! 'Enter' para continuar" << endl << endl;
-		getchar();
+
+		textcolor(CYAN);
+		cout << "\n\n\t\t Aula adicionada com sucesso! 'Enter' para continuar" << endl << endl;
+		textcolor(WHITE);
+		cin.ignore(256,'\n');
 
 	}
 
