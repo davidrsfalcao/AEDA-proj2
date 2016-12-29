@@ -215,6 +215,142 @@ priority_queue<Piscina> cria_listapri(const vector<Piscina> &piscinas) {
 }
 
 
+// 7.2 Increver aulas
+void escolher_modalidade_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 4 + opcao_b;
+	int y1 = 4 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+string escolher_modalidade(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+
+	int opcao_a = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			cabecalho();
+
+			cout << endl << endl;
+			cout << "\t\t\t\t    Polo" << endl;
+			cout << "\t\t\t\t    Natacao Sincronizada" << endl;
+			cout << "\t\t\t\t    Mergulho" << endl;
+			cout << "\t\t\t\t    Hidroginastica" << endl;
+			cout << "\t\t\t\t    Competicao" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		escolher_modalidade_ops(opcao_a, opcao_b);
+		opcao_b = opcao_a;
+		tecla = opcao_valida(opcao_a, 1, 6);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao_a)
+			{
+			case 1:
+				return "polo";
+				break;
+
+			case 2:
+				return "sincronizada";
+				break;
+
+			case 3:
+				return "mergulho";
+				break;
+
+			case 4:
+				return "hidroginastica";
+				break;
+
+			case 5:
+				return "competicao";
+				break;
+
+			case 6:
+				return "exit";
+				break;
+
+			}
+
+	} while (tecla != ENTER);
+
+
+}
+
+void inscrever_aula(Piscina &p1, Utente &ute)
+{
+	string escolha = escolher_modalidade(p1);
+	int ind;
+	int existe;
+	vector<Aula *> aulas;
+
+	existe = encontra_string_vetor(escolha, p1.getModalidades());
+
+	if (existe != -1)
+	{
+		if (escolha == "exit")
+			return;
+		else if (escolha == "polo")
+			ind = 0;
+		else if (escolha == "sincronizada")
+			ind = 1;
+		else if (escolha == "mergulho")
+			ind = 2;
+		else if (escolha == "hidroginastica")
+			ind = 3;
+		else if (escolha == "competicao")
+			ind = 4;
+		else return;
+
+		for (size_t i = 0; i < p1.getHorario().size(); i++)
+		{
+			if (p1.getHorario()[i]->getInfo() == ind)
+				aulas.push_back(p1.getHorario()[i]);
+
+		}
+
+		cout << "\n\n\t\t " << aulas.size() << endl;
+		cin.ignore();
+
+	}
+
+
+
+
+}
+
+
 // 7.1.1 Detalhes cliente
 void detalhes_cliente(Utente &ute)
 {
@@ -372,8 +508,6 @@ void menu_utente(Piscina &p1, Utente &ute)
 			cout << "\t\t\t\t    Inscrever aulas" << endl;
 			cout << "\t\t\t\t    Loja" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
-			cout << endl << endl << endl << endl;
-			cout << "\t\t\t\t\t\t\t\t" << mostrar_mes(mes_do_sistema()) << " " << ano_do_sistema();
 			cout << endl << endl;
 
 		}
@@ -395,6 +529,7 @@ void menu_utente(Piscina &p1, Utente &ute)
 				break;
 
 			case 2:
+				inscrever_aula(p1, ute);
 				imprimir = true;
 				break;
 
@@ -1755,11 +1890,13 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
-
+	atualizar_aulas_piscina(p1);
 	do
 	{
 		if (imprimir)
 		{
+			apagar_aulas_old(p1);
+			atualizar_utentes_piscina(p1);
 			limparEcra();
 			titulo();
 			cout << endl << endl;
