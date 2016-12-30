@@ -1410,7 +1410,7 @@ void menu_gerir_utentes(Piscina &p1)
 				break;
 
 			case 3:
-				p1.apagarUtente();
+				//p1.apagarUtente();
 				imprimir = true;
 				break;
 
