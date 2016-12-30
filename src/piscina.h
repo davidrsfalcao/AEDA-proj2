@@ -297,9 +297,9 @@ public:
 
 	bool operator <(const Piscina &p1)const;
 
-	unsigned int getX() { return x; };
+	unsigned int getX() const { return x; };
 
-	unsigned int getY() { return y; };
+	unsigned int getY() const { return y; };
 
 	unsigned int getProximidade()const { return proximidade; };
 
