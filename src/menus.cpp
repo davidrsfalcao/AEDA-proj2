@@ -214,6 +214,24 @@ priority_queue<Piscina> cria_listapri(const vector<Piscina> &piscinas) {
 	return piscinas_pri;
 }
 
+Piscina devolve_proxima(const priority_queue<Piscina> &piscinas, const string &modalidade) {
+	Piscina p;
+	priority_queue<Piscina> temp = piscinas;
+
+	while (!temp.empty()) {
+		vector<string> m = temp.top().getModalidades();
+		for (size_t i = 0; i < m.size(); i++) {
+			if (m[i] == modalidade) {
+				return temp.top();
+			}
+		}
+		temp.pop();
+
+	}
+	return p;
+
+}
+
 
 // 7.2 Increver aulas
 void escolher_modalidade_ops(int opcao, int opcao_b)
@@ -239,7 +257,7 @@ void escolher_modalidade_ops(int opcao, int opcao_b)
 	gotoxy(0, 21);
 }
 
-string escolher_modalidade(Piscina &p1)
+string escolher_modalidade()
 {
 	limparEcra();
 	cabecalho();
@@ -308,9 +326,9 @@ string escolher_modalidade(Piscina &p1)
 
 }
 
-void inscrever_aula(Piscina &p1, Utente &ute)
+void inscrever_aula(Piscina &p1, Utente ute)
 {
-	string escolha = escolher_modalidade(p1);
+	string escolha = escolher_modalidade();
 	int ind;
 	int existe;
 	vector<Aula *> aulas;
@@ -340,13 +358,187 @@ void inscrever_aula(Piscina &p1, Utente &ute)
 
 		}
 
-		cout << "\n\n\t\t " << aulas.size() << endl;
-		cin.ignore();
+		int opcao = 1;
+		int tecla = 0;
+		int imax = aulas.size();
+		int opcaomax = ((imax - 1) / 2) + 1;
+		int cima = 0;
+		int cima_b = 0;
+		size_t i;
+
+		while (1)
+		{
+			while (1)
+			{
+				limparEcra();
+				cabecalho();
+				textcolor(LIGHT_GRAY);
+				cout << "\t\tAulas disponiveis (" << imax << ")" << endl;
+				textcolor(WHITE);
+				cout << endl;
+
+				for (i = (opcao - 1) * 2; ((i < opcao * 2) && (i < imax)); i++)
+				{
+					textcolor(LIGHT_GRAY);
+					cout << "\t\tId aula: ";
+					textcolor(WHITE);
+
+					cout << p1.getHorario()[i]->getId() << endl;
+
+					textcolor(LIGHT_GRAY);
+					cout << "\t\tData: ";
+					textcolor(WHITE);
+
+					cout << aulas[i]->getInicio().getDiaSemana() << ", ";
+
+					cout << aulas[i]->getInicio().getDia() << " de ";
+					cout << mostrar_mes(aulas[i]->getInicio().getMes()) << " de ";
+					cout << aulas[i]->getInicio().getAno() << endl;
+
+					textcolor(LIGHT_GRAY);
+					cout << "\t\tHora: ";
+					textcolor(WHITE);
+
+					if (aulas[i]->getInicio().getHoras() < 10)
+						cout << "0" << aulas[i]->getInicio().getHoras();
+					else
+						cout << aulas[i]->getInicio().getHoras();
+
+					cout << ":";
+					if (aulas[i]->getInicio().getMinutos() < 10)
+						cout << "0" << aulas[i]->getInicio().getMinutos();
+					else
+						cout << aulas[i]->getInicio().getMinutos();
+
+
+					cout << " - ";
+
+					if (aulas[i]->getFim().getHoras() < 10)
+						cout << "0" << aulas[i]->getFim().getHoras();
+					else
+						cout << aulas[i]->getFim().getHoras();
+
+					cout << ":";
+					if (aulas[i]->getFim().getMinutos() < 10)
+						cout << "0" << aulas[i]->getFim().getMinutos() << endl;
+					else
+						cout << aulas[i]->getFim().getMinutos() << endl;
+
+					textcolor(LIGHT_GRAY);
+					cout << "\t\tTipo: ";
+					textcolor(WHITE);
+
+					if (aulas[i]->pro())
+					{
+						int modo = aulas[i]->getInfo();
+
+						switch (modo)
+						{
+						case 0:
+							cout << "Polo";
+							break;
+
+						case 1:
+							cout << "Sincronizada";
+							break;
+
+						case 2:
+							cout << "Mergulho";
+							break;
+
+						case 3:
+							cout << "Hidroginastica";
+							break;
+
+						case 4:
+							cout << "Competicao";
+							break;
+
+						}
+
+					}
+
+					cout << endl << endl;
+					textcolor(WHITE);
+
+				}
+
+				cout << "\t\t\t\t";
+
+				gotoxy(37, 15);
+				textcolor(YELLOW);
+				cout << "<<";
+				textcolor(WHITE);
+
+
+				cout << " Pagina " << opcao;
+
+				textcolor(YELLOW);
+				cout << " >>";
+				textcolor(WHITE);
+
+				cout << "\n\n\t\t Prime 'ENTER' para escolher " << endl;
+
+				tecla = opcao_valida_listas(opcao, 1, opcaomax);
+
+
+				if (tecla == ENTER)
+					break;
+
+			}
+
+			unsigned int id;
+			bool encontrou = false;
+
+			while (1)
+			{
+				textcolor(LIGHT_GRAY);
+				cout << "\t\tID: ";
+				textcolor(WHITE);
+				cin >> id;
+
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(256, '\n');
+					textcolor(RED);
+					cout << "\t\t id invalido" << endl << endl;
+					textcolor(WHITE);
+				}
+				else
+				{
+					for (size_t k = 0; k < aulas.size(); k++)
+					{
+						if (aulas[k]->getId() == id)
+						{
+							p1.adiciona_utente_aula(aulas[k], &ute);
+							ute.adicionaAula(aulas[k]);
+							p1.retira_inativo(ute);
+							encontrou = true;
+							break;
+						}
+
+					}
+
+					if (encontrou)
+						return;
+					else {
+						textcolor(RED);
+						cout << "\t\t id nao existente" << endl << endl;
+						textcolor(WHITE);
+					}
+
+				}
+
+			}
+
+		}
 
 	}
+	else {
 
-
-
+		/// mostra piscina mais próxima
+	}
 
 }
 
@@ -1694,7 +1886,7 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 
 
 // 5.1 Entrar como utente
-void encontra_parecido(Piscina p1, string nome, Utente &melhor)
+void encontra_parecido(Piscina &p1, string nome, Utente &melhor)
 {
 	unsigned int melhor_count = 0;
 	unsigned int atual=0;
@@ -1764,13 +1956,14 @@ void entrar_como_utente_ops(int opcao, int opcao_b)
 	gotoxy(0, 21);
 }
 
-void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores)
+void entrar_como_utente(Piscina &p1)
 {
 	limparEcra();
 	cabecalho();
 	bool encontrou = false;
-	vector<Utente *> ute = p1.getUtentes();
+	vector<Utente *> ut1 = p1.getUtentes();
 	Utente *novo = new Utente();
+
 
 	string nome;
 
@@ -1784,11 +1977,11 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 		if (nome == "sair")
 			return;
 
-		for (size_t i = 0; i < ute.size(); i++)
+		for (size_t i = 0; i < ut1.size(); i++)
 		{
-			if (ute[i]->getNome() == nome)
+			if (ut1[i]->getNome() == nome)
 			{
-				novo = ute[i];
+				novo = ut1[i];
 				encontrou = true;
 				break;
 			}
@@ -1813,13 +2006,13 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 				opcao_b = opcao;
 				tecla = opcao_valida(opcao, 1, 2);
 				Sleep(100);
-				
+
 				if (tecla == ENTER)
 				{
 					switch (opcao)
 					{
-					case 1: 
-						menu_utente(p1,(*novo));
+					case 1:
+						menu_utente(p1, (*novo));
 						break;
 					case 2:
 						break;
@@ -1832,7 +2025,7 @@ void entrar_como_utente(Piscina &p1, string &fichPiscina, string &fichUtentes, s
 			}
 
 		}
-		else menu_utente(p1, (*novo));
+		else menu_utente(p1, *novo);
 
 	}
 	else {
@@ -1925,7 +2118,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 				break;
 
 			case 2:
-				entrar_como_utente(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
+				entrar_como_utente(p1);
 				imprimir = true;
 				break;
 
@@ -3353,7 +3546,7 @@ void lotacao_piscina(Piscina &p1)
 		if (cin.fail())
 		{
 			textcolor(RED);
-			cout << "\t\t " << square << "Numero invalido \n\n ";
+			cout << "\t\t " << square << " Numero invalido \n\n ";
 			textcolor(WHITE);
 			cin.clear();
 			cin.ignore(256, '\n');
