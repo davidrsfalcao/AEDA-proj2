@@ -233,6 +233,14 @@ Piscina devolve_proxima(const priority_queue<Piscina> &piscinas, const string &m
 
 }
 
+void imprime_piscinas_prox(const priority_queue<Piscina> &piscinas, Piscina &piscina_criada) {
+	priority_queue<Piscina> temp = piscinas;
+	while (!temp.empty()) {
+		cout << temp.top().getNome() << "  dist:" << sqrt(pow(piscina_criada.getX() - temp.top().getX(), 2) + pow(piscina_criada.getY() - temp.top().getY(), 2)) << endl;
+		temp.pop();
+	}
+}
+
 
 // 7.2 Increver aulas
 void escolher_modalidade_ops(int opcao, int opcao_b)
@@ -1268,7 +1276,72 @@ void menu_gerir_aulas(Piscina &p1)
 }
 
 
-// 6.2 Menu gerir utente
+// 6.2.1 Listar utentes
+void listar_utentes(Piscina &p1)
+{
+	int opcao = 1;
+	int tecla = 0;
+	int imax = p1.getUtentes().size();
+	int opcaomax = ((imax - 1) / 3) + 1;
+	size_t i;
+
+	while (1)
+	{
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
+
+		for (i = (opcao - 1) * 3; ((i < opcao * 3) && (i < imax)); i++)
+		{
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tNome: ";
+			textcolor(WHITE);
+			cout << p1.getUtentes()[i]->getNome() << endl;
+			
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tID: ";
+			textcolor(WHITE);
+			cout << p1.getUtentes()[i]->getId() << endl;
+
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tUltima aula: ";
+			textcolor(WHITE);
+
+			Data d1 = p1.getUtentes()[i]->getLast_class();
+			cout << d1.getDia() << "/" <<d1.getMes()<< "/" << d1.getAno();
+
+
+			cout << endl << endl;
+			textcolor(WHITE);
+
+		}
+
+		cout << "\t\t\t\t";
+
+		gotoxy(37, 20);
+		textcolor(YELLOW);
+		cout << "<<";
+		textcolor(WHITE);
+
+
+		cout << " Pagina " << opcao;
+
+		textcolor(YELLOW);
+		cout << " >>";
+		textcolor(WHITE);
+
+		textcolor(CYAN);
+		cout << "\n\n\n Prima 'ENTER' para sair \n";
+		textcolor(WHITE);
+
+		tecla = opcao_valida_listas(opcao, 1, opcaomax);
+		if (tecla == ENTER)
+			break;
+	}
+}
+
+
+// 6.2 Menu gerir utentes
 void menu_gerir_utentes_ops(int opcao, int opcao_b)
 {
 	int a = 254;
@@ -1327,14 +1400,17 @@ void menu_gerir_utentes(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
+				listar_utentes(p1);
 				imprimir = true;
 				break;
 
 			case 2:
+				p1.adicionar_utente();
 				imprimir = true;
 				break;
 
 			case 3:
+				p1.apagarUtente();
 				imprimir = true;
 				break;
 
