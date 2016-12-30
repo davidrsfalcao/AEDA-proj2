@@ -877,6 +877,8 @@ void Piscina::freq_Utente()
 
 void Piscina::atribui_profaula(Aula *a) {
 
+	if (professores.size() == 0)
+		return;
 	unsigned int min = professores[0]->getaulas().size();
 	unsigned int min_id = 0;
 	
