@@ -136,7 +136,7 @@ public:
 	/**
 	* @return Retorna o nome da piscina
 	*/
-	string getNome();
+	string getNome() const;
 	/**
 	* @return Retorna a lotacao da piscina
 	*/
