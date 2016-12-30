@@ -916,13 +916,23 @@ void Piscina::apaga_aulas() {
 	unsigned int id;
 	bool existe = false;
 	Aula *a1;
-	cout << "Insira o id da aula a apagar: ";
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tInsira o id da aula a apagar: ";
+	textcolor(WHITE);
 	cin >> id;
 	cout << endl;
 	while (cin.fail()) {
-		cerr << " Opcao invalida. Tente de novo.\n";
+		textcolor(RED);
+		cerr << "\t\t Opcao invalida. Tente de novo.\n\n";
+		textcolor(WHITE);
 		cin.clear();
 		cin.ignore(256, '\n');
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tID: ";
+		textcolor(WHITE);
 		cin >> id;
 	}
 
@@ -943,14 +953,17 @@ void Piscina::apaga_aulas() {
 				v1[i]->ApagaAula(a1);
 			}
 		}
-		cout << "Aula apagada com sucesso!!" << endl;
-		cin.ignore();
-		getchar();
+		textcolor(LIGHT_GREEN);
+		cout << "\n\nAula apagada com sucesso! 'ENTER' para continuar" << endl;
+		textcolor(WHITE);
+		cin.ignore(256, '\n');
+		
 		return;
 	}
-	cout << "Aula não existe!" << endl;
-	cin.ignore();
-	getchar();
+	textcolor(RED);
+	cout << "\n\nAula não existe! 'ENTER' para continuar" << endl;
+	textcolor(WHITE);
+	cin.ignore(256, '\n');
 
 }
 
