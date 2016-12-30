@@ -501,7 +501,13 @@ unsigned int Piscina::atribuiID_utente()
 }
 
 int Piscina::adicionar_utente() {
-	cout << "Introduza um nome para o novo utente: ";
+
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tIntroduza um nome para o novo utente: ";
+	textcolor(WHITE);
 	string nome;
 	cin.ignore();
 	try {
@@ -511,7 +517,9 @@ int Piscina::adicionar_utente() {
 
 	}
 	catch (Piscina::NomeInvalido(nome)) {
-		cout << "nome invalido!" << endl;
+		textcolor(RED);
+		cout << "\t\tnome invalido!" << endl;
+		textcolor(WHITE);
 		return 1;
 
 	}
@@ -657,9 +665,13 @@ int Piscina::apagarUtente()
 {
 	bool ex = false;
 	string nome;
-	cin.ignore();
 	do {
-		cout << "Introduza o nome do Utente que pretende eliminar: ";
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tIntroduza o nome do Utente que pretende eliminar: ";
+		textcolor(WHITE);
 		getline(cin, nome);
 
 
@@ -670,33 +682,40 @@ int Piscina::apagarUtente()
 			if (utentes[k]->getNome() == nome)
 			{
 				ex = true;
-				cout << "Aulas nao pagas: " << endl;
+				textcolor(LIGHT_GRAY);
+				cout << "\n\t\tAulas nao pagas: " << endl;
+				textcolor(WHITE);
 				for (size_t i = 0; i < utentes[k]->getaulas().size(); i++)
 				{
 
 					if (utentes[k]->getaulas()[i]->pro())
 					{
-						cout << utentes[k]->getaulas()[i]->getInicio() << "- Treino " << utentes[k]->getaulas()[i]->price() << endl;
+						cout << "\t\t" << utentes[k]->getaulas()[i]->getInicio() << "- Aula Pro " << utentes[k]->getaulas()[i]->price() << endl;
 					}
 					else
 					{
-						cout << utentes[k]->getaulas()[i]->getInicio() << "- Aula Livre " << utentes[k]->getaulas()[i]->price() << endl;
+						cout << "\t\t" << utentes[k]->getaulas()[i]->getInicio() << "- Aula Livre " << utentes[k]->getaulas()[i]->price() << endl;
 					}
 				}
-				cout << "Valor a pagar: ";
+				textcolor(LIGHT_GRAY);
+				cout << "\t\tValor a pagar: ";
+				textcolor(WHITE);
 				cout << utentes[k]->totalPrice() << " euros" << endl;
 			}
 		}
 		if (!ex) {
-			cout << "O utente nao existe!" << endl;
+			textcolor(RED);
+			cout << "\t\tO utente nao existe!" << endl;
+			textcolor(WHITE);
 		}
 	} while (!ex);
-	cout << "Utente apagado com sucesso!" << endl;
+	textcolor(CYAN);
+	cout << "\t\tUtente apagado com sucesso! 'ENTER' para continuar" << endl;
+	textcolor(WHITE);
 	apaga_Utente(nome);
-	getchar();
+	cin.ignore(256, '\n');
 	return 0;
 }
-
 
 void Piscina::apaga_aula(Aula *a) {
 
@@ -736,9 +755,6 @@ bool Piscina::aulaSobreposta(Aula *a1)
 
 	return false;
 }
-
-
-
 
 void Piscina::detalhes_aula()
 {
@@ -839,7 +855,6 @@ void Piscina::detalhes_aula()
 
 }
 
-
 void Piscina::freq_Utente()
 {
 	cin.ignore();
@@ -873,8 +888,6 @@ void Piscina::freq_Utente()
 
 }
 
-
-
 void Piscina::atribui_profaula(Aula *a) {
 
 	if (professores.size() == 0)
@@ -898,8 +911,6 @@ void Piscina::atribui_profaula(Aula *a) {
 
 }
 
-
-
 void Piscina::remove_utente_napiscina(Utente* u1) {
 
 	for (vector<Utente *>::iterator it = utentesNaPisicina.begin(); it != utentes.end(); it++) {
@@ -909,7 +920,6 @@ void Piscina::remove_utente_napiscina(Utente* u1) {
 		}
 	}
 }
-
 
 void Piscina::apaga_aulas() {
 
@@ -967,8 +977,6 @@ void Piscina::apaga_aulas() {
 
 }
 
-
-
 void Piscina::paga_mensalidade(Utente * u1)
 {
 	float price;
@@ -1008,8 +1016,6 @@ void Piscina::paga_mensalidade(Utente * u1)
 
 }
 
-
-
 void Piscina::adiciona_utente_aula(Aula *a, Utente *u) {
 
 
@@ -1020,8 +1026,6 @@ void Piscina::adiciona_utente_aula(Aula *a, Utente *u) {
 
 	}
 }
-
-
 
 void Piscina::detalhes_professor()
 {
@@ -1061,13 +1065,9 @@ void Piscina::detalhes_professor()
 	getchar();
 }
 
-
-
-
 bool Piscina::operator <(const Piscina &p1) const{
 	return proximidade < p1.getProximidade();
 }
-
 
 bool Piscina::retira_inativo(const Utente &u1) {
 	iteratorH it = utentes_inativos.begin();
@@ -1083,7 +1083,6 @@ bool Piscina::retira_inativo(const Utente &u1) {
 	}
 	return false;
 }
-
 
 unsigned int Piscina::coloca_inativos() {
 
@@ -1106,7 +1105,6 @@ void Piscina::setModalidades(vector<string> mod)
 {
 	modalidades = mod;
 }
-
 
 void Piscina::campanha_promocional() {
 	iteratorH it = utentes_inativos.begin();
