@@ -1082,7 +1082,7 @@ unsigned int Piscina::coloca_inativos() {
 	return contador;
 }
 
-vector<string> Piscina::getModalidades()
+vector<string> Piscina::getModalidades()const
 {
 	return modalidades;
 }
@@ -1090,4 +1090,25 @@ vector<string> Piscina::getModalidades()
 void Piscina::setModalidades(vector<string> mod)
 {
 	modalidades = mod;
+}
+
+
+void Piscina::campanha_promocional() {
+	iteratorH it = utentes_inativos.begin();
+
+	while (it != utentes_inativos.end()) {
+
+		for (size_t i = 0; i < utentesNaPisicina.size(); i++) {
+			if (it->getId() == utentesNaPisicina[i]->getId()) {
+				if (it->getMorada() != utentesNaPisicina[i]->getMorada() || it->getTelemovel() != utentesNaPisicina[i]->getTelemovel()) {
+					it=utentes_inativos.erase(it);
+					it--;
+					utentes_inativos.insert((*utentesNaPisicina[i]));
+					break;
+				}
+			}
+		}
+		it++;
+	}
+	
 }

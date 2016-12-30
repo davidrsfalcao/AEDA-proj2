@@ -309,9 +309,11 @@ public:
 
 	unsigned int coloca_inativos();
 
-	vector<string> getModalidades();
+	vector<string> getModalidades()const;
 
 	void setModalidades(vector<string> mod);
+	
+	void campanha_promocional();
 
 };
 

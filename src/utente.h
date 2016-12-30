@@ -18,7 +18,7 @@ class Utente
 	vector<Aula *> aulas;
 	int entradas;
 	unsigned int telemovel;
-	string email;
+	string morada;
 	Data last_class;
 
 
@@ -128,13 +128,13 @@ public:
 
 	void ApagaAula(Aula * aula);
 
-	unsigned int getTelemovel() { return telemovel; };
+	unsigned int getTelemovel() const{ return telemovel; };
 
-	string getEmail() { return email; };
+	string getMorada()const { return morada; };
 
 	void setTelemovel(unsigned int nr_t) { this->telemovel = nr_t; };
 
-	void setEmail(string email) { this->email = email; };
+	void setMorada(string morada) { this->morada = morada; };
 
 	void setLast_class(const Data &a1) { this->last_class = a1; };
 

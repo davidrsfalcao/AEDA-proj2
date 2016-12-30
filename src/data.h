@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "uteis.h"
-#include <ctime>
 
 using namespace std;
 
