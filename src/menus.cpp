@@ -1297,7 +1297,7 @@ void listar_utentes(Piscina &p1)
 			cout << "\t\tNome: ";
 			textcolor(WHITE);
 			cout << p1.getUtentes()[i]->getNome() << endl;
-			
+
 			textcolor(LIGHT_GRAY);
 			cout << "\t\tID: ";
 			textcolor(WHITE);
@@ -1308,7 +1308,7 @@ void listar_utentes(Piscina &p1)
 			textcolor(WHITE);
 
 			Data d1 = p1.getUtentes()[i]->getLast_class();
-			cout << d1.getDia() << "/" <<d1.getMes()<< "/" << d1.getAno();
+			cout << d1.getDia() << "/" << d1.getMes() << "/" << d1.getAno();
 
 
 			cout << endl << endl;
