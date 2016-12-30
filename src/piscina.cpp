@@ -40,7 +40,7 @@ void Piscina::setLotacao(unsigned int lotacao) {
 
 }
 
-string Piscina::getNome() {
+string Piscina::getNome() const{
 	return nomePiscina;
 }
 

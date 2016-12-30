@@ -233,6 +233,16 @@ Piscina devolve_proxima(const priority_queue<Piscina> &piscinas, const string &m
 
 }
 
+void imprime_piscinas_prox(const priority_queue<Piscina> &piscinas, Piscina &piscina_criada) {
+	priority_queue<Piscina> temp = piscinas;
+	while (!temp.empty()) {
+		cout << temp.top().getNome()<< "  dist:" << sqrt(pow(piscina_criada.getX() - temp.top().getX(), 2) + pow(piscina_criada.getY() - temp.top().getY(), 2))<<ednl;
+		temp.pop();
+	}
+}
+
+
+
 
 // 7.2 Increver aulas
 void escolher_modalidade_ops(int opcao, int opcao_b)
