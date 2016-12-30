@@ -1112,3 +1112,13 @@ void Piscina::campanha_promocional() {
 	}
 	
 }
+
+void Piscina::setX(unsigned int x1)
+{
+	x = x1;
+}
+
+void Piscina::setY(unsigned int y1)
+{
+	y = y1;
+}

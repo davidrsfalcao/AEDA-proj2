@@ -315,6 +315,10 @@ public:
 	
 	void campanha_promocional();
 
+	void setX(unsigned int x1);
+
+	void setY(unsigned int y1);
+
 };
 
 
