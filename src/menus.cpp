@@ -93,6 +93,7 @@ void atualizar_aulas_piscina(Piscina &p1)
 
 				if (!p1.aulaSobreposta(a1)) {
 					p1.adicionaAula(a1);
+					p1.atribui_profaula(a1);
 				}
 
 			} while ((hora < (hora_f - 1)) || ((hora == (hora_f - 1) && (minutos <= min_f)))); // fim while
@@ -1249,6 +1250,7 @@ void menu_gerir_aulas(Piscina &p1)
 				break;
 
 			case 3:
+				p1.apaga_aulas();
 				imprimir = true;
 				break;
 
@@ -3791,6 +3793,7 @@ void menu_criar_piscina()
 			case 4:
 				definir_localizacao(p1);
 				localizacao++;
+				imprimir = true;
 				break;
 
 			case 5:
