@@ -1355,7 +1355,7 @@ void menu_gerir_utentes(Piscina &p1)
 
 
 // 6.1.2 Mostrar horario
-void mostrar_horario(Piscina p1)
+void mostrar_horario(Piscina &p1)
 {
 	int tecla;
 	{
@@ -2396,14 +2396,14 @@ void escolher_ficheiros() /// um para cada classe
 
 
 // 3.6 Verificação antes de avançar
-unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
+unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes, int loc)
 {
 	limparEcra();
 	cabecalho();
 
 	bool falta = false;
 	unsigned int nome = 0, lotacao = 0, horario = 0, base_dados = 0, modalidades = 0;
-	//unsigned int localização = 0;
+	unsigned int localizacao = 0;
 	int a = 254;
 	char square = a;
 
@@ -2427,7 +2427,11 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 	}
 	else horario = 1;
 
-	/// fazer o mesmo para a localizacao
+	if (loc == 0)
+	{
+		falta = true;
+	}
+	else localizacao = 1;
 
 	if (p1.getModalidades().size() == NULL)
 	{
@@ -2460,7 +2464,11 @@ unsigned int check(Piscina &p1, string &fichPiscina, string &fichUtentes)
 			cout << "\t\t " << square << " horario" << endl;
 		}
 
-		// fazer o mesmo para a localizacao
+		if (!localizacao)
+		{
+			cout << "\t\t " << square << " localizacao" << endl;
+		}
+		
 		if (!modalidades)
 		{
 			cout << "\t\t " << square << " modalidades" << endl;
@@ -2877,6 +2885,68 @@ void definir_modalidades(Piscina &p1)
 }
 
 //3.4 Definir localizacao
+void definir_localizacao(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+
+	unsigned int x,y;
+	bool fim;
+	int a = 254;
+	char square = a; // obter  █
+
+	do
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Coordenada x: ";
+		textcolor(WHITE);
+		cin >> x;
+
+		if (cin.fail())
+		{
+			textcolor(RED);
+			cout << "\t\t " << square << " Numero invalido \n\n ";
+			textcolor(WHITE);
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
+		else fim = true;
+
+	} while (!fim);
+
+	textcolor(LIGHT_GREEN);
+	cout << "\t\t " << square << " aceite" << endl;
+	textcolor(WHITE);
+
+	do
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Coordenada y: ";
+		textcolor(WHITE);
+		cin >> y;
+
+		if (cin.fail())
+		{
+			textcolor(RED);
+			cout << "\t\t " << square << " Numero invalido \n\n ";
+			textcolor(WHITE);
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
+		else fim = true;
+
+	} while (!fim);
+
+	textcolor(LIGHT_GREEN);
+	cout << "\t\t " << square << " aceite" << endl;
+	textcolor(WHITE);
+
+	
+	p1.setX(x);
+	p1.setY(y);
+	
+}
+
 
 
 //3.3 Definir horario
@@ -3669,6 +3739,7 @@ void menu_criar_piscina()
 	bool imprimir = true;
 	string fichPiscina, fichUtentes, fichAulas, fichProfessores;
 	Piscina p1;
+	int localizacao=0;
 
 	do
 	{
@@ -3718,6 +3789,8 @@ void menu_criar_piscina()
 				break;
 
 			case 4:
+				definir_localizacao(p1);
+				localizacao++;
 				break;
 
 			case 5:
@@ -3731,7 +3804,7 @@ void menu_criar_piscina()
 				break;
 
 			case 7:
-				if (check(p1, fichPiscina, fichProfessores))
+				if (check(p1, fichPiscina, fichProfessores,localizacao))
 					menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
 				imprimir = true;
 				break;
