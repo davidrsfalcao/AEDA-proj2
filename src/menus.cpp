@@ -750,7 +750,6 @@ void menu_registros(Piscina &p1, Utente &ute)
 			cout << endl << endl;
 			cout << "\t\t\t\t    Informacoes pessoais" << endl;
 			cout << "\t\t\t\t    Aulas frequentadas" << endl;
-			cout << "\t\t\t\t    (...) acrescentar" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
 			cout << endl << endl << endl << endl;
 			cout << endl << endl;
@@ -778,15 +777,11 @@ void menu_registros(Piscina &p1, Utente &ute)
 				break;
 
 			case 3:
-				imprimir = true;
-				break;
-
-			case 4:
 				break;
 
 			}
 
-	} while ((opcao != 4) || (tecla != ENTER));
+	} while ((opcao != 3) || (tecla != ENTER));
 
 	cout << endl << endl;
 
