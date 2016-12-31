@@ -206,40 +206,11 @@ void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 
 }
 
-priority_queue<Piscina> cria_listapri(const vector<Piscina> &piscinas) {
-	priority_queue<Piscina> piscinas_pri;
-
-	for (size_t i = 0; i < piscinas.size(); i++) {
-		piscinas_pri.push(piscinas[i]);
-	}
-	return piscinas_pri;
+vector<Piscina> carregar_piscinas() {
+	vector<Piscina> v;
+	return v;
 }
 
-Piscina devolve_proxima(const priority_queue<Piscina> &piscinas, const string &modalidade) {
-	Piscina p;
-	priority_queue<Piscina> temp = piscinas;
-
-	while (!temp.empty()) {
-		vector<string> m = temp.top().getModalidades();
-		for (size_t i = 0; i < m.size(); i++) {
-			if (m[i] == modalidade) {
-				return temp.top();
-			}
-		}
-		temp.pop();
-
-	}
-	return p;
-
-}
-
-void imprime_piscinas_prox(const priority_queue<Piscina> &piscinas, Piscina &piscina_criada) {
-	priority_queue<Piscina> temp = piscinas;
-	while (!temp.empty()) {
-		cout << temp.top().getNome() << "  dist:" << sqrt(pow(piscina_criada.getX() - temp.top().getX(), 2) + pow(piscina_criada.getY() - temp.top().getY(), 2)) << endl;
-		temp.pop();
-	}
-}
 
 
 // 7.2 Increver aulas
@@ -3817,7 +3788,8 @@ void menu_criar_piscina()
 	bool imprimir = true;
 	string fichPiscina, fichUtentes, fichAulas, fichProfessores;
 	Piscina p1;
-	int localizacao=0;
+	vector<Piscina>piscinas = carregar_piscinas();
+	int localizacao = 0;
 
 	do
 	{
@@ -3896,7 +3868,9 @@ void menu_criar_piscina()
 	} while ((opcao != 8) || (tecla != 13));
 
 	cout << endl << endl;
-
+	
+	set_prioridades(piscinas, p1);
+	p1.setPiscinas_prox(piscinas);
 
 }
 

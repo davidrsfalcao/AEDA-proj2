@@ -6,6 +6,7 @@
 #include <map>
 #include <fstream>
 #include <unordered_set>
+#include <queue>
 
 
 #include "aula.h"
@@ -52,6 +53,7 @@ class Piscina
 	vector<Utente *> utentesNaPisicina;
 	tabHU utentes_inativos;
 	vector<string> modalidades;
+	priority_queue<Piscina> piscinas_prox;
 
 
 public:
@@ -318,6 +320,14 @@ public:
 	void setX(unsigned int x1);
 
 	void setY(unsigned int y1);
+
+	priority_queue<Piscina> getPiscinas_prox()const { return piscinas_prox; };
+
+	void setPiscinas_prox(const vector<Piscina> & piscinas);
+
+	Piscina getMaisperto(string modalidade);
+
+	void imprime_piscinas_prox();
 
 };
 

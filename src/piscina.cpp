@@ -42,6 +42,7 @@ void Piscina::setLotacao(unsigned int lotacao) {
 
 string Piscina::getNome() const {
 	return nomePiscina;
+
 }
 
 unsigned int Piscina::getLotacao() {
@@ -1134,4 +1135,38 @@ void Piscina::setX(unsigned int x1)
 void Piscina::setY(unsigned int y1)
 {
 	y = y1;
+}
+
+void Piscina::setPiscinas_prox(const vector<Piscina> & piscinas) {
+	for (size_t i = 0; i < piscinas.size(); i++) {
+		piscinas_prox.push(piscinas[i]);
+	}
+	
+}
+
+
+Piscina Piscina::getMaisperto(string modalidade) {
+	Piscina p;
+	priority_queue<Piscina> temp = piscinas_prox;
+
+	while (!temp.empty()) {
+		vector<string> m = temp.top().getModalidades();
+		for (size_t i = 0; i < m.size(); i++) {
+			if (m[i] == modalidade) {
+				return temp.top();
+			}
+		}
+		temp.pop();
+
+	}
+	return p;
+}
+
+
+void Piscina::imprime_piscinas_prox() {
+	priority_queue<Piscina> temp = piscinas_prox;
+	while (!temp.empty()) {
+		cout << temp.top().getNome() << "  dist:" << sqrt(pow(x - temp.top().getX(), 2) + pow(y - temp.top().getY(), 2)) << endl;
+		temp.pop();
+	}
 }
