@@ -212,7 +212,6 @@ vector<Piscina> carregar_piscinas() {
 }
 
 
-
 // 7.2 Increver aulas
 void entrar_piscina_livre(Piscina &p1, Utente *ut1)
 {
@@ -2364,6 +2363,11 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	novo1->setNome(a1);
 	p1.addUtente(novo1);
 
+	Loja nova;
+	string fichLoja = "loja.txt";
+	nova.ler_FichLoja(fichLoja);
+
+	p1.setLoja(nova);
 	////////////////////////////////////////////////////////////////////////////
 
 	int opcao = 1, opcao_b = 1, tecla;
