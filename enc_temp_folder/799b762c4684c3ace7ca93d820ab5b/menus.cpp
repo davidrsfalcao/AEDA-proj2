@@ -272,11 +272,10 @@ void entrar_piscina_livre(Piscina &p1, Utente *ut1)
 
 		int horas1, min1;
 
+		cin.ignore(256, '\n');
 		do
 		{
-			textcolor(LIGHT_GRAY);
-			cout << "\t\t Hora de saida: (hh:mm) ";
-			textcolor(WHITE);
+			cout << " Hora de saida: (hh:mm) ";
 			getline(cin, hora_f);
 			stringstream ss1(hora_f);
 			ss1 >> horas1 >> car >> min1;
@@ -286,18 +285,12 @@ void entrar_piscina_livre(Piscina &p1, Utente *ut1)
 
 			if ((horas1 < horas) || (horas1 > 24) || ((horas1 == 24) && (min1 > 0)) || (min1 < 0) || (min1 >= 60) || (car != ':')) {
 				avancar = false;
-				textcolor(RED);
-				cout << "\t\t* hora invalida";
-				textcolor(WHITE);
+				cout << "* hora invalida";
 			}
 			else
 			{
-				if ((horas1 > (horas + 2)) || ((horas1 == (horas + 2)) && (min1 > minutos)))
-				{
-					textcolor(RED);
-					cout << "\t\t* a duracao maxima e de 120 minutos \n\n";
-					textcolor(WHITE);
-				}
+				if ((horas1 >(horas + 2)) || ((horas1 == (horas + 2)) && (min1 > minutos)))
+					cout << "* a duracao maxima e de 120 minutos \n\n";
 				else {
 					avancar = true;
 				}
@@ -306,6 +299,8 @@ void entrar_piscina_livre(Piscina &p1, Utente *ut1)
 
 		int duracao;
 		duracao = (horas1 - horas) * 60 + (min1 - minutos);
+
+		cout << horas1 << endl;
 
 		fim.setAno(ano);
 		fim.setMes(mes);
