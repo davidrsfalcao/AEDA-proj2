@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "BST.h"
+#include "uteis.h"
 
 using namespace std;
 class Produto {

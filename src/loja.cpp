@@ -20,7 +20,9 @@ void Loja::vende(Produto &prod)
 		{
 			if (prod.getStock() > it.retrieve().getStock())
 			{
-				cout << "Nao ha itens suficientes em stock para concluir a sua compra" << endl;
+				textcolor(RED);
+				cout << "\t\tNao ha itens suficientes em stock para concluir a sua compra" << endl;
+				textcolor(WHITE);
 				existe = true;
 			}
 			else
@@ -45,7 +47,9 @@ void Loja::vende(Produto &prod)
 
 	if (!existe)
 	{
-		cout << "o produto nao existe" << endl;
+		textcolor(RED);
+		cout << "\t\tO produto nao existe" << endl;
+		textcolor(WHITE);
 
 	}
 
