@@ -510,7 +510,6 @@ int Piscina::adicionar_utente() {
 	cout << "\t\tIntroduza um nome para o novo utente: ";
 	textcolor(WHITE);
 	string nome;
-	cin.ignore();
 	try {
 		getline(cin, nome);
 		if (nome.size()<3)
