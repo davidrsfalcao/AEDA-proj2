@@ -306,7 +306,7 @@ string escolher_modalidade()
 
 }
 
-void inscrever_aula(Piscina &p1, Utente ute)
+void inscrever_aula(Piscina &p1, Utente * ute)
 {
 	string escolha = escolher_modalidade();
 	int ind;
@@ -490,9 +490,9 @@ void inscrever_aula(Piscina &p1, Utente ute)
 					{
 						if (p1.getHorario()[k]->getId() == id)
 						{
-							p1.adiciona_utente_aula(p1.getHorario()[k], &ute);
-							ute.adicionaAula(p1.getHorario()[k]);
-							p1.retira_inativo(ute);
+							p1.adiciona_utente_aula(p1.getHorario()[k], ute);
+							ute->adicionaAula(p1.getHorario()[k]);
+							p1.retira_inativo(*ute);
 							encontrou = true;
 							break;
 						}
@@ -681,7 +681,7 @@ void menu_utente_ops(int opcao, int opcao_b)
 	gotoxy(0, 21);
 }
 
-void menu_utente(Piscina &p1, Utente &ute)
+void menu_utente(Piscina &p1, Utente* ute)
 {
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
@@ -695,7 +695,7 @@ void menu_utente(Piscina &p1, Utente &ute)
 			cout << endl;
 			cout << "\t\t\t Bem vindo, ";
 			textcolor(CYAN);
-			cout << ute.getNome();
+			cout << ute->getNome();
 			textcolor(WHITE);
 
 			cout << endl << endl;
@@ -719,7 +719,7 @@ void menu_utente(Piscina &p1, Utente &ute)
 			switch (opcao)
 			{
 			case 1:
-				menu_registros(p1, ute);
+				menu_registros(p1, *ute);
 				imprimir = true;
 				break;
 
@@ -2150,7 +2150,7 @@ void entrar_como_utente(Piscina &p1)
 					switch (opcao)
 					{
 					case 1:
-						menu_utente(p1, (*novo));
+						menu_utente(p1, novo);
 						break;
 					case 2:
 						break;
@@ -2168,7 +2168,7 @@ void entrar_como_utente(Piscina &p1)
 			{
 				if (novo->getId() == p1.getUtentes()[i]->getId())
 				{
-					menu_utente(p1, *p1.getUtentes()[i]);
+					menu_utente(p1, p1.getUtentes()[i]);
 				}
 
 			}
