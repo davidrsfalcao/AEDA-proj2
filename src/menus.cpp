@@ -2863,7 +2863,12 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		getline(cin, utentes_temp);
 
 		if (utentes_temp == "sair")
+			{
+			const char *lixop = piscina_temp.c_str();  // apagar ficheiro temporario piscina
+			remove(lixop);
 			return; //sair sem modificacoes
+		}
+			
 
 		utentes_temp += ".txt";
 		in.open(utentes_temp);
@@ -2904,7 +2909,13 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		getline(cin, aulas_temp);
 
 		if (aulas_temp == "sair")
+		{
+			const char *lixop = piscina_temp.c_str();  // apagar ficheiro temporario piscina
+			remove(lixop);
+			const char *lixou = utentes_temp.c_str();  // apagar ficheiro temporario utentes
+			remove(lixou);
 			return; //sair sem modificacoes
+		}
 
 		aulas_temp += ".txt";
 		in.open(aulas_temp);
@@ -2945,7 +2956,15 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 		getline(cin, profs_temp);
 
 		if (profs_temp == "sair")
+		{
+			const char *lixop = piscina_temp.c_str();  // apagar ficheiro temporario piscina
+			remove(lixop);
+			const char *lixou = utentes_temp.c_str();  // apagar ficheiro temporario utentes
+			remove(lixou);
+			const char *lixoa = aulas_temp.c_str();  // apagar ficheiro temporario aulas
+			remove(lixoa);
 			return; //sair sem modificacoes
+		}
 
 		profs_temp += ".txt";
 		in.open(profs_temp);
