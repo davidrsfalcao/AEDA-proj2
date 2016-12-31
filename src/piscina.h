@@ -329,6 +329,8 @@ public:
 
 	void imprime_piscinas_prox();
 
+	tabHU getInativos() const { return utentes_inativos; };
+
 };
 
 

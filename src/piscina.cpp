@@ -1100,7 +1100,7 @@ unsigned int Piscina::coloca_inativos() {
 
 	unsigned int contador = 0;
 	for (size_t i = 0; i <  utentesNaPisicina.size(); i++) {
-		if (utentesNaPisicina[i]->getLast_class().days_passed() > 30) {
+		if (utentesNaPisicina[i]->getEntradas()==0 ||utentesNaPisicina[i]->getLast_class().days_passed() > 30) {
 			utentes_inativos.insert((*utentesNaPisicina[i]));
 			contador++;
 		}
@@ -1176,8 +1176,30 @@ Piscina Piscina::getMaisperto(string modalidade) {
 
 void Piscina::imprime_piscinas_prox() {
 	priority_queue<Piscina> temp = piscinas_prox;
+
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+
+	int y = 5;
+	gotoxy(20, 4);
+	textcolor(CYAN);
+	cout << "Nome";
+	textcolor(WHITE);
+
+	gotoxy(60, 4);
+	textcolor(CYAN);
+	cout << "Distancia";
+	textcolor(WHITE);
+
+
 	while (!temp.empty()) {
-		cout << temp.top().getNome() << "  dist:" << sqrt(pow(x - temp.top().getX(), 2) + pow(y - temp.top().getY(), 2)) << endl;
+
+		gotoxy(18, y);
+		cout << temp.top().getNome();
+		gotoxy(62, y);
+		cout << sqrt(pow(x - temp.top().getX(), 2) + pow(y - temp.top().getY(), 2)) << endl;
 		temp.pop();
+		y++;
 	}
 }
