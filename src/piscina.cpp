@@ -614,29 +614,35 @@ bool Piscina::apaga_prof(string &nome) {
 
 int Piscina::apagarProfessor()
 {
-	cout << "Introduza o nome do professor que pretende eliminar: ";
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tIntroduza o nome do professor que pretende eliminar: ";
+	textcolor(WHITE);
 	bool ex = true;
 	string nome;
 	try {
-		cin.ignore();
 		getline(cin, nome);
 		if (nome.size()<3)
 			throw NomeInvalido(nome);
 
 	}
 	catch (Piscina::NomeInvalido(nome)) {
-		cout << "nome invalido!" << endl;
+		textcolor(RED);
+		cout << "\t\tnome invalido!" << endl;
+		textcolor(WHITE);
 		return 1;
 
 	}
 
-
 	if (apaga_prof(nome)) {
-		cout << "Professor apagado com sucesso!!" << endl;
+		textcolor(CYAN);
+		cout << "\t\tProfessor apagado com sucesso! 'ENTER' para continuar" << endl;
+		textcolor(WHITE);
 	}
 
-	cin.ignore();
-	getchar();
+	cin.ignore(256,'\n');
 	return 0;
 }
 
