@@ -2017,6 +2017,10 @@ void menu_gerir_piscina(Piscina &p1)
 
 			case 3:
 				p1.imprime_piscinas_prox();
+				textcolor(CYAN);
+				cout << endl << endl << "Prima 'ENTER' para sair" << endl;
+				textcolor(WHITE);
+				cin.ignore(256, '\n');
 				imprimir = true;
 				break;
 
