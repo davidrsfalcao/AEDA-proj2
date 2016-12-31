@@ -214,6 +214,114 @@ vector<Piscina> carregar_piscinas() {
 
 
 // 7.2 Increver aulas
+void entrar_piscina_livre(Piscina &p1, Utente *ut1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+
+	Data atual{};
+	Data fim{};
+	int dia = dia_do_sistema();
+	int mes = mes_do_sistema();
+	int ano = ano_do_sistema();
+	string dia_S = calculo_dia_da_semana(dia, mes, ano);
+	int horas = horas_do_sistema();
+	int minutos = minutos_do_sistema();
+
+	atual.setAno(ano);
+	atual.setMes(mes);
+	atual.setDia(dia);
+	atual.setHoras(horas);
+	atual.setMinutos(minutos);
+	atual.setDiaSemana(dia_S);
+
+	bool existe{ false };
+
+	for (size_t i{}; i < p1.getHorario().size(); i++) {
+		if ((p1.getHorario()[i]->getInicio() < atual)
+			&& (atual < p1.getHorario()[i]->getFim())) {
+			existe = true;
+			break;
+
+		}
+
+	} // fim ciclo for
+
+	if (!existe) {
+		textcolor(RED);
+		cout << "\n\t\t Atualmente a piscina encontra-se fechada! 'Enter' para continuar ";
+		cout << endl;
+		textcolor(WHITE);
+		cin.ignore(256, '\n');
+		return;
+		
+
+	}
+	else {
+
+		Aula *nova = new AulaLivre();
+
+		nova->addUtente(ut1);
+		nova->setId();
+		nova->setInicio(atual);
+
+		string hora_f;
+		char car;
+		bool avancar;
+
+		int horas1, min1;
+
+		cin.ignore(256, '\n');
+		do
+		{
+			cout << " Hora de saida: (hh:mm) ";
+			getline(cin, hora_f);
+			stringstream ss1(hora_f);
+			ss1 >> horas1 >> car >> min1;
+
+			if (hora_f.size() == 4)
+				hora_f = "0" + hora_f;
+
+			if ((horas1 < horas) || (horas1 > 24) || ((horas1 == 24) && (min1 > 0)) || (min1 < 0) || (min1 >= 60) || (car != ':')) {
+				avancar = false;
+				cout << "* hora invalida";
+			}
+			else
+			{
+				if ((horas1 >(horas + 2)) || ((horas1 == (horas + 2)) && (min1 > minutos)))
+					cout << "* a duracao maxima e de 120 minutos \n\n";
+				else {
+					avancar = true;
+				}
+			}
+		} while (!avancar);
+
+		int duracao;
+		duracao = (horas1 - horas) * 60 + (min1 - minutos);
+
+		cout << horas1 << endl;
+
+		fim.setAno(ano);
+		fim.setMes(mes);
+		fim.setDiaSemana(dia_S);
+		fim.setDia(dia);
+		fim.setHoras(horas1);
+		fim.setMinutos(min1);
+		nova->setFim(fim);
+
+		p1.adicionaAula(nova);
+		p1.retira_inativo(*ut1);
+		(*ut1).adicionaAula(nova);
+		p1.add_utente_napiscina(ut1);
+	}
+
+	textcolor(CYAN);
+	cout << "\n\n\t\t Sucesso! Prima 'ENTER' para voltar \n\n ";
+	textcolor(WHITE);
+	cin.ignore(256, '\n');
+}
+
 void escolher_modalidade_ops(int opcao, int opcao_b)
 {
 	int a = 254;
@@ -259,6 +367,7 @@ string escolher_modalidade()
 			cout << "\t\t\t\t    Mergulho" << endl;
 			cout << "\t\t\t\t    Hidroginastica" << endl;
 			cout << "\t\t\t\t    Competicao" << endl;
+			cout << "\t\t\t\t    Aula livre" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
 			cout << endl << endl;
 
@@ -268,7 +377,7 @@ string escolher_modalidade()
 
 		escolher_modalidade_ops(opcao_a, opcao_b);
 		opcao_b = opcao_a;
-		tecla = opcao_valida(opcao_a, 1, 6);
+		tecla = opcao_valida(opcao_a, 1, 7);
 		Sleep(100);
 
 
@@ -296,6 +405,10 @@ string escolher_modalidade()
 				break;
 
 			case 6:
+				return "livre";
+				break;
+
+			case 7:
 				return "exit";
 				break;
 
@@ -329,6 +442,11 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 			ind = 3;
 		else if (escolha == "competicao")
 			ind = 4;
+		else if (escolha == "livre")
+		{
+			entrar_piscina_livre(p1, ute);
+			return;
+		}
 		else return;
 
 		for (size_t i = 0; i < p1.getHorario().size(); i++)
@@ -492,6 +610,7 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 						{
 							p1.adiciona_utente_aula(p1.getHorario()[k], ute);
 							ute->adicionaAula(p1.getHorario()[k]);
+							p1.add_utente_napiscina(ute);
 							p1.retira_inativo(*ute);
 							encontrou = true;
 							break;
@@ -769,7 +888,7 @@ void listar_professores(Piscina &p1)
 			cout << p1.getProfessores()[i]->getNome() << endl;
 
 			textcolor(LIGHT_GRAY);
-			cout << "\t\tID: ";
+			cout << "\t\tNumero aulas: ";
 			textcolor(WHITE);
 			cout << p1.getProfessores()[i]->getaulas().size();
 
@@ -1485,13 +1604,6 @@ void menu_gerir_utentes(Piscina &p1)
 }
 
 
-// 6.1.3 Piscinas nas proximidades
-void piscinas_prox(Piscina &p1)
-{
-
-
-}
-
 // 6.1.2 Mostrar horario
 void mostrar_horario(Piscina &p1)
 {
@@ -1897,6 +2009,7 @@ void menu_gerir_piscina(Piscina &p1)
 				break;
 
 			case 3:
+				p1.imprime_piscinas_prox();
 				imprimir = true;
 				break;
 
