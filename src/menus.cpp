@@ -884,6 +884,83 @@ void menu_utente(Piscina &p1, Utente* ute)
 }
 
 
+// 6.5 Menu gerir loja
+void menu_loja_ops(int opcao, int opcao_b)
+{
+	int a = 254;
+	char square = a;
+
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
+
+	gotoxy(34, y);
+	textcolor(YELLOW);
+	cout << " ";
+	textcolor(WHITE);
+
+	gotoxy(34, y1);
+	textcolor(YELLOW);
+	cout << square;
+	textcolor(WHITE);
+
+
+
+	gotoxy(0, 21);
+}
+
+void menu_loja(Piscina &p1)
+{
+	int opcao = 1, opcao_b = 1, tecla;
+	bool imprimir = true;
+
+	do
+	{
+		if (imprimir)
+		{
+			limparEcra();
+			titulo();
+			cout << endl << endl;
+
+			cout << "\t\t\t\t    Ver stock" << endl;
+			cout << "\t\t\t\t    Repor stock" << endl;
+			cout << "\t\t\t\t    Sair" << endl;
+			cout << endl << endl;
+
+		}
+
+		imprimir = false;
+
+		menu_loja_ops(opcao, opcao_b);
+		opcao_b = opcao;
+		tecla = opcao_valida(opcao, 1, 3);
+		Sleep(100);
+
+
+		if (tecla == ENTER)
+			switch (opcao)
+			{
+			case 1:
+				imprimir = true;
+				break;
+
+			case 2:
+				imprimir = true;
+				break;
+
+			case 3:
+				break;
+
+			}
+
+	} while ((opcao != 3) || (tecla != ENTER));
+
+	cout << endl << endl;
+
+	return;
+
+}
+
+
 // 6.4.1 Listar professores
 void listar_professores(Piscina &p1)
 {
@@ -2143,6 +2220,8 @@ void menu_admin(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 				break;
 
 			case 5:
+				menu_loja(p1);
+				imprimir = true;
 				break;
 
 			case 6:

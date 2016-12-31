@@ -507,7 +507,7 @@ int Piscina::adicionar_utente() {
 	cabecalho();
 	cout << endl << endl;
 	textcolor(LIGHT_GRAY);
-	cout << "\t\tIntroduza um nome para o novo utente: ";
+	cout << "\t\tNome: ";
 	textcolor(WHITE);
 	string nome;
 	try {
@@ -524,9 +524,37 @@ int Piscina::adicionar_utente() {
 
 	}
 
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tMorada: ";
+	textcolor(WHITE);
+	
+	string morada;
+	getline(cin, morada);
+
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tTelemovel: ";
+	textcolor(WHITE);
+
+	unsigned int telemovel;
+	cin >> telemovel;
+
+	while (cin.fail())
+	{
+		textcolor(RED);
+		cerr << "\t\t* numero invalido" << endl << endl;
+		cin.ignore(256, '\n');
+		cin.clear();
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tTelemovel: ";
+		textcolor(WHITE);
+		cin >> telemovel;
+	}
+	
 
 	Utente *u1 = new Utente();
 	u1->setNome(nome);
+	u1->setMorada(morada);
+	u1->setTelemovel(telemovel);
 	unsigned int id = atribuiID_utente();
 	u1->setId(id);
 	addUtente(u1);
@@ -722,7 +750,7 @@ int Piscina::apagarUtente()
 		}
 	} while (!ex);
 	textcolor(CYAN);
-	cout << "\t\t\n\nUtente apagado com sucesso! 'ENTER' para continuar" << endl;
+	cout << "\n\n\t\tUtente apagado com sucesso! 'ENTER' para continuar" << endl;
 	textcolor(WHITE);
 	apaga_Utente(nome);
 	cin.ignore(256, '\n');
