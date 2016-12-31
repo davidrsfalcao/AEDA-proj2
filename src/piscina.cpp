@@ -710,7 +710,7 @@ int Piscina::apagarUtente()
 		}
 	} while (!ex);
 	textcolor(CYAN);
-	cout << "\t\tUtente apagado com sucesso! 'ENTER' para continuar" << endl;
+	cout << "\t\t\n\nUtente apagado com sucesso! 'ENTER' para continuar" << endl;
 	textcolor(WHITE);
 	apaga_Utente(nome);
 	cin.ignore(256, '\n');
