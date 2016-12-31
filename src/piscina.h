@@ -11,6 +11,7 @@
 
 #include "aula.h"
 #include"utente.h"
+#include "loja.h"
 
 using namespace std;
 
@@ -54,6 +55,7 @@ class Piscina
 	tabHU utentes_inativos;
 	vector<string> modalidades;
 	priority_queue<Piscina> piscinas_prox;
+	Loja loja_pis;
 
 
 public:
@@ -330,6 +332,10 @@ public:
 	void imprime_piscinas_prox();
 
 	tabHU getInativos() const { return utentes_inativos; };
+
+	Loja getLoja() const { return loja_pis; };
+
+	void setLoja(Loja lj1) { loja_pis = lj1; };
 
 };
 
