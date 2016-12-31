@@ -551,11 +551,16 @@ int Piscina::pesquisa_professor(string nome)
 }
 
 int Piscina::adicionarProfessor() {
-	cout << "Introduza um nome para o novo professor: ";
+
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tIntroduza um nome para o novo professor: ";
+	textcolor(WHITE);
 	string nome;
 
 	try {
-		cin.ignore();
 		getline(cin, nome);
 		if (nome.size()<3 && pesquisa_professor(nome) == -1)
 			throw NomeInvalido(nome);
@@ -570,10 +575,11 @@ int Piscina::adicionarProfessor() {
 
 	Professor *p1 = new Professor(nome);
 	addProfessor(p1);
-	cout << "professor criado com sucesso!" << endl;
-	cin.ignore();
+	textcolor(CYAN);
+	cout << "\n\t\tprofessor criado com sucesso! 'ENTER' para continuar" << endl;
+	textcolor(WHITE);
+	cin.ignore(256, '\n');
 	ordena_professores();
-	getchar();
 	return 0;
 }
 
