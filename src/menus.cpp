@@ -537,28 +537,38 @@ void detalhes_cliente(Utente &ute)
 	textcolor(LIGHT_GRAY);
 	cout << "\t\t Nome: ";
 	textcolor(WHITE);
-	cout << ute.getNome();
+	cout << ute.getNome() << endl;
 
 
 	textcolor(LIGHT_GRAY);
 	cout << "\t\t Morada: ";
 	textcolor(WHITE);
-	cout << ute.getMorada();
+	cout << ute.getMorada() << endl;
 
 	textcolor(LIGHT_GRAY);
 	cout << "\t\t Telemovel: ";
 	textcolor(WHITE);
-	cout << ute.getTelemovel();
+	cout << ute.getTelemovel() << endl;
 
 	textcolor(LIGHT_GRAY);
-	cout << "\t\tUltima aula: ";
+	cout << "\t\t Ultima aula: ";
 	textcolor(WHITE);
 
 	Data d1 =ute.getLast_class();
-	cout << d1.getDia() << "/" << d1.getMes() << "/" << d1.getAno();
+	cout << d1.getDia() << "/" << d1.getMes() << "/" << d1.getAno() << endl;
+
+	textcolor(LIGHT_GRAY);
+	cout << "\t\t Total aulas: ";
+	textcolor(WHITE);
+	cout << ute.getEntradas() << endl;
 
 
+	cout << endl << endl;
 
+	textcolor(CYAN);
+	cout << "\t\t Prima 'ENTER' para voltar";
+	textcolor(WHITE);
+	cin.ignore(256, '\n');
 
 }
 
@@ -621,6 +631,7 @@ void menu_registros(Piscina &p1, Utente &ute)
 			switch (opcao)
 			{
 			case 1:
+				detalhes_cliente(ute);
 				imprimir = true;
 				break;
 
@@ -1473,6 +1484,13 @@ void menu_gerir_utentes(Piscina &p1)
 
 }
 
+
+// 6.1.3 Piscinas nas proximidades
+void piscinas_prox(Piscina &p1)
+{
+
+
+}
 
 // 6.1.2 Mostrar horario
 void mostrar_horario(Piscina &p1)

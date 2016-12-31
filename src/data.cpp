@@ -78,6 +78,7 @@ void Data::setDiaSemana(string dia_semana)
 {
 	this->dia_semana=dia_semana;
 }
+
 void Data::setDiaSemana()
 {
 	dia_semana = calculo_dia_da_semana(dia, mes, ano);
@@ -124,7 +125,6 @@ ostream & operator <<(ostream &of, const Data &a1){
 return of;
 }
 
-
 int Data::operator-(Data data1)
 {
 	int h1 = data1.getHoras();
@@ -139,8 +139,6 @@ int Data::operator-(Data data1)
 
 
 }
-
-
 
 bool Data::operator==(Data &data1)
 {
