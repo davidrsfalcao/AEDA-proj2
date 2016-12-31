@@ -647,8 +647,21 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 
 	}
 	else {
+		limparEcra();
+		cabecalho();
 
-		/// mostra piscina mais próxima
+		cout << endl << endl;
+		textcolor(RED);
+		cout << "\t\t Modalidade inexistente nesta piscina." << endl << endl;
+		textcolor(WHITE);
+
+		cout << "\t\t Podera dirigir-se a " << p1.getMaisperto(escolha).getNome();
+
+		cout << endl << endl;
+		textcolor(CYAN);
+		cout << "\t\t Prima 'ENTER' para sair" << endl << endl;
+		textcolor(WHITE);
+
 	}
 
 }
