@@ -346,8 +346,7 @@ void inscrever_aula(Piscina &p1, Utente ute)
 		int cima_b = 0;
 		size_t i;
 
-		while (1)
-		{
+
 			while (1)
 			{
 				limparEcra();
@@ -363,7 +362,7 @@ void inscrever_aula(Piscina &p1, Utente ute)
 					cout << "\t\tId aula: ";
 					textcolor(WHITE);
 
-					cout << p1.getHorario()[i]->getId() << endl;
+					cout << aulas[i]->getId() << endl;
 
 					textcolor(LIGHT_GRAY);
 					cout << "\t\tData: ";
@@ -487,12 +486,12 @@ void inscrever_aula(Piscina &p1, Utente ute)
 				}
 				else
 				{
-					for (size_t k = 0; k < aulas.size(); k++)
+					for (size_t k = 0; k < p1.getHorario().size(); k++)
 					{
-						if (aulas[k]->getId() == id)
+						if (p1.getHorario()[k]->getId() == id)
 						{
-							p1.adiciona_utente_aula(aulas[k], &ute);
-							ute.adicionaAula(aulas[k]);
+							p1.adiciona_utente_aula(p1.getHorario()[k], &ute);
+							ute.adicionaAula(p1.getHorario()[k]);
 							p1.retira_inativo(ute);
 							encontrou = true;
 							break;
@@ -501,7 +500,14 @@ void inscrever_aula(Piscina &p1, Utente ute)
 					}
 
 					if (encontrou)
-						return;
+					{
+						textcolor(CYAN);
+						cout << "\n\t\tUtente inscrito com sucesso. 'ENTER' para continuar" << endl;
+						textcolor(WHITE);
+
+						break;
+
+					}
 					else {
 						textcolor(RED);
 						cout << "\t\t id nao existente" << endl << endl;
@@ -512,7 +518,6 @@ void inscrever_aula(Piscina &p1, Utente ute)
 
 			}
 
-		}
 
 	}
 	else {
@@ -536,14 +541,21 @@ void detalhes_cliente(Utente &ute)
 
 
 	textcolor(LIGHT_GRAY);
-	cout << "\t\t Mail: ";
+	cout << "\t\t Morada: ";
 	textcolor(WHITE);
-	//cout << ute.getMail();
+	cout << ute.getMorada();
 
 	textcolor(LIGHT_GRAY);
-	cout << "\t\t Telefone: ";
+	cout << "\t\t Telemovel: ";
 	textcolor(WHITE);
-	//cout << ute.getTelefone();
+	cout << ute.getTelemovel();
+
+	textcolor(LIGHT_GRAY);
+	cout << "\t\tUltima aula: ";
+	textcolor(WHITE);
+
+	Data d1 =ute.getLast_class();
+	cout << d1.getDia() << "/" << d1.getMes() << "/" << d1.getAno();
 
 
 
@@ -557,8 +569,8 @@ void menu_registros_ops(int opcao, int opcao_b)
 	int a = 254;
 	char square = a;
 
-	int y = 10 + opcao_b;
-	int y1 = 10 + opcao;
+	int y = 9 + opcao_b;
+	int y1 = 9 + opcao;
 
 	gotoxy(34, y);
 	textcolor(YELLOW);
@@ -723,6 +735,62 @@ void menu_utente(Piscina &p1, Utente &ute)
 }
 
 
+// 6.4.1 Listar professores
+void listar_professores(Piscina &p1)
+{
+	int opcao = 1;
+	int tecla = 0;
+	int imax = p1.getProfessores().size();
+	int opcaomax = ((imax - 1) / 4) + 1;
+	size_t i;
+
+	while (1)
+	{
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
+
+		for (i = (opcao - 1) * 4; ((i < opcao * 4) && (i < imax)); i++)
+		{
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tNome: ";
+			textcolor(WHITE);
+			cout << p1.getProfessores()[i]->getNome() << endl;
+
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tID: ";
+			textcolor(WHITE);
+			cout << p1.getProfessores()[i]->getaulas().size();
+
+			cout << endl << endl;
+			textcolor(WHITE);
+
+		}
+
+		cout << "\t\t\t\t";
+
+		gotoxy(37, 20);
+		textcolor(YELLOW);
+		cout << "<<";
+		textcolor(WHITE);
+
+
+		cout << " Pagina " << opcao;
+
+		textcolor(YELLOW);
+		cout << " >>";
+		textcolor(WHITE);
+
+		textcolor(CYAN);
+		cout << "\n\n\n Prima 'ENTER' para sair \n";
+		textcolor(WHITE);
+
+		tecla = opcao_valida_listas(opcao, 1, opcaomax);
+		if (tecla == ENTER)
+			break;
+	}
+}
+
 // 6.4 Menu gerir professor
 void menu_gerir_professores_ops(int opcao, int opcao_b)
 {
@@ -781,14 +849,17 @@ void menu_gerir_professores(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
+				listar_professores(p1);
 				imprimir = true;
 				break;
 
 			case 2:
+				p1.adicionarProfessor();
 				imprimir = true;
 				break;
 
 			case 3:
+				p1.apagarProfessor();
 				imprimir = true;
 				break;
 
@@ -1699,22 +1770,22 @@ void estado_atual(Piscina &p1)
 
 		switch (categ)
 		{
-		case 1:
+		case 0:
 			cout << "Polo aquatico";
 			break;
 
-		case 2:
+		case 1:
 			cout << "Natacao sincronizada";
 			break;
 
-		case 3:
+		case 2:
 			cout << "Mergulho";
 			break;
 
-		case 4:
+		case 3:
 			cout << "Hidroginastica";
 
-		case 5:
+		case 4:
 			cout << "Competicao";
 			break;
 
@@ -2074,7 +2145,17 @@ void entrar_como_utente(Piscina &p1)
 			}
 
 		}
-		else menu_utente(p1, *novo);
+		else {
+			for (size_t i = 0; i < p1.getUtentes().size(); i++)
+			{
+				if (novo->getId() == p1.getUtentes()[i]->getId())
+				{
+					menu_utente(p1, *p1.getUtentes()[i]);
+				}
+
+			}
+
+		} 
 
 	}
 	else {
@@ -2599,6 +2680,8 @@ void definir_base_de_dados(string &fichPiscina, string &fichUtentes, string &fic
 	 // escolher nome do ficheiro para guardar Piscina
 
 	string piscina_temp;
+	cin.ignore(256, '\n');
+
 	do {
 		in.close();
 		out.close();
@@ -2933,6 +3016,7 @@ void definir_modalidades(Piscina &p1)
 
 }
 
+
 //3.4 Definir localizacao
 void definir_localizacao(Piscina &p1)
 {
@@ -2995,7 +3079,6 @@ void definir_localizacao(Piscina &p1)
 	p1.setY(y);
 	
 }
-
 
 
 //3.3 Definir horario
