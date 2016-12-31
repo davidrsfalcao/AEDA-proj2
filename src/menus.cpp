@@ -890,74 +890,63 @@ void ver_stock(Piscina &p1)
 	limparEcra();
 	cabecalho();
 	cout << endl;
-	vector<Produto> prods;
-	BST<Produto> produt = p1.getLoja().getProdutos();
 
-	BSTItrIn<Produto> it(produt);
+	BST<Produto> prods = p1.getLoja().getProdutos();
+	BSTItrIn<Produto> it(prods);
 
-	while (it.isAtEnd())
-	{
-		prods.push_back(it.retrieve());
-		it.advance();
-	}
-
-	int opcao = 1;
-	int tecla = 0;
-	int imax = prods.size();
-	int opcaomax = ((imax - 1) / 10) + 1;
-	size_t i;
-	int y;
+	int y=5;
 	gotoxy(20, 4);
 	textcolor(CYAN);
 	cout << "Nome";
 	textcolor(WHITE);
 
-	gotoxy(45, 4);
+	gotoxy(40, 4);
+	textcolor(CYAN);
+	cout << "Tamanho";
+	textcolor(WHITE);
+
+	gotoxy(56, 4);
 	textcolor(CYAN);
 	cout << "Quantidade";
 	textcolor(WHITE);
 
-	while (1)
+
+	while (!it.isAtEnd())
 	{
-		limparEcra();
-		cabecalho();
-		cout << endl << endl;
-		y = 5;
-
-		for (i = (opcao - 1) * 10; ((i < opcao * 10) && (i < imax)); i++)
+		gotoxy(18, y);
+		cout << it.retrieve().getNome();
+		gotoxy(43, y);
+		cout << it.retrieve().getTamanho();
+		gotoxy(60, y);
+		
+		int i = it.retrieve().getStock();
+		if (i > 10)
 		{
-
-			gotoxy(20, y);
-			cout << prods[i].getNome();
-			gotoxy(45, y);
-			cout << prods[i].getStock();
-			y++;
-
-
+			textcolor(LIGHT_GREEN);
+			cout << i;
+			textcolor(WHITE);
 		}
+		else if (i > 5)
+		{
+			textcolor(YELLOW);
+			cout << i;
+			textcolor(WHITE);
+		}
+		else {
+			textcolor(LIGHT_RED);
+			cout << i;
+			textcolor(WHITE);
+		}
+		
+		y++;
 
-		cout << "\t\t\t\t";
-
-		gotoxy(37, 20);
-		textcolor(YELLOW);
-		cout << "<<";
-		textcolor(WHITE);
-
-
-		cout << " Pagina " << opcao;
-
-		textcolor(YELLOW);
-		cout << " >>";
-		textcolor(WHITE);
-
-		textcolor(CYAN);
-		cout << "\n\n\n Prima 'ENTER' para sair \n";
-		textcolor(WHITE);
-
-		tecla = opcao_valida_listas(opcao, 1, opcaomax);
-		if (tecla == ENTER)
-			break;
+		it.advance();
 	}
+
+	textcolor(CYAN);
+	cout << "\n\n\n\t\t Prima 'ENTER' para sair" << endl;
+	textcolor(WHITE);
+	cin.ignore(256, '\n');
 
 
 }
