@@ -35,6 +35,7 @@ public:
 	void repor_stock(Produto &prod);
 	void ler_FichLoja(string &fichLoja);
 	void escrever_FichLoja(string &fichLoja);
+	void adiciona_produto(Produto &prod);
 
 
 };

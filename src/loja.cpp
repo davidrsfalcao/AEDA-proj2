@@ -210,3 +210,8 @@ void Loja::escrever_FichLoja(string &fichLoja)
 
 
 }
+
+void Loja::adiciona_produto(Produto &prod)
+{
+	produtos.insert(prod);
+}
