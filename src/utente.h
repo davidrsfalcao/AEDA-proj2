@@ -138,7 +138,7 @@ public:
 
 	void setLast_class(const Data &a1) { this->last_class = a1; };
 
-	Data getLast_class() { return last_class; };
+	Data getLast_class() const { return last_class; };
 
 
 

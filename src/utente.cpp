@@ -16,7 +16,6 @@ Utente::~Utente()
 	}
 }
 
-
 string Utente::getNome()const
 {
 	return nome;
@@ -36,7 +35,6 @@ unsigned int Utente::getTotalAulas()
 
 }
 
-
 unsigned int Utente::getAulasLivres()
 {
 	unsigned int n{ 0 };
@@ -50,7 +48,6 @@ unsigned int Utente::getAulasLivres()
 
 	return n;
 }
-
 
 unsigned int Utente::getAulasPro()
 {
@@ -114,6 +111,7 @@ void Utente::setAulas(vector<Aula *> &aulas)
 vector<Aula *> Utente::getaulas() {
 	return aulas;
 }
+
 int Utente::getEntradas()
 {
 	return entradas;
@@ -168,10 +166,6 @@ void Utente::limpaAulaMes(int &mes)
 
 
 }
-
-
-
-
 
 ostream & Utente::operator <<(ostream &of) {
 	of << Id << " - " << nome << endl;

@@ -1015,6 +1015,11 @@ void menu_utente(Piscina &p1, Utente* ute)
 }
 
 
+// 6.5.2.2 Repor prods existentes
+
+
+
+
 // 6.5.2.1 Adicionar produto
 void loja_add_produto(Piscina &p1)
 {
@@ -1959,6 +1964,46 @@ void menu_gerir_aulas(Piscina &p1)
 
 }
 
+
+// 6.2.4 Utentes inativos
+void mostra_clientes_inativos(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+
+	tabHU inativos = p1.getInativos();
+
+	iteratorH it = inativos.begin();
+
+	while (it != inativos.end())
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Nome: ";
+		textcolor(WHITE);
+		cout << (*it).getNome() << endl;
+		
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Morada: ";
+		textcolor(WHITE);
+		cout << (*it).getMorada() << endl;
+
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Telemovel: ";
+		textcolor(WHITE);
+		cout << (*it).getTelemovel() << endl;
+
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Ultima aula: ";
+		textcolor(WHITE);
+		Data ultima_aula = (*it).getLast_class();
+
+
+
+	
+	}
+
+}
 
 // 6.2.1 Listar utentes
 void listar_utentes(Piscina &p1)
@@ -3697,7 +3742,7 @@ void definir_localizacao(Piscina &p1)
 	cabecalho();
 
 	unsigned int x,y;
-	bool fim;
+	bool fim = false;
 	int a = 254;
 	char square = a; // obter  █
 
@@ -3723,6 +3768,8 @@ void definir_localizacao(Piscina &p1)
 	textcolor(LIGHT_GREEN);
 	cout << "\t\t " << square << " aceite" << endl;
 	textcolor(WHITE);
+	
+	fim = false;
 
 	do
 	{
