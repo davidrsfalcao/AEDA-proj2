@@ -879,6 +879,142 @@ void menu_utente(Piscina &p1, Utente* ute)
 }
 
 
+// 6.5.2.1 Adicionar produto
+void loja_add_produto(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl;
+
+	bool nome_aceite = false;
+	string nome_produto;
+
+	while (!nome_aceite)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\tNome produto: ";
+		textcolor(WHITE);
+		getline(cin, nome_produto);
+
+		if (nome_produto == "")
+		{
+			textcolor(RED);
+			cout << "\t\t* nome invalido" << endl;
+			textcolor(WHITE);
+		}
+		else {
+			BSTItrIn<Produto> it(p1.getLoja().getProdutos());
+
+			bool existe = false;
+
+			while (!it.isAtEnd())
+			{
+				if (it.retrieve().getNome() == nome_produto)
+				{
+					existe = true;
+					break;
+				}
+			}
+
+			if (existe)
+			{
+				textcolor(RED);
+				cout << "\t\t* produto ja existente" << endl;
+				textcolor(WHITE);
+			}
+			else nome_aceite = true;
+
+		}
+
+
+
+	}
+
+	bool tam_aceite = false;
+	string tam_produto;
+
+	while (!tam_aceite)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\tTamanho produto: ";
+		textcolor(WHITE);
+		getline(cin, tam_produto);
+
+		if ((tam_produto == "xs") || (tam_produto == "XS") || (tam_produto == "Xs"))
+			tam_aceite = true;
+		else if ((tam_produto == "S") || (tam_produto == "s"))
+			tam_aceite = true;
+		else if ((tam_produto == "M") || (tam_produto == "m"))
+			tam_aceite = true;
+		else if ((tam_produto == "L") || (tam_produto == "l"))
+			tam_aceite = true;
+		else if ((tam_produto == "xl") || (tam_produto == "XL") || (tam_produto == "Xl"))
+			tam_aceite = true;
+		else if ((tam_produto == "xxl") || (tam_produto == "XXL") || (tam_produto == "Xxl"))
+			tam_aceite = true;
+
+		if (!tam_aceite)
+		{
+			textcolor(RED);
+			cout << "\t\t* tamanho desconhecido" << endl;
+			textcolor(WHITE);
+
+		}
+		else {
+			if ((tam_produto == "xs") || (tam_produto == "Xs"))
+				tam_produto = "XS";
+			else if (tam_produto == "s")
+				tam_produto = "S";
+			else if (tam_produto == "m")
+				tam_produto = "M";
+			else if (tam_produto == "l")
+				tam_produto = "L";
+			else if ((tam_produto == "xl") || (tam_produto == "Xl"))
+				tam_produto = "XL";
+			else if ((tam_produto == "xxl") || (tam_produto == "Xxl"))
+				tam_produto = "XXS";
+		}
+
+
+	}
+
+	bool stock_aceite = false;
+	unsigned int stock_produto;
+
+	while (!stock_aceite)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Lotacao: ";
+		textcolor(WHITE);
+		cin >> stock_produto;
+
+		if (cin.fail())
+		{
+			textcolor(RED);
+			cout << "\t\t* stock invalido" << endl;
+			textcolor(WHITE);
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
+		else stock_aceite = true;
+
+	}
+
+	Produto prod;
+
+	prod.setNome(nome_produto);
+	prod.setTamanho(tam_produto);
+	prod.setStock(stock_produto);
+
+	Loja loja1 = p1.getLoja();
+	loja1.adiciona_produto(prod);
+	p1.setLoja(loja1);
+
+	cout << "\n\n\t\tProduto adicionado com sucesso. 'ENTER' para continuar" << endl;
+	cin.ignore(256, '\n');
+
+}
+
 
  // 6.5.2 Repor stock
 void menu_repor_stock_ops(int opcao, int opcao_b)
@@ -936,6 +1072,7 @@ void menu_repor_stock(Piscina &p1)
 			switch (opcao)
 			{
 			case 1:
+				loja_add_produto(p1);
 				imprimir = true;
 				break;
 
