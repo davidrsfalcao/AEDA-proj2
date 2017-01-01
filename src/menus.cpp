@@ -211,6 +211,111 @@ vector<Piscina> carregar_piscinas() {
 	return v;
 }
 
+// 7.3 Loja
+void comprar(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
+
+	BST<Produto> prods = p1.getLoja().getProdutos();
+	BSTItrIn<Produto> it(prods);
+
+
+	int y = 5;
+	gotoxy(20, 4);
+	textcolor(CYAN);
+	cout << "Nome";
+	textcolor(WHITE);
+
+	gotoxy(40, 4);
+	textcolor(CYAN);
+	cout << "Tamanho";
+	textcolor(WHITE);
+
+	while (!it.isAtEnd())
+	{
+		gotoxy(18, y);
+		cout << it.retrieve().getNome();
+		gotoxy(43, y);
+		cout << it.retrieve().getTamanho();
+		gotoxy(60, y);
+
+		int i = it.retrieve().getStock();
+		if (i > 10)
+		{
+			textcolor(LIGHT_GREEN);
+			cout << i;
+			textcolor(WHITE);
+		}
+		else if (i > 5)
+		{
+			textcolor(YELLOW);
+			cout << i;
+			textcolor(WHITE);
+		}
+		else {
+			textcolor(LIGHT_RED);
+			cout << i;
+			textcolor(WHITE);
+		}
+
+		y++;
+
+		it.advance();
+	}
+
+	Loja temp = p1.getLoja();
+	Produto prod;
+	string nome, tamanho;
+	unsigned int stock;
+	int avancar = 1;
+
+	while (avancar == 1)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << endl << endl << "\t\tProduto: ";
+		textcolor(WHITE);
+		getline(cin, nome);
+		prod.setNome(nome);
+		cout << endl;
+
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tTamanho: ";
+		textcolor(WHITE);
+		getline(cin, tamanho);
+		prod.setTamanho(tamanho);
+		cout << endl;
+
+		textcolor(LIGHT_GRAY);
+		cout << "\t\tQuantidade: ";
+		textcolor(WHITE);
+		cin >> stock;
+		while (cin.fail())
+		{
+			textcolor(RED);
+			cout << "\t\t* quantidade invalida" << endl << endl;
+			textcolor(WHITE);
+			cin.clear();
+			cin.ignore(256, '\n');
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tQuantidade: ";
+			textcolor(WHITE);
+			cin >> stock;
+		}
+		prod.setStock(stock);
+
+		avancar == temp.vende(prod);
+
+	}
+
+	textcolor(CYAN);
+	cout << "\t\tPrima 'ENTER' para voltar" << endl;
+	textcolor(WHITE);
+
+
+}
+
 
 // 7.2 Increver aulas
 void entrar_piscina_livre(Piscina &p1, Utente *ut1)
@@ -998,6 +1103,7 @@ void menu_utente(Piscina &p1, Utente* ute)
 				break;
 
 			case 3:
+				comprar(p1);
 				imprimir = true;
 				break;
 
@@ -1346,6 +1452,7 @@ void menu_repor_stock(Piscina &p1)
 				break;
 
 			case 2:
+				repor_prods(p1);
 				imprimir = true;
 				break;
 
@@ -1386,7 +1493,7 @@ void ver_stock(Piscina &p1)
 
 	gotoxy(56, 4);
 	textcolor(CYAN);
-	cout << "Quantidade";
+	cout << "   Stock  ";
 	textcolor(WHITE);
 
 
@@ -1492,7 +1599,7 @@ void menu_loja(Piscina &p1)
 				break;
 
 			case 2:
-				//menu_repor_stock(p1);
+				menu_repor_stock(p1);
 				imprimir = true;
 				break;
 
