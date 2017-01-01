@@ -64,6 +64,7 @@ Produto::Produto(string &nome, string &tamanho, unsigned int &stock)
 	this->tamanho = tamanho;
 	this->stock = stock;
 }
+
 Produto::Produto() {
 	this->nome = "";
 	this->tamanho = "";
@@ -74,22 +75,27 @@ string Produto::getNome()const
 {
 	return nome;
 }
+
 string Produto::getTamanho() const
 {
 	return tamanho;
 }
+
 unsigned int Produto::getStock()
 {
 	return stock;
 }
+
 void Produto::setNome(string &nome)
 {
 	this->nome = nome;
 }
+
 void Produto::setTamanho(string &tamanho)
 {
 	this->tamanho = tamanho;
 }
+
 void Produto::setStock(unsigned int &stock)
 {
 	this->stock = stock;
@@ -177,6 +183,7 @@ void Loja::ler_FichLoja(string &fichLoja)
 	in.close();
 
 }
+
 void Loja::escrever_FichLoja(string &fichLoja)
 {
 	BSTItrIn<Produto> it(produtos);
