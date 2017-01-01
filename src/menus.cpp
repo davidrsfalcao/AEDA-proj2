@@ -1017,7 +1017,135 @@ void menu_utente(Piscina &p1, Utente* ute)
 
 // 6.5.2.2 Repor prods existentes
 
+void repor_prods(Piscina &p1)
+{
+	limparEcra();
+	cabecalho();
+	cout << endl;
 
+	BST<Produto> prods = p1.getLoja().getProdutos();
+	BSTItrIn<Produto> it(prods);
+
+	int y = 5;
+	gotoxy(20, 4);
+	textcolor(CYAN);
+	cout << "Nome";
+	textcolor(WHITE);
+
+	gotoxy(40, 4);
+	textcolor(CYAN);
+	cout << "Tamanho";
+	textcolor(WHITE);
+
+	gotoxy(56, 4);
+	textcolor(CYAN);
+	cout << "Quantidade";
+	textcolor(WHITE);
+
+
+	while (!it.isAtEnd())
+	{
+		gotoxy(18, y);
+		cout << it.retrieve().getNome();
+		gotoxy(43, y);
+		cout << it.retrieve().getTamanho();
+		gotoxy(60, y);
+
+		int i = it.retrieve().getStock();
+		if (i > 10)
+		{
+			textcolor(LIGHT_GREEN);
+			cout << i;
+			textcolor(WHITE);
+		}
+		else if (i > 5)
+		{
+			textcolor(YELLOW);
+			cout << i;
+			textcolor(WHITE);
+		}
+		else {
+			textcolor(LIGHT_RED);
+			cout << i;
+			textcolor(WHITE);
+		}
+
+		y++;
+
+		it.advance();
+	}
+
+	Loja temp;
+	string produto;
+	Produto prod;
+
+	while (1)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << endl << endl << "\t\tProduto: ";
+		textcolor(WHITE);
+		getline(cin, produto);
+
+		bool existe = false;
+
+		while (!it.isAtEnd())
+		{
+			if (it.retrieve().getNome() == produto)
+			{
+				existe = true;
+				prod = it.retrieve();
+				break;
+			}
+		}
+
+		if (!existe)
+		{
+			textcolor(RED);
+			cout << "\t\t* produto nao encontrado ";
+			textcolor(WHITE);
+
+		}
+		else break;
+
+
+		
+
+	}
+
+	bool stock_aceite = false;
+	unsigned int stock_produto;
+
+	while (!stock_aceite)
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Quantidade: ";
+		textcolor(WHITE);
+		cin >> stock_produto;
+
+		if (cin.fail())
+		{
+			textcolor(RED);
+			cout << "\t\t* stock invalido" << endl;
+			textcolor(WHITE);
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
+		else stock_aceite = true;
+
+	}
+
+	unsigned int stock = prod.getStock() + stock_produto;
+
+	prod.setStock(stock);
+
+	temp.repor_stock(prod);
+
+	p1.setLoja(temp);
+
+
+
+
+}
 
 
 // 6.5.2.1 Adicionar produto
@@ -1125,7 +1253,7 @@ void loja_add_produto(Piscina &p1)
 	while (!stock_aceite)
 	{
 		textcolor(LIGHT_GRAY);
-		cout << "\n\t\t Lotacao: ";
+		cout << "\n\t\t Stock: ";
 		textcolor(WHITE);
 		cin >> stock_produto;
 
@@ -1997,10 +2125,8 @@ void mostra_clientes_inativos(Piscina &p1)
 		cout << "\t\t Ultima aula: ";
 		textcolor(WHITE);
 		Data ultima_aula = (*it).getLast_class();
+		cout << ultima_aula.getDia() << "/" << ultima_aula.getMes() << "/" << ultima_aula.getAno() << endl << endl;
 
-
-
-	
 	}
 
 }
@@ -2144,6 +2270,7 @@ void menu_gerir_utentes(Piscina &p1)
 				break;
 
 			case 4:
+				mostra_clientes_inativos(p1);
 				imprimir = true;
 				break;
 
