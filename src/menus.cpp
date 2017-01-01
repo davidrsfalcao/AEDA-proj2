@@ -937,6 +937,60 @@ void detalhes_cliente(Utente &ute)
 
 	cout << endl << endl;
 
+	string opcao;
+
+	do {
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Deseja atualizar morada? ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+
+	} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
+
+
+	string morada;
+	if ((opcao == "sim") || (opcao == "s")) /// se nao deseja guardar
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Nova morada: ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+		ute.setMorada(morada);
+
+	}
+
+	do {
+		textcolor(LIGHT_GRAY);
+		cout << "\n\t\t Deseja atualizar telemovel? ";
+		textcolor(WHITE);
+		getline(cin, opcao);
+
+	} while ((opcao != "nao") && (opcao != "n") && (opcao != "sim") && (opcao != "s"));
+
+	unsigned int tele;
+
+	if ((opcao == "sim") || (opcao == "s")) /// se nao deseja guardar
+	{
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Nova telemovel: ";
+		textcolor(WHITE);
+
+		while (cin.fail())
+		{
+			textcolor(RED);
+			cerr << "\t\t* numero invalido" << endl << endl;
+			cin.ignore(256, '\n');
+			cin.clear();
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tTelemovel: ";
+			textcolor(WHITE);
+			cin >> tele;
+		}
+		ute.setTelemovel(tele);
+
+	}
+
+
 	textcolor(CYAN);
 	cout << "\t\t Prima 'ENTER' para voltar";
 	textcolor(WHITE);
