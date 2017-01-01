@@ -666,6 +666,135 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 }
 
 
+// 7.1.2 Aulas frequentadas
+void aulas_frequentadas(Utente &ute)
+{
+
+	int opcao = 1;
+	int tecla = 0;
+	int imax = ute.getaulas().size();
+	int opcaomax = ((imax - 1) / 3) + 1;
+	size_t i;
+
+	while (1)
+	{
+		limparEcra();
+		cabecalho();
+		cout << endl << endl;
+
+		for (i = (opcao - 1) * 3; ((i < opcao * 3) && (i < imax)); i++)
+		{
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tId aula: ";
+			textcolor(WHITE);
+
+			cout << ute.getaulas()[i]->getId() << endl;
+
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tData: ";
+			textcolor(WHITE);
+
+			cout << ute.getaulas()[i]->getInicio().getDiaSemana() << ", ";
+
+			cout << ute.getaulas()[i]->getInicio().getDia() << " de ";
+			cout << mostrar_mes(ute.getaulas()[i]->getInicio().getMes()) << " de ";
+			cout << ute.getaulas()[i]->getInicio().getAno() << endl;
+
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tHora: ";
+			textcolor(WHITE);
+
+			if (ute.getaulas()[i]->getInicio().getHoras() < 10)
+				cout << "0" << ute.getaulas()[i]->getInicio().getHoras();
+			else
+				cout << ute.getaulas()[i]->getInicio().getHoras();
+
+			cout << ":";
+			if (ute.getaulas()[i]->getInicio().getMinutos() < 10)
+				cout << "0" << ute.getaulas()[i]->getInicio().getMinutos();
+			else
+				cout << ute.getaulas()[i]->getInicio().getMinutos();
+
+
+			cout << " - ";
+
+			if (ute.getaulas()[i]->getFim().getHoras() < 10)
+				cout << "0" << ute.getaulas()[i]->getFim().getHoras();
+			else
+				cout << ute.getaulas()[i]->getFim().getHoras();
+
+			cout << ":";
+			if (ute.getaulas()[i]->getFim().getMinutos() < 10)
+				cout << "0" << ute.getaulas()[i]->getFim().getMinutos() << endl;
+			else
+				cout << ute.getaulas()[i]->getFim().getMinutos() << endl;
+
+			textcolor(LIGHT_GRAY);
+			cout << "\t\tTipo: ";
+			textcolor(WHITE);
+
+			if (ute.getaulas()[i]->pro())
+			{
+				int modo = ute.getaulas()[i]->getInfo();
+
+				switch (modo)
+				{
+				case 0:
+					cout << "Polo";
+					break;
+
+				case 1:
+					cout << "Sincronizada";
+					break;
+
+				case 2:
+					cout << "Mergulho";
+					break;
+
+				case 3:
+					cout << "Hidroginastica";
+					break;
+
+				case 4:
+					cout << "Competicao";
+					break;
+
+				}
+
+			}
+
+			cout << endl << endl;
+			textcolor(WHITE);
+
+		}
+
+		cout << "\t\t\t\t";
+
+		gotoxy(37, 20);
+		textcolor(YELLOW);
+		cout << "<<";
+		textcolor(WHITE);
+
+
+		cout << " Pagina " << opcao;
+
+		textcolor(YELLOW);
+		cout << " >>";
+		textcolor(WHITE);
+
+		textcolor(CYAN);
+		cout << "\n\n\n Prima 'ENTER' para sair \n";
+		textcolor(WHITE);
+
+		tecla = opcao_valida_listas(opcao, 1, opcaomax);
+		if (tecla == ENTER)
+			break;
+	}
+
+
+}
+
+
 // 7.1.1 Detalhes cliente
 void detalhes_cliente(Utente &ute)
 {
@@ -749,7 +878,8 @@ void menu_registros(Piscina &p1, Utente &ute)
 
 			cout << endl << endl;
 			cout << "\t\t\t\t    Informacoes pessoais" << endl;
-			cout << "\t\t\t\t    Aulas frequentadas" << endl;
+			cout << "\t\t\t\t    Aulas por pagar" << endl;
+			cout << "\t\t\t\t    Pagar mensalidade" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
 			cout << endl << endl << endl << endl;
 			cout << endl << endl;
@@ -773,15 +903,21 @@ void menu_registros(Piscina &p1, Utente &ute)
 				break;
 
 			case 2:
+				aulas_frequentadas(ute);
 				imprimir = true;
 				break;
 
 			case 3:
+				p1.paga_mensalidade(&ute);
+				imprimir = true;
+				break;
+
+			case 4:
 				break;
 
 			}
 
-	} while ((opcao != 3) || (tecla != ENTER));
+	} while ((opcao != 4) || (tecla != ENTER));
 
 	cout << endl << endl;
 
