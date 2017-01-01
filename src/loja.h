@@ -31,7 +31,7 @@ class Loja {
 public:
 	Loja() :produtos(Produto()) {};
 	BST<Produto> getProdutos();
-	void vende(Produto &prod);
+	int vende(Produto &prod);
 	void repor_stock(Produto &prod);
 	void ler_FichLoja(string &fichLoja);
 	void escrever_FichLoja(string &fichLoja);

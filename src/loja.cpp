@@ -9,7 +9,7 @@ BST<Produto> Loja::getProdutos()
 	return produtos;
 }
 
-void Loja::vende(Produto &prod)
+int Loja::vende(Produto &prod)
 {
 	BSTItrIn<Produto> it(produtos);
 	bool existe = false;
@@ -24,6 +24,7 @@ void Loja::vende(Produto &prod)
 				cout << "\t\tNao ha itens suficientes em stock para concluir a sua compra" << endl;
 				textcolor(WHITE);
 				existe = true;
+				return 0;
 			}
 			else
 			{
@@ -35,6 +36,7 @@ void Loja::vende(Produto &prod)
 				produtos.remove(it.retrieve());
 				produtos.insert(px);
 				existe = true;
+				return 0;
 
 			}
 
@@ -50,6 +52,7 @@ void Loja::vende(Produto &prod)
 		textcolor(RED);
 		cout << "\t\tO produto nao existe" << endl;
 		textcolor(WHITE);
+		return 1;
 
 	}
 
