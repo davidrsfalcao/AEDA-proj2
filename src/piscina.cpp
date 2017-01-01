@@ -1023,15 +1023,23 @@ void Piscina::paga_mensalidade(Utente * u1)
 	bool existe2 = false;
 	int mes;
 
+	limparEcra();
+	cabecalho();
+	cout << endl << endl;
 
 	do {
-
-		cout << "Mes a pagar: ";
+		textcolor(LIGHT_GRAY);
+		cout << "\t\t Mes a pagar: ";
+		textcolor(WHITE);
 		cin >> mes;
 		if (mes <= 12 && mes >= 1)
 			existe2 = true;
 		if (!existe2)
-			cout << "Mes invalido" << endl;
+		{
+			textcolor(RED);
+			cout << "\t\t* mes invalido" << endl;
+			textcolor(WHITE);
+		}
 
 	} while (!existe2);
 
@@ -1042,16 +1050,19 @@ void Piscina::paga_mensalidade(Utente * u1)
 		{
 			utentes[i]->getAulasMes(mes);
 			price = utentes[i]->totalPriceMes(mes);
-			cout << endl << "Total a pagar: " << price << " euros" << endl;
+			textcolor(LIGHT_GRAY);
+			cout << endl << "Total a pagar: ";
+			textcolor(WHITE);
+			cout << price << " euros" << endl;
 			utentes[i]->limpaAulaMes(mes);
 
 		}
 
 	}
 
-	cin.ignore();
-	cout << endl << "prima uma tecla para voltar para o menu anterior" << endl;
-	getchar();
+	textcolor(CYAN);
+	cout << endl << endl << "\t\tPrima 'ENTER' para voltar" << endl;
+	textcolor(WHITE);
 
 
 }
