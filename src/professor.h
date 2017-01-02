@@ -64,6 +64,11 @@ void operator = (const Professor &prof);
  * @param p1 Professor que vai ser mostrado
  */
 friend ostream & operator <<(ostream &of, const Professor &p1);
+/**
+*	@brief define as aulas do professor
+*	@param aula aulas que vao ser definidas
+*/
+void setAulas(const vector<Aula *> &aula) { this->aulas = aula; };
 
 };
 

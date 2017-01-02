@@ -102,8 +102,6 @@ public:
 	* @param utente Utente que se pretende adicionar
 	*/
 	void addUtente(Utente * utente);
-
-	bool addAula(Aula * aula); //nao defenido
 	 /**
 	 * @brief Adicona um Professor ao vetor de professores da piscina
 	 * @param professor Professor que se pretende adicionar
@@ -214,6 +212,7 @@ public:
 	* @brief Grava as informacoes no ficheiro da piscina
 	*
 	* @param fichPiscina nome do ficheiro onde se pretende guardar
+	* @param piscinas vector com as varias piscinas 
 	*/
 	void escrever_FichPiscina(string &fichPiscina);
 	/**
@@ -264,9 +263,7 @@ public:
 	*
 	*	@param vetor de aulas a ordenar
 	*/
-
 	void ordena_por_data();
-
 	/**
 	* @brief verfica se a aula a1 se sobrepõe a alguma outra
 	*
