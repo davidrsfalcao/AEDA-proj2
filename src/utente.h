@@ -43,13 +43,6 @@ public:
 	*/
 	unsigned int getId() const;
 	/**
-	* @brief para mostrar um utente
-	*
-	* @param of ostream para mostrar o utente
-	* @param Utente Utente para mostrar
-	*/
-	friend ostream & operator <<(std::ostream &of, const Utente &u1);
-	/**
 	* @return retorna o numero total de aulas em que o utente participou
 	*/
 	unsigned int getTotalAulas();
@@ -119,25 +112,49 @@ public:
 	* @param mes Mes do qual se pretende mostrar as aulas
 	*/
 	void getAulasMes(int &mes);
-
+	/**
+	* @brief para mostrar informacao
+	*
+	* @param of ostream para mostrar a informacao
+	* @ return a ostream que mostra a informacao
+	*/
 	ostream & operator <<(ostream &of);
-
-	void incEntradas();
-
+	/**
+	*	@brief limpas as aulas de um mes
+	*	@param mes mes que via ser limpo
+	*/
 	void limpaAulaMes(int &mes);
-
+	/**
+	*	@brief apaga uma aula
+	*	@param	aula que vai ser apagada
+	*/
 	void ApagaAula(Aula * aula);
-
+	/**
+	*	@return retorna o telemovel do utente
+	*/
 	unsigned int getTelemovel() const{ return telemovel; };
-
+	/**
+	*	@return retorna a morada do utente
+	*/
 	string getMorada()const { return morada; };
-
+	/**
+	*	@brief define o telemovel do utente
+	*   @param nr_t numero de telemovel que vai ser definido
+	*/
 	void setTelemovel(unsigned int nr_t) { this->telemovel = nr_t; };
-
+	/**
+	*	@brief define a morada do utente
+	*   @param morada morada que vai ser definida 
+	*/
 	void setMorada(string morada) { this->morada = morada; };
-
+	/**
+	*	@brief define a data da ultima aula do utente
+	*   @param a1 data que vai ser definida 
+	*/
 	void setLast_class(const Data &a1) { this->last_class = a1; };
-
+	/**
+	*	@return retorna a data da ultima aula do cliente
+	*/
 	Data getLast_class() const { return last_class; };
 
 
@@ -153,7 +170,13 @@ class Funcionario
 
 
 public:
+	/**
+	*	@return retorna o id do funcionario
+	*/
 	unsigned int getId() { return id; }
+	/**
+	*	@return retorna a password do funcionario
+	*/
 	string getPassword() { return password; }
 
 
