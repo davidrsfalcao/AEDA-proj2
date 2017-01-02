@@ -187,19 +187,26 @@ void atualizar_utentes_piscina(Piscina &p1)
 
 void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 	vector<Piscina > temp = piscinas;
-	float distmin = 100000000;
-	float dist = 0;
+	double distx = 0, disty = 0, dist = 0;
+	
 	unsigned int id = 0;
 	unsigned int c = 0;
 	for (size_t i = 0; i < temp.size(); i++) {
-
-
-		for (size_t j = 0; j < temp.size(); i++) {
-			dist = sqrt(pow(piscina_criada.getX() - temp[j].getX(), 2) + pow(piscina_criada.getY() - temp[j].getY(), 2));
+		double distmin = 100000;
+		for (size_t j = 0; j < temp.size(); j++) {
+			distx = 0;
+			disty = 0;
+			dist = 0;
+			distx = (int)piscina_criada.getX() - (int)temp[j].getX();
+			disty = (int)piscina_criada.getY() - (int)temp[j].getY();
+			distx = distx*distx;
+			disty = disty*disty;
+			dist = sqrt(distx + disty);
 			if (dist < distmin) {
-				dist = distmin;
+				distmin=dist;
 				id = j;
 			}
+			
 		}
 		piscinas[id].setProximidade(c++);
 		temp.erase(temp.begin() + id);
@@ -214,7 +221,7 @@ vector<Piscina> carregar_piscinas() {
 	ifstream in;
 	unsigned int n = 0,x, y,j;
 	string line;
-	in.open("piscinas");
+	in.open("piscinas.txt");
 	getline(in, line);
 	n = stoi(line);
 	line = "";
@@ -235,7 +242,7 @@ vector<Piscina> carregar_piscinas() {
 		getline(in, line);
 		j = stoi(line);
 		line = "";
-		for (size_t k = 0; k < j; j++) {
+		for (size_t k = 0; k < j; k++) {
 			getline(in, line);
 			modalidades.push_back(line);
 		}
@@ -3221,6 +3228,9 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	nova.ler_FichLoja(fichLoja);
 
 	p1.setLoja(nova);
+	vector<Piscina>piscinas = carregar_piscinas();
+	set_prioridades(piscinas, p1);
+	p1.setPiscinas_prox(piscinas);
 	////////////////////////////////////////////////////////////////////////////
 
 	int opcao = 1, opcao_b = 1, tecla;
@@ -3499,9 +3509,8 @@ string testar_fich_piscina()
 // 4 CARREGAR PISCINA
 void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores) /// importar conteudo dos ficheiros
 {
-	vector<Piscina>piscinas = carregar_piscinas();
+
 	Piscina p1;
-	set_prioridades(piscinas,p1);
 	//p1.ler_FichPiscina(fichPiscina,piscinas);
 	p1.ler_FichAulas(fichAulas);
 	p1.ler_FichProfessores(fichProfessores);
