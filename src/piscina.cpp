@@ -1262,7 +1262,6 @@ void Piscina::setPiscinas_prox(const vector<Piscina> & piscinas) {
 	
 }
 
-
 Piscina Piscina::getMaisperto(string modalidade) {
 	Piscina p;
 	priority_queue<Piscina> temp = piscinas_prox;
@@ -1279,7 +1278,6 @@ Piscina Piscina::getMaisperto(string modalidade) {
 	}
 	return p;
 }
-
 
 void Piscina::imprime_piscinas_prox() {
 	priority_queue<Piscina> temp = piscinas_prox;
@@ -1309,4 +1307,10 @@ void Piscina::imprime_piscinas_prox() {
 		temp.pop();
 		y++;
 	}
+}
+
+void Piscina::setUtentesNaPiscina(vector<Utente *> utes)
+{
+	utentesNaPisicina = utes;
+
 }
