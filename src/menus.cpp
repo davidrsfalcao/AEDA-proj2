@@ -1219,6 +1219,8 @@ void repor_prods(Piscina &p1)
 	Loja temp;
 	string produto;
 	Produto prod;
+	BST<Produto> prods1 = p1.getLoja().getProdutos();
+	BSTItrIn<Produto> it1(prods);
 
 	while (1)
 	{
@@ -1229,14 +1231,15 @@ void repor_prods(Piscina &p1)
 
 		bool existe = false;
 
-		while (!it.isAtEnd())
+		while (!it1.isAtEnd())
 		{
-			if (it.retrieve().getNome() == produto)
+			if (it1.retrieve().getNome() == produto)
 			{
 				existe = true;
-				prod = it.retrieve();
+				prod = it1.retrieve();
 				break;
 			}
+			it1.advance();
 		}
 
 		if (!existe)
@@ -1313,7 +1316,9 @@ void loja_add_produto(Piscina &p1)
 			textcolor(WHITE);
 		}
 		else {
-			BSTItrIn<Produto> it(p1.getLoja().getProdutos());
+
+			BST<Produto> prods = p1.getLoja().getProdutos();
+			BSTItrIn<Produto> it(prods);
 
 			bool existe = false;
 
@@ -1324,6 +1329,7 @@ void loja_add_produto(Piscina &p1)
 					existe = true;
 					break;
 				}
+				it.advance();
 			}
 
 			if (existe)
@@ -1394,7 +1400,7 @@ void loja_add_produto(Piscina &p1)
 	while (!stock_aceite)
 	{
 		textcolor(LIGHT_GRAY);
-		cout << "\n\t\t Stock: ";
+		cout << "\n\t\tStock: ";
 		textcolor(WHITE);
 		cin >> stock_produto;
 
@@ -1422,6 +1428,8 @@ void loja_add_produto(Piscina &p1)
 
 	cout << "\n\n\t\tProduto adicionado com sucesso. 'ENTER' para continuar" << endl;
 	cin.ignore(256, '\n');
+	cin.ignore(256, '\n');
+
 
 }
 
@@ -1526,7 +1534,7 @@ void ver_stock(Piscina &p1)
 	cout << "Tamanho";
 	textcolor(WHITE);
 
-	gotoxy(56, 4);
+	gotoxy(55, 4);
 	textcolor(CYAN);
 	cout << "   Stock  ";
 	textcolor(WHITE);
@@ -3454,7 +3462,7 @@ void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAu
 	vector<Piscina>piscinas = carregar_piscinas();
 	Piscina p1;
 	set_prioridades(piscinas,p1);
-	p1.ler_FichPiscina(fichPiscina,piscinas);
+	//p1.ler_FichPiscina(fichPiscina,piscinas);
 	p1.ler_FichAulas(fichAulas);
 	p1.ler_FichProfessores(fichProfessores);
 	p1.ler_FichUtente(fichUtentes);
