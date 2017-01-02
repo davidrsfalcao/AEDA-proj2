@@ -1759,7 +1759,7 @@ void listar_professores(Piscina &p1)
 		cout << "\n\n\n Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
-		tecla = opcao_valida_listas(opcao, 1, opcaomax);
+		tecla = opcao_valida(opcao, 1, imax);
 		if (tecla == ENTER)
 			break;
 	}
@@ -2200,7 +2200,9 @@ void listar_aulas(Piscina &p1)
 		cout << "\n\n\n\t\t Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
-		cin.ignore(256, '\n');
+		tecla = opcao_valida(opcao, 1, imax);
+		if (tecla == ENTER)
+			break;
 	}
 }
 
@@ -2396,7 +2398,9 @@ void listar_utentes(Piscina &p1)
 		cout << "\n\n\n\t\t Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
-		cin.ignore(256, '\n');
+		tecla = opcao_valida(opcao, 1, imax);
+		if (tecla == ENTER)
+			break;
 	}
 }
 
