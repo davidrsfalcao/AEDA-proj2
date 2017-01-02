@@ -1207,7 +1207,7 @@ unsigned int Piscina::coloca_inativos() {
 
 	unsigned int contador = 0;
 	for (size_t i = 0; i <  utentesNaPisicina.size(); i++) {
-		if (utentesNaPisicina[i]->getEntradas()==0 ||utentesNaPisicina[i]->getLast_class().days_passed() > 30) {
+		if ((utentesNaPisicina[i]->getEntradas()==0) || (utentes[i]->getLast_class().days_passed() > 30)) {
 			utentes_inativos.insert((*utentesNaPisicina[i]));
 			contador++;
 		}
