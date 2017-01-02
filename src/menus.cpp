@@ -2327,6 +2327,14 @@ void mostra_clientes_inativos(Piscina &p1)
 
 	}
 
+	textcolor(CYAN);
+	cout << "\n\n\n Prima 'ENTER' para sair \n";
+	textcolor(WHITE);
+
+	cin.ignore(256, '\n');
+
+	
+
 }
 
 // 6.2.1 Listar utentes
@@ -2387,9 +2395,7 @@ void listar_utentes(Piscina &p1)
 		cout << "\n\n\n Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
-		tecla = opcao_valida_listas(opcao, 1, opcaomax);
-		if (tecla == ENTER)
-			break;
+		cin.ignore(256, '\n');
 	}
 }
 
