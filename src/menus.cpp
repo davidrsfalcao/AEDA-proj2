@@ -760,6 +760,7 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 						cout << "\n\t\tUtente inscrito com sucesso. 'ENTER' para continuar" << endl;
 						textcolor(WHITE);
 						cin.ignore(256, '\n');
+						cin.ignore(256, '\n');
 
 						break;
 
@@ -1001,8 +1002,9 @@ void detalhes_cliente(Utente &ute)
 	if ((opcao == "sim") || (opcao == "s")) /// se nao deseja guardar
 	{
 		textcolor(LIGHT_GRAY);
-		cout << "\t\t Nova telemovel: ";
+		cout << "\t\t Novo telemovel: ";
 		textcolor(WHITE);
+		cin >> tele;
 
 		while (cin.fail())
 		{
@@ -3292,7 +3294,6 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 				p1.escrever_FichPiscina(fichPiscina);
 				p1.escrever_FichProfessores(fichProfessores);
 				p1.escrever_FichUtente(fichUtentes);
-				return;
 				break;
 
 			}
