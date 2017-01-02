@@ -340,6 +340,7 @@ void comprar(Piscina &p1)
 	textcolor(WHITE);
 	cin.ignore(256, '\n');
 
+	p1.setLoja(temp);
 
 }
 
@@ -793,6 +794,7 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 		cout << "\t\t Prima 'ENTER' para sair" << endl << endl;
 		textcolor(WHITE);
 
+		cin.ignore(256, '\n');
 		cin.ignore(256, '\n');
 	}
 
@@ -1263,8 +1265,8 @@ void repor_prods(Piscina &p1)
 		it.advance();
 	}
 
-	Loja temp;
-	string produto;
+	Loja temp = p1.getLoja();
+	string produto, tamanho;
 	Produto prod;
 	BST<Produto> prods1 = p1.getLoja().getProdutos();
 	BSTItrIn<Produto> it1(prods);
@@ -1275,12 +1277,16 @@ void repor_prods(Piscina &p1)
 		cout << endl << endl << "\t\tProduto: ";
 		textcolor(WHITE);
 		getline(cin, produto);
+		textcolor(LIGHT_GRAY);
+		cout << endl << "\t\tTamanho: ";
+		textcolor(WHITE);
+		getline(cin, tamanho);
 
 		bool existe = false;
 
 		while (!it1.isAtEnd())
 		{
-			if (it1.retrieve().getNome() == produto)
+			if ((it1.retrieve().getNome() == produto) && (it1.retrieve().getTamanho() == tamanho))
 			{
 				existe = true;
 				prod = it1.retrieve();
@@ -1309,7 +1315,7 @@ void repor_prods(Piscina &p1)
 	while (!stock_aceite)
 	{
 		textcolor(LIGHT_GRAY);
-		cout << "\n\t\t Quantidade: ";
+		cout << "\n\t\tQuantidade: ";
 		textcolor(WHITE);
 		cin >> stock_produto;
 
@@ -1325,9 +1331,8 @@ void repor_prods(Piscina &p1)
 
 	}
 
-	unsigned int stock = prod.getStock() + stock_produto;
 
-	prod.setStock(stock);
+	prod.setStock(stock_produto);
 
 	temp.repor_stock(prod);
 

@@ -141,6 +141,7 @@ void Loja::repor_stock(Produto &prod)
 			produtos.remove(it.retrieve());
 			produtos.insert(px);
 			existe = true;
+			break;
 		
 		}
 		it.advance();
