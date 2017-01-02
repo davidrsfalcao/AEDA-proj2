@@ -126,6 +126,7 @@ void Utente::adicionaAula(Aula *aula)
 {
 	aulas.push_back(aula);
 	entradas++;
+	last_class = aula->getInicio();
 }
 
 void Utente::getAulasMes(int &mes)

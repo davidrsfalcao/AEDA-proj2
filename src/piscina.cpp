@@ -625,6 +625,7 @@ int Piscina::adicionar_utente() {
 	u1->setId(id);
 	addUtente(u1);
 	ordena_utentes();
+	coloca_inativos();
 	return 0;
 }
 
