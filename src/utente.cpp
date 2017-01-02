@@ -131,7 +131,7 @@ void Utente::adicionaAula(Aula *aula)
 void Utente::getAulasMes(int &mes)
 {
 	bool existe = false;
-	cout << "Aulas Frequentadas pelo Utente: " << endl;
+	cout << "\t\tAulas Frequentadas pelo Utente: " << endl;
 	for (size_t n = 0; n<aulas.size(); n++)
 	{
 		if (aulas[n]->getInicio().getMes() == mes)
@@ -139,16 +139,16 @@ void Utente::getAulasMes(int &mes)
 			existe = true;
 			if (aulas[n]->pro())
 			{
-				cout << aulas[n]->getInicio() << "- Treino" << endl;
+				cout << "\t\t" <<aulas[n]->getInicio() << "- Treino" << endl;
 			}
 			if (!(aulas[n]->pro()))
-				cout << aulas[n]->getInicio() << "- Aula Livre" << endl;
+				cout << "\t\t" <<aulas[n]->getInicio() << "- Aula Livre" << endl;
 
 		}
 	}
 
 	if (!existe)
-		cout << "Nao ha aulas a pagar neste mes" << endl;
+		cout << "\t\tNao ha aulas a pagar neste mes" << endl;
 }
 
 void Utente::limpaAulaMes(int &mes)
@@ -160,7 +160,6 @@ void Utente::limpaAulaMes(int &mes)
 		{
 			i = aulas.erase(i);
 			i--;
-
 		}
 	}
 

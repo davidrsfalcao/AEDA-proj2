@@ -1119,7 +1119,7 @@ void Piscina::paga_mensalidade(Utente * u1)
 			utentes[i]->getAulasMes(mes);
 			price = utentes[i]->totalPriceMes(mes);
 			textcolor(LIGHT_GRAY);
-			cout << endl << "Total a pagar: ";
+			cout << endl << "\t\tTotal a pagar: ";
 			textcolor(WHITE);
 			cout << price << " euros" << endl;
 			utentes[i]->limpaAulaMes(mes);
