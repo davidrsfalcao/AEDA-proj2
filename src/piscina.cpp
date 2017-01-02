@@ -1303,7 +1303,7 @@ void Piscina::imprime_piscinas_prox() {
 		gotoxy(18, y);
 		cout << temp.top().getNome();
 		gotoxy(62, y);
-		cout << sqrt(pow(x - temp.top().getX(), 2) + pow(y - temp.top().getY(), 2)) << endl;
+		cout << sqrt(pow((int)x - (int)temp.top().getX(), 2) + pow((int)y - (int)temp.top().getY(), 2)) << endl;
 		temp.pop();
 		y++;
 	}
