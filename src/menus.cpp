@@ -2197,7 +2197,7 @@ void listar_aulas(Piscina &p1)
 		textcolor(WHITE);
 
 		textcolor(CYAN);
-		cout << "\n\n\n Prima 'ENTER' para sair \n";
+		cout << "\n\n\n\t\t Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
 		cin.ignore(256, '\n');
@@ -2325,10 +2325,11 @@ void mostra_clientes_inativos(Piscina &p1)
 		Data ultima_aula = (*it).getLast_class();
 		cout << ultima_aula.getDia() << "/" << ultima_aula.getMes() << "/" << ultima_aula.getAno() << endl << endl;
 
+		it++;
 	}
 
 	textcolor(CYAN);
-	cout << "\n\n\n Prima 'ENTER' para sair \n";
+	cout << "\n\n\n\t\t Prima 'ENTER' para sair \n";
 	textcolor(WHITE);
 
 	cin.ignore(256, '\n');
@@ -2392,7 +2393,7 @@ void listar_utentes(Piscina &p1)
 		textcolor(WHITE);
 
 		textcolor(CYAN);
-		cout << "\n\n\n Prima 'ENTER' para sair \n";
+		cout << "\n\n\n\t\t Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
 		cin.ignore(256, '\n');
@@ -2476,6 +2477,10 @@ void menu_gerir_utentes(Piscina &p1)
 
 			case 4:
 				mostra_clientes_inativos(p1);
+				gotoxy(0, 20);
+				textcolor(CYAN);
+				cout << "\t\t As informaces dos utentes inativos iram ser atualizadas" << endl;
+				textcolor(WHITE);
 				imprimir = true;
 				break;
 
