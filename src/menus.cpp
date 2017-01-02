@@ -162,24 +162,27 @@ void atualizar_utentes_piscina(Piscina &p1)
 	atual.setMinutos(minutos);
 	atual.setDiaSemana(dia_S);
 
-
-
-	unsigned int id;
-
-	vector<Utente *> utes;
+	while (p1.getutentes_piscina().size() != 0)
+	{
+		p1.remove_utente_napiscina(p1.getutentes_piscina()[0]);
+	}
 
 	for (size_t i{}; i < p1.getHorario().size(); i++) {
-		if ((p1.getHorario()[i]->getInicio() < atual)&& (atual < p1.getHorario()[i]->getFim())) 
-		{
-			for (int k = 0; k < p1.getHorario()[i]->getUtentes().size(); k++)
+		if ((p1.getHorario()[i]->getInicio() < atual) && (atual < p1.getHorario()[i]->getFim())) {
+			for (size_t in = 0; in < p1.getHorario()[i]->getUtentes().size(); in++)
 			{
-				utes.push_back(p1.getHorario()[i]->getUtentes()[k]);
+				temp.push_back(p1.getHorario()[i]->getUtentes()[in]);
 			}
+
 		}
+	}
+
+	for (size_t i = 0; i < temp.size(); i++)
+	{
+		p1.add_utente_napiscina(temp[i]);
 
 	}
 
-	p1.setUtentesNaPiscina(utes);
 }
 
 
@@ -759,7 +762,6 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 						textcolor(CYAN);
 						cout << "\n\t\tUtente inscrito com sucesso. 'ENTER' para continuar" << endl;
 						textcolor(WHITE);
-						cin.ignore(256, '\n');
 
 						break;
 
@@ -2331,9 +2333,9 @@ void mostra_clientes_inativos(Piscina &p1)
 
 	cin.ignore(256, '\n');
 
+	
 
 }
-
 
 // 6.2.1 Listar utentes
 void listar_utentes(Piscina &p1)
