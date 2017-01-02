@@ -120,7 +120,7 @@ unsigned int encontra_string_vetor(std::string palavra,
  *
  * @return Retorna o vetor ja ordenado
  */
-vector<string> ordena_dias_semana(vector<string> v1);
+std::vector<std::string> ordena_dias_semana(std::vector<std::string> v1);
 
 /**
 * @brief Lê o input do utilizador e vê se a entrada é a up_key, down_key ou ENTER e ajusta a opcao
