@@ -182,7 +182,6 @@ void atualizar_utentes_piscina(Piscina &p1)
 	p1.setUtentesNaPiscina(utes);
 }
 
-
 void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 	vector<Piscina > temp = piscinas;
 	double distx = 0, disty = 0, dist = 0;
@@ -212,7 +211,6 @@ void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 	}
 
 }
-
 
 vector<Piscina> carregar_piscinas() {
 	vector<Piscina> v;
@@ -330,11 +328,17 @@ void comprar(Piscina &p1)
 
 		avancar = temp.vende(prod);
 
+		if (avancar == 1)
+		{
+			cin.ignore(256, '\n');
+		}
+
 	}
 
 	textcolor(CYAN);
 	cout << "\t\tPrima 'ENTER' para voltar" << endl;
 	textcolor(WHITE);
+	cin.ignore(256, '\n');
 	cin.ignore(256, '\n');
 
 	p1.setLoja(temp);
@@ -1193,6 +1197,19 @@ void menu_utente(Piscina &p1, Utente* ute)
 				break;
 
 			case 4:
+			{
+				for (int i = 0; i < p1.getUtentes().size(); i++)
+				{
+					if (p1.getUtentes()[i]->getId() == ute->getId())
+					{
+						p1.apaga_Utente(p1.getUtentes()[i]->getNome());
+						p1.addUtente(ute);
+						break;
+					}
+
+				}
+
+			}
 				break;
 
 			}
