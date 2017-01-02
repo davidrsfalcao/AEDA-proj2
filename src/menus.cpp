@@ -748,8 +748,10 @@ void inscrever_aula(Piscina &p1, Utente * ute)
 		cout << "\t\t Prima 'ENTER' para sair" << endl << endl;
 		textcolor(WHITE);
 
+		cin.ignore(256, '\n');
 	}
 
+	return;
 }
 
 
@@ -1285,9 +1287,6 @@ void repor_prods(Piscina &p1)
 	temp.repor_stock(prod);
 
 	p1.setLoja(temp);
-
-
-
 
 }
 
