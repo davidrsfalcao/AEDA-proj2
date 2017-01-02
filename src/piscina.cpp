@@ -1206,9 +1206,10 @@ bool Piscina::retira_inativo(const Utente &u1) {
 
 unsigned int Piscina::coloca_inativos() {
 
-	unsigned int contador = 0;
+	unsigned int contador = 0,dias=0;
 	for (size_t i = 0; i <  utentes.size(); i++) {
-		if ((utentes[i]->getEntradas()==0) || (utentes[i]->getLast_class().days_passed() > 30)) {
+		dias = utentes[i]->getLast_class().days_passed();
+		if ((utentes[i]->getEntradas()==0) || (dias > 30)) {
 			utentes_inativos.insert(*(utentes[i]));
 			contador++;
 		}

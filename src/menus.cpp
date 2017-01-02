@@ -3251,16 +3251,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 {
 
 	////////////////////////////////////////////////////////////////////////// <- UTENTES PARA TESTE ---- APAGAR
- 	Utente *novo = new Utente();
-	string a = "David";
-	novo->setNome(a);
-	p1.addUtente(novo);
-	
-	Utente *novo1 = new Utente();
-	string a1 = "Divad";
-	novo1->setNome(a1);
-	p1.addUtente(novo1);
-
+ 	
 	Loja nova;
 	string fichLoja = "loja.txt";
 	nova.ler_FichLoja(fichLoja);
@@ -3275,9 +3266,10 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
 	atualizar_aulas_piscina(p1);
+	p1.coloca_inativos();
 	do
 	{
-		p1.coloca_inativos();
+		
 		if (imprimir)
 		{
 			apagar_aulas_old(p1);
