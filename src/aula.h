@@ -157,9 +157,14 @@ public:
 		*  @return Professor
 		*/
 	Professor getProfessor();
-
+	/**
+	*	@brief poe o id passado como o idloc da aula
+	*	@param id id que vai ser atribuido a aula
+	*/
 	void setIdloc(unsigned int id) { this->idloc = id; };
-
+	/**
+	*	@return retorna um int que identifica a aula
+	*/
 	virtual unsigned int getInfo() { return 0; };
 
 };
@@ -171,7 +176,7 @@ public:
 	*/
 	AulaLivre() :Aula() {};
 	/**
-	* @brief diz se uma aula é livre ou de treino
+	* @brief diz se uma aula e livre ou de treino
 	*
 	* @return True se for Treino,False se Aula Livre
 	*/
@@ -180,7 +185,9 @@ public:
 	* @return o preço a pagar por aula
 	*/
 	float price();
-
+	/**
+	* @return retorna um int que caracteriza o tipo de aula
+	*/
 	unsigned int getInfo() { return 999; }
 };
 
@@ -191,47 +198,79 @@ public:
 	*/
 	AulaPro() :Aula() {};
 	/**
-	* @brief diz se uma aula é livre ou de treino
+	* @brief diz se uma aula e livre ou de treino
 	*
 	* @return True se for Treino,False se Aula Livre
 	*/
 	bool pro();
 	/**
-	* @return o preço a pagar por aula
+	* @return o presso a pagar por aula
 	*/
 	float price();
-
+	/**
+	*  @return retorna um inteiro que caracteriza de que tipo e a aula
+	*/
 	virtual unsigned int getInfo() { return 0; };
 };
 
 
 class Polo :public AulaPro {
 public:
+	/**
+	* @brief Construtor da Aula de treino de Polo
+	*/
 	Polo() :AulaPro() {};
+	/**
+	*  @return retorna um inteiro que caracteriza de que tipo e a aula
+	*/
 	unsigned int getInfo();
 };
 
 class Sincronizada :public AulaPro {
 public:
+	/**
+	* @brief Construtor da Aula de treino de Sincronizada
+	*/
 	Sincronizada() :AulaPro() {};
+	/**
+	*  @return retorna um inteiro que caracteriza de que tipo e a aula
+	*/
 	unsigned int getInfo();
 };
 
 class Mergulho :public AulaPro {
 public:
+	/**
+	* @brief Construtor da Aula de treino de Mergulho
+	*/
 	Mergulho() :AulaPro() {};
+	/**
+	*  @return retorna um inteiro que caracteriza de que tipo e a aula
+	*/
 	unsigned int getInfo();
 };
 
 class Hidroginastica :public AulaPro {
 public:
+	/**
+	* @brief Construtor da Aula de treino de Hidroginastica
+	*/
 	Hidroginastica() :AulaPro() {};
+	/**
+	*  @return retorna um inteiro que caracteriza de que tipo e a aula
+	*/
 	unsigned int getInfo();
 };
 
 class Competicao :public AulaPro {
 public:
+	/**
+	* @brief Construtor da Aula de treino de competicao
+	*/
 	Competicao() :AulaPro() {};
+	/**
+	*  @return retorna um inteiro que caracteriza de que tipo e a aula
+	*/
 	unsigned int getInfo();
 };
 
