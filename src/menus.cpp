@@ -241,25 +241,6 @@ void comprar(Piscina &p1)
 		cout << it.retrieve().getTamanho();
 		gotoxy(60, y);
 
-		int i = it.retrieve().getStock();
-		if (i > 10)
-		{
-			textcolor(LIGHT_GREEN);
-			cout << i;
-			textcolor(WHITE);
-		}
-		else if (i > 5)
-		{
-			textcolor(YELLOW);
-			cout << i;
-			textcolor(WHITE);
-		}
-		else {
-			textcolor(LIGHT_RED);
-			cout << i;
-			textcolor(WHITE);
-		}
-
 		y++;
 
 		it.advance();
@@ -305,13 +286,14 @@ void comprar(Piscina &p1)
 		}
 		prod.setStock(stock);
 
-		avancar == temp.vende(prod);
+		avancar = temp.vende(prod);
 
 	}
 
 	textcolor(CYAN);
 	cout << "\t\tPrima 'ENTER' para voltar" << endl;
 	textcolor(WHITE);
+	cin.ignore(256, '\n');
 
 
 }
@@ -1176,7 +1158,6 @@ void menu_utente(Piscina &p1, Utente* ute)
 
 
 // 6.5.2.2 Repor prods existentes
-
 void repor_prods(Piscina &p1)
 {
 	limparEcra();
