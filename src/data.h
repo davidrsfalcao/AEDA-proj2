@@ -105,11 +105,21 @@ public:
 	 * @param data1  data para ser comparada
 	 */
 	bool operator<(Data data1);
-
+	/**
+	*	@brief subtrai uma data a outra
+	*	@param data1 data para ser subtraida
+	*	@return diferença entre as datas
+	*/
 	int operator-(Data data1);
-
+	/**
+	*	@brief Compara se duas datas sao iguais
+	*   @param data1 data a ser comparada
+	*	@return True se forem iguais,False se diferentes
+	*/
 	bool operator==(Data &data1);
-
+	/**
+	*	@return retorna os dias passados 
+	*/
 	unsigned int days_passed();
 };
 
