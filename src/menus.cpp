@@ -3470,14 +3470,17 @@ string testar_fich_piscina()
 // 4 CARREGAR PISCINA
 void importar_ficheiros(string &fichPiscina, string &fichUtentes, string &fichAulas, string &fichProfessores) /// importar conteudo dos ficheiros
 {
+	vector<Piscina>piscinas = carregar_piscinas();
 	Piscina p1;
-	p1.ler_FichPiscina(fichPiscina);
+	set_prioridades(piscinas,p1);
+	p1.ler_FichPiscina(fichPiscina,piscinas);
 	p1.ler_FichAulas(fichAulas);
 	p1.ler_FichProfessores(fichProfessores);
 	p1.ler_FichUtente(fichUtentes);
 	p1.utentes_aulas();
 	p1.professores_aulas();
 	menu_geral(p1, fichPiscina, fichUtentes, fichAulas, fichProfessores);
+	
 
 	return;
 }
@@ -4879,7 +4882,6 @@ void menu_criar_piscina()
 	bool imprimir = true;
 	string fichPiscina, fichUtentes, fichAulas, fichProfessores;
 	Piscina p1;
-	vector<Piscina>piscinas = carregar_piscinas();
 	int localizacao = 0;
 
 	do
@@ -4960,8 +4962,6 @@ void menu_criar_piscina()
 
 	cout << endl << endl;
 	
-	set_prioridades(piscinas, p1);
-	p1.setPiscinas_prox(piscinas);
 
 }
 

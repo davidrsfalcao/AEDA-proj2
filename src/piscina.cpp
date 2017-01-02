@@ -246,11 +246,11 @@ void Piscina::adicionaAula(Aula *aula)
 
 }
 
-void Piscina::ler_FichPiscina(string &fichPiscina)
+void Piscina::ler_FichPiscina(string &fichPiscina, const vector<Piscina> & piscinas)
 {
 	ifstream in;
 	string titulo, nome, linha, dia, horas;
-	int lotacao, dias;
+	int lotacao, dias, n;
 
 	in.open(fichPiscina);
 	getline(in, titulo);
@@ -262,9 +262,13 @@ void Piscina::ler_FichPiscina(string &fichPiscina)
 	lotacao = stoi(linha);
 	linha = "";
 	getline(in, linha);
+	n = stoi(linha);
+	linha = "";
+	getline(in, linha);
 	dias = stoi(linha);
 	linha = "";
 	NumMaximoUtentes = lotacao;
+
 	for (int i = 0; i<dias; i++)
 	{
 		getline(in, linha, '-');
@@ -278,6 +282,14 @@ void Piscina::ler_FichPiscina(string &fichPiscina)
 		horas = "";
 	}
 
+	linha = "";
+	getline(in,linha);
+	this->x = stoi(linha);
+	linha = "";
+	getline(in, linha);
+	this->y = stoi(linha);
+	setPiscinas_prox(piscinas);
+	coloca_inativos();
 	in.close();
 }
 
@@ -288,10 +300,11 @@ void Piscina::escrever_FichPiscina(string &fichPiscina)
 	ofile << nomePiscina << endl;
 	ofile << NumMaximoUtentes << endl;
 	ofile << horariomap.size() << endl;
-
 	for (auto& x : horariomap) {
 		ofile << x.first << "-" << x.second << endl;
 	}
+	ofile << x << endl;
+	ofile << y << endl;
 
 	ofile.close();
 }

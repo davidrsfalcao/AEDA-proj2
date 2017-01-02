@@ -209,7 +209,7 @@ public:
 	*
 	* @param fichPiscina Nome do ficheiro que se pretende ler
 	*/
-	void ler_FichPiscina(string &fichPiscina);
+	void ler_FichPiscina(string &fichPiscina, const vector<Piscina> & piscinas);
 	/**
 	* @brief Grava as informacoes no ficheiro da piscina
 	*
