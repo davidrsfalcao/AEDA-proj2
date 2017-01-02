@@ -2436,6 +2436,7 @@ void menu_gerir_utentes(Piscina &p1)
 			cout << "\t\t\t\t    Adicionar utente" << endl;
 			cout << "\t\t\t\t    Remover utente" << endl;
 			cout << "\t\t\t\t    Utentes inativos" << endl;
+			cout << "\t\t\t\t    Realizar campanha promocional" << endl;
 			cout << "\t\t\t\t    Sair" << endl;
 			cout << endl << endl << endl << endl;
 			cout << endl << endl;
@@ -2446,7 +2447,7 @@ void menu_gerir_utentes(Piscina &p1)
 
 		menu_gerir_utentes_ops(opcao, opcao_b);
 		opcao_b = opcao;
-		tecla = opcao_valida(opcao, 1, 5);
+		tecla = opcao_valida(opcao, 1, 6);
 		Sleep(100);
 
 
@@ -2474,11 +2475,17 @@ void menu_gerir_utentes(Piscina &p1)
 				break;
 
 			case 5:
+				p1.campanha_promocional();
+				
+				imprimir = true;
+				break;
+
+			case 6:
 				break;
 
 			}
 
-	} while ((opcao != 5) || (tecla != ENTER));
+	} while ((opcao != 6) || (tecla != ENTER));
 
 	cout << endl << endl;
 
@@ -3234,6 +3241,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	nova.ler_FichLoja(fichLoja);
 
 	p1.setLoja(nova);
+
 	vector<Piscina>piscinas = carregar_piscinas();
 	set_prioridades(piscinas, p1);
 	p1.setPiscinas_prox(piscinas);
