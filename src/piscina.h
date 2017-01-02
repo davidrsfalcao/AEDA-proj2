@@ -414,6 +414,12 @@ public:
 	*/
 	void setLoja(Loja lj1) { loja_pis = lj1; };
 
+	/**
+	*	@brief Define os utentes que estão na piscina
+	*	@param utes vetor de utentes que está na piscina
+	*/
+	void setUtentesNaPiscina(vector<Utente *> utes);
+
 };
 
 
