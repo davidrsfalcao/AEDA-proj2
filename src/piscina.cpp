@@ -437,6 +437,8 @@ void Piscina::escrever_FichProfessores(string &fichProfessor)
 	ofile << "Professor;" << endl;
 	ofile << professores.size() << endl;
 	int n = 0;
+	if (professores.size() == 0)
+		return;
 	do {
 		ofile << professores[n]->getNome() << endl;
 		ofile << professores[n]->getaulas().size() << endl;
