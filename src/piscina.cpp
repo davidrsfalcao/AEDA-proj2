@@ -94,9 +94,12 @@ void Piscina::ler_FichAulas(string &fichAulas) {
 	getline(fich, linha, ';');
 	getline(fich, linha, ';');
 	int i = stoi(linha);
-	unsigned int id, dia, mes, ano, horas, minutos, horasf, minutosf;
+	unsigned int id, dia, mes, ano, horas, minutos, horasf, minutosf,info;
 	for (; i > 0; i--) {
 		getline(fich, pr, ';');
+		getline(fich, linha, ';');
+		info = stoi(linha);
+		linha = "";
 		getline(fich, linha, ';');
 		id = stoi(linha);
 		Data data1, data2;
@@ -128,6 +131,29 @@ void Piscina::ler_FichAulas(string &fichAulas) {
 		pro = stoi(pr);
 		if (pro == 1) {
 			Aula *a1 = new AulaPro();
+			switch (info) {
+			case 1:
+				a1 = new Polo();
+				break;
+
+			case 2:
+				a1 = new Sincronizada();
+				break;
+
+			case 3:
+				a1 = new Mergulho();
+				break;
+
+			case 4:
+				a1 = new Hidroginastica();
+				break;
+
+			case 5:
+				a1 = new Competicao();
+				break;
+
+			}
+			
 			data1.setDiaSemana();
 			data2.setDiaSemana();
 			a1->setDuracao(data1 - data2);
@@ -217,6 +243,7 @@ void Piscina::escrever_FichAulas(string &fichAulas)
 	{
 		stringstream temp;
 		fich << horario[i]->pro() << ";" << endl;
+		fich << horario[i]->getInfo() << ";" << endl;
 		fich << horario[i]->getId() << ";" << endl;
 		Data data, dataf;
 		data = horario[i]->getInicio();
@@ -288,6 +315,14 @@ void Piscina::ler_FichPiscina(string &fichPiscina, const vector<Piscina> & pisci
 	linha = "";
 	getline(in, linha);
 	this->y = stoi(linha);
+	linha = "";
+	getline(in, linha);
+	n = stoi(linha);
+	for (size_t i = 0; i < n; i++) {
+		linha = "";
+		getline(in, linha);
+		modalidades.push_back(linha);
+	}
 	setPiscinas_prox(piscinas);
 	coloca_inativos();
 	in.close();
@@ -305,6 +340,10 @@ void Piscina::escrever_FichPiscina(string &fichPiscina)
 	}
 	ofile << x << endl;
 	ofile << y << endl;
+	ofile << modalidades.size() << endl;
+	for (size_t i = 0; i < modalidades.size(); i++) {
+		ofile << modalidades[i] << endl;
+	}
 
 	ofile.close();
 }
@@ -430,6 +469,8 @@ void Piscina::ler_FichUtente(string &fichUtente)
 		for (int i = 0; i < n; i++)
 		{
 			int id = 0;
+			unsigned nr = 0;
+			string morada;
 			int naulas = 0;
 			int entradas = 0;
 			vector<Aula *>aulas;
@@ -444,6 +485,12 @@ void Piscina::ler_FichUtente(string &fichUtente)
 			naulas = stoi(line);
 			getline(in, line);
 			entradas = stoi(line);
+			line = "";
+			getline(in, line);
+			morada = line;
+			line = "";
+			getline(in, line);
+			nr = stoi(line);
 			line = "";
 			for (int k = 0; k < naulas; k++)
 			{
@@ -467,6 +514,8 @@ void Piscina::ler_FichUtente(string &fichUtente)
 			u->setNome(nome);
 			u->setAulas(aulas);
 			u->setEntradas(entradas);
+			u->setMorada(morada);
+			u->setTelemovel(nr);
 			utentes.push_back(u);
 
 
@@ -488,6 +537,8 @@ void Piscina::escrever_FichUtente(string &fichUtente)
 		ofile << utentes[i]->getNome() << endl;
 		ofile << utentes[i]->getTotalAulas() << endl;
 		ofile << utentes[i]->getEntradas() << endl;
+		ofile << utentes[i]->getMorada() << endl;
+		ofile << utentes[i]->getTelemovel() << endl;
 		for (int j = 0; j < utentes[i]->getTotalAulas(); j++)
 		{
 
@@ -621,6 +672,8 @@ int Piscina::adicionarProfessor() {
 	textcolor(WHITE);
 	cin.ignore(256, '\n');
 	ordena_professores();
+	
+
 	return 0;
 }
 

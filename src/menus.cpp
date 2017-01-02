@@ -20,6 +20,8 @@
 
 using namespace std;
 
+
+
 // @@@ funções atualização
 void atualizar_aulas_piscina(Piscina &p1)
 {
@@ -206,8 +208,43 @@ void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 
 }
 
+
 vector<Piscina> carregar_piscinas() {
 	vector<Piscina> v;
+	ifstream in;
+	unsigned int n = 0,x, y,j;
+	string line;
+	in.open("piscinas");
+	getline(in, line);
+	n = stoi(line);
+	line = "";
+	for (size_t i = 0; i < n; i++) {
+		Piscina P;
+		vector<string> modalidades = {};
+		getline(in, line);
+		P.setNome(line);
+		line = "";
+		getline(in, line);
+		x = stoi(line);
+		P.setX(x);
+		line = "";
+		getline(in, line);
+		y = stoi(line);
+		P.setY(y);
+		line = "";
+		getline(in, line);
+		j = stoi(line);
+		line = "";
+		for (size_t k = 0; k < j; j++) {
+			getline(in, line);
+			modalidades.push_back(line);
+		}
+		P.setModalidades(modalidades);
+
+		v.push_back(P);
+	}
+
+
 	return v;
 }
 
@@ -3229,6 +3266,10 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 
 
 			case 3:
+				p1.escrever_FichAulas(fichAulas);
+				p1.escrever_FichPiscina(fichPiscina);
+				p1.escrever_FichProfessores(fichProfessores);
+				p1.escrever_FichUtente(fichUtentes);
 				return;
 				break;
 
