@@ -120,16 +120,32 @@ unsigned int encontra_string_vetor(std::string palavra,
  *
  * @return Retorna o vetor ja ordenado
  */
-std::vector<std::string> ordena_dias_semana(std::vector<std::string> v1);
+vector<string> ordena_dias_semana(vector<string> v1);
 
 /**
- * @brief Algoritmo de Ordenacao de um vetor
- *
- * @param v Vetor que se vai ordenar
- *
- */
-
+* @brief Lê o input do utilizador e vê se a entrada é a up_key, down_key ou ENTER e ajusta a opcao
+*
+* @param opcao valor a alterar
+*
+* @param min opcao mininma
+*
+* @param max opcao máxima
+*
+* @return Retorna a tecla primida
+*/
 int opcao_valida(int &opcao, int min, int max);
+
+/**
+* @brief Lê o input do utilizador e vê se a entrada é a left_key, right_key ou ENTER e ajusta a opcao
+*
+* @param opcao valor a alterar
+*
+* @param min opcao mininma
+*
+* @param max opcao máxima
+*
+* @return Retorna a tecla primida
+*/
 
 int opcao_valida_listas(int &opcao, int min, int max);
 
@@ -141,11 +157,36 @@ enum DOS_COLORS
 	LIGHT_RED, LIGHT_MAGENTA, YELLOW, WHITE
 };
 
+/**
+* @brief Define a côr do texto a imprimir
+*
+* @param iColor côr escolhida
+*/
+
 void textcolor(DOS_COLORS iColor);
 
+/**
+* @brief Imprimir o título "PISCINA"
+*
+*/
 void titulo();
 
+/**
+* @brief Configura o terminal com as especificações pretendidas
+*
+*/
+
 void configurar_terminal();
+
+/**
+* @brief Defini a posição do cursor do terminal
+*
+* @param x posição horizontal
+*
+* @param y posição vertical
+*
+*/
+
 
 void gotoxy(int x, int y);
 
