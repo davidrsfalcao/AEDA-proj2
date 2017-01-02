@@ -33,7 +33,7 @@ void atualizar_aulas_piscina(Piscina &p1)
 	vector<string> mod = p1.getModalidades();
 	unsigned int n_mod = mod.size();
 
-	for (size_t i{}; i < 7; i++) {
+	for (size_t i{}; i < 8; i++) {
 		dia_S = calculo_dia_da_semana(dia, mes, ano);
 
 		map<string, string>::iterator it = p1.horariomap.find(dia_S);
@@ -1765,6 +1765,7 @@ void listar_professores(Piscina &p1)
 	}
 }
 
+
 // 6.4 Menu gerir professor
 void menu_gerir_professores_ops(int opcao, int opcao_b)
 {
@@ -2199,9 +2200,7 @@ void listar_aulas(Piscina &p1)
 		cout << "\n\n\n Prima 'ENTER' para sair \n";
 		textcolor(WHITE);
 
-		tecla = opcao_valida_listas(opcao, 1, opcaomax);
-		if (tecla == ENTER)
-			break;
+		cin.ignore(256, '\n');
 	}
 }
 
@@ -3160,6 +3159,7 @@ void entrar_como_utente(Piscina &p1)
 					{
 					case 1:
 						menu_utente(p1, novo);
+						return;
 						break;
 					case 2:
 						break;
@@ -3173,15 +3173,8 @@ void entrar_como_utente(Piscina &p1)
 
 		}
 		else {
-			for (size_t i = 0; i < p1.getUtentes().size(); i++)
-			{
-				if (novo->getId() == p1.getUtentes()[i]->getId())
-				{
-					menu_utente(p1, p1.getUtentes()[i]);
-				}
-
-			}
-
+			menu_utente(p1, novo);
+			return;
 		} 
 
 	}
@@ -3250,6 +3243,7 @@ void menu_geral(Piscina &p1, string &fichPiscina, string &fichUtentes, string &f
 	int opcao = 1, opcao_b = 1, tecla;
 	bool imprimir = true;
 	atualizar_aulas_piscina(p1);
+	p1.coloca_inativos();
 	do
 	{
 		if (imprimir)
