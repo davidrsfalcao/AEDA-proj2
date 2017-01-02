@@ -185,6 +185,7 @@ void atualizar_utentes_piscina(Piscina &p1)
 
 }
 
+
 void set_prioridades(vector<Piscina> &piscinas, Piscina &piscina_criada) {
 	vector<Piscina > temp = piscinas;
 	double distx = 0, disty = 0, dist = 0;
