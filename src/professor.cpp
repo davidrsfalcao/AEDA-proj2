@@ -12,6 +12,7 @@ Professor::Professor()
 {
 
 }
+
 Professor::~Professor(){
 	for (size_t i=0; i <aulas.size();i++){
 					delete(aulas[i]);
@@ -25,13 +26,10 @@ Professor::Professor(string nome, vector<Aula *> aulas)
 
 }
 
-
-
 vector<Aula *> Professor::getaulas()
 {
 	return aulas;
 }
-
 
 string Professor::getNome()
 {
@@ -39,12 +37,10 @@ string Professor::getNome()
 
 }
 
-
 void Professor::addaula(Aula *aula)
 {
 aulas.push_back(aula);
 }
-
 
 void Professor::operator = (const Professor &prof)
 {
@@ -52,7 +48,6 @@ void Professor::operator = (const Professor &prof)
 	this->aulas=prof.aulas;
 
 }
-
 
 ostream & operator <<(ostream &of, const Professor &p1){
 	of<< p1.nome;
