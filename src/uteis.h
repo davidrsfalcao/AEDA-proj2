@@ -122,13 +122,6 @@ unsigned int encontra_string_vetor(std::string palavra,
  */
 std::vector<std::string> ordena_dias_semana(std::vector<std::string> v1);
 
-/**
- * @brief Algoritmo de Ordenacao de um vetor
- *
- * @param v Vetor que se vai ordenar
- *
- */
-
 int opcao_valida(int &opcao, int min, int max);
 
 int opcao_valida_listas(int &opcao, int min, int max);
