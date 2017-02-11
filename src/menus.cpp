@@ -1197,19 +1197,6 @@ void menu_utente(Piscina &p1, Utente* ute)
 				break;
 
 			case 4:
-			{
-				for (int i = 0; i < p1.getUtentes().size(); i++)
-				{
-					if (p1.getUtentes()[i]->getId() == ute->getId())
-					{
-						p1.apaga_Utente(p1.getUtentes()[i]->getNome());
-						p1.addUtente(ute);
-						break;
-					}
-
-				}
-
-			}
 				break;
 
 			}
